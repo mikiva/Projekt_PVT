@@ -300,7 +300,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("test-app1/app")["default"].create({"name":"test-app1","version":"0.0.0+6ed8df06"});
+  require("test-app1/app")["default"].create({"name":"test-app1","version":"0.0.0+e89cbc2c"});
 }
 
 /* jshint ignore:end */
