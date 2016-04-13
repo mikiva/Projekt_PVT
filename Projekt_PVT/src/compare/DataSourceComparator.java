@@ -1,5 +1,7 @@
 package compare;
 
+import com.owlike.genson.Genson;
+
 import domain.DataSource;
 import domain.SpectatorsSource;
 import domain.StaticJSONSource;
@@ -26,21 +28,22 @@ public class DataSourceComparator {
 	}
 	
 	public String getData() {
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("{");
-		sb.append("\"Data\": [");
-		
-		result.getData().forEach((date, match) -> {
-			sb.append(
-		            "{\"Date\":" + "\"" + date + "\"" + "," + 
-					"\"" + source1.getName() + "\":" + match.getXValue() + "," +
-					"\"" + source2.getName() + "\":" + match.getYValue() + " },");
-		});
-		sb.deleteCharAt(sb.length() - 1);
-		sb.append("]}");
-		
-		return sb.toString();
+		return new Genson().serialize(result.getData());
+//		StringBuilder sb = new StringBuilder();
+//		
+//		sb.append("{");
+//		sb.append("\"Data\": [");
+//		
+//		result.getData().forEach((date, match) -> {
+//			sb.append(
+//		            "{\"Date\":" + "\"" + date + "\"" + "," + 
+//					"\"" + source1.getName() + "\":" + match.getXValue() + "," +
+//					"\"" + source2.getName() + "\":" + match.getYValue() + " },");
+//		});
+//		sb.deleteCharAt(sb.length() - 1);
+//		sb.append("]}");
+//		
+//		return sb.toString();
 	}
 	
 	public static void main(String[] args) {

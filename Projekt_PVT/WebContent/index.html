@@ -1,76 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="https://code.highcharts.com"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 
 <script>
-$(document).ready(function(){
-    $("p").click(function(){
-        $(this).hide();
-    });
-});
-
-
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'scatter',
-            zoomType: 'xy'
-        },
-   /*    title: {
-            text: 'Monthly Average Temperature',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com',
-            x: -20
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
-            title: {
-                text: 'Temperature (°C)'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: '°C'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },*/
-        series: [{
-            name: 'Tokyo',
-            data: [[7.0, 3.3], [6.9, 9.6], [14.5, 18.2], [21.5, 25.2], [26.5, 23.3], [18.3, 13.9]]
-      
-        }]
-    });
-});
-
-
+	console.log("Börjar...");
+	//var json = "http://rigel.hig.se:8080/Bulle/ServletTest?datasource1=goals&datasource2=gold"; Funkar inte!!
+	var json = "http://localhost:8080/Proj/ServletTest?datasource1=gold&datasource2=goals&pretty=true";
+	var jqxhr = $.getJSON(json, function() {
+		dataType: "json";
+		console.log("success");
+	}).done(function( data ) {
+		$.each(data, function(date, values) {
+			console.log(date);
+			console.log(values.xValue);
+			console.log(values.yValue);
+		});
+		console.log("loopat klart");
+	}).fail(function() {
+		console.log("error");
+	}).always(function() {
+		console.log("complete");
+	});
 </script>
 </head>
 <body>
 
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<div id="container"
+		style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 
-<p>If you click on me, I will disappear.</p>
-<p>Click me away!</p>
-<p>Click me too!</p>
+	<p>If you click on me, I will disappear.</p>
+	<p>Click me away!</p>
+	<p>Click me too!</p>
 
 </body>
 </html>
