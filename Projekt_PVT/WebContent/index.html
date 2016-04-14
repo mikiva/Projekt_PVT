@@ -10,8 +10,8 @@
 
 <script>
 	console.log("Börjar...");
-	//var json = "http://rigel.hig.se:8080/Bulle/ServletTest?datasource1=goals&datasource2=gold"; Funkar inte!!
-	var json = "http://localhost:8080/Proj/ServletTest?datasource1=gold&datasource2=goals&pretty=true";
+	//var json = "http://rigel.hig.se:8080/Bulle/ServletTest?datasource=goals&datasource=gold"; Funkar inte!!
+	var json = "http://localhost:8080/Proj/ServletTest?datasource=gold&datasource=goals&pretty=true";
 	var jqxhr = $.getJSON(json, function() {
 		dataType: "json";
 		console.log("success");

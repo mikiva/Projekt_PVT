@@ -2,6 +2,7 @@ package domain;
 
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class TemperatureSource implements DataSource {

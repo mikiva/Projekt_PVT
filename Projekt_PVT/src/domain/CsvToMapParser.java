@@ -13,7 +13,7 @@ public class CsvToMapParser {
 	public Map<String, String> getResult() {
 		UrlFetcher url = new UrlFetcher(link);
 		String csv = url.getContent();
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new TreeMap<>();
 	    String[] line =  csv.split(";");
 
 	    for(int i = 0; i < line.length; i++){

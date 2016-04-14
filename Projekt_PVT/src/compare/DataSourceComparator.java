@@ -6,7 +6,7 @@ import domain.DataSource;
 import domain.SpectatorsSource;
 import domain.StaticJSONSource;
 
-public class DataSourceComparator {
+public class DataSourceComparator implements JSONbuilder {
 
 	public DataSource source1;
 	public DataSource source2;
@@ -27,6 +27,10 @@ public class DataSourceComparator {
 		result = builder.getResult();
 	}
 	
+	/* (non-Javadoc)
+	 * @see compare.JSONbuilder#getData()
+	 */
+	@Override
 	public String getData() {
 		return new Genson().serialize(result.getData());
 //		StringBuilder sb = new StringBuilder();
@@ -50,7 +54,7 @@ public class DataSourceComparator {
 		SpectatorsSource a = new SpectatorsSource();
 		StaticJSONSource c = new StaticJSONSource();
 		
-		DataSourceComparator comp = new DataSourceComparator(c, a);
+		JSONbuilder comp = new DataSourceComparator(c, a);
 		
 		System.out.println(comp.getData());
 	}
