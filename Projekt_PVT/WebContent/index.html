@@ -10,30 +10,53 @@
 
 <script>
 	console.log("Börjar...");
-	var json = "http://rigel.hig.se:8080/Bulle/ServletTest?datasource=goals&datasource=gold&pretty=true"; //Funkar inte!!
-	//var json = "http://localhost:8080/Proj/ServletTest?datasource=gold&datasource=goals&pretty=true";
+	//var json = "http://rigel.hig.se:8080/Bulle/ServletTest?datasource=goals&datasource=gold&pretty=true"; //Funkar inte!!
+	var json = "http://localhost:8080/Proj/ServletTest?datasource=gold&datasource=goals";
+	
+/*  	var jsonDates = [];
+	var jsonData = [];
+	
 	var jqxhr = $.getJSON(json, function() {
 		dataType: "json";
 		console.log("success");
 	}).done(function( data ) {
-		$.each(data, function(date, values) {
-			console.log(date);
-			console.log(values.xValue);
-			console.log(values.yValue);
+		var set = data.dataset;
+		$.each(data, function(value) {
+			console.log(set[1]);
 		});
-		console.log("loopat klart");
 	}).fail(function() {
 		console.log("error");
 	}).always(function() {
 		console.log("complete");
+	}); */
+	
+	$(document).ready(function() {
+
+	    var options = {
+	        chart: {
+	            renderTo: 'container',
+	            type: 'scatter'
+	        },
+	        series: [{}]
+	    };
+
+	    //http://www.highcharts.com/docs/working-with-data/custom-preprocessing (längst ner)
+	    $.getJSON(json, function(data) { 
+	    	var set = data.dataset; // sparar arrayen av arrayer i variabel
+	        options.series[0].data = set;
+	        var chart = new Highcharts.Chart(options);
+	        console.log("gjort chart");
+	    });
+
 	});
+
+	
 </script>
 </head>
 <body>
 
 	<div id="container"
 		style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
 
 	<p>If you click on me, I will disappear.</p>
 	<p>Click me away!</p>

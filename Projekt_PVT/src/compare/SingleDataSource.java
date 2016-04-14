@@ -1,11 +1,12 @@
 package compare;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.TreeMap;
 
-import com.owlike.genson.Genson;
-
 import domain.DataSource;
-import domain.SpectatorsSource;
+import domain.FootballGoalsSource;
 
 public class SingleDataSource implements JSONbuilder{
 
@@ -15,19 +16,22 @@ public class SingleDataSource implements JSONbuilder{
 
 	public SingleDataSource(DataSource src) {
 		this.src = src;
-	
-		
-		
 	}
 
 	@Override
 	public String getData() {
-		
-		
+		Map<LocalDate, Double> data = new TreeMap<>(src.getData());
+		String[][] result = data.entrySet().stream().map(this::turnToArray).toArray(String[][]::new);
+		return "{\"dataset\":" + Arrays.deepToString(result) + "}";
+	}
 	
-		return new Genson().serialize(src.getData());
-		
-		//return "{{2014-05-26: 123.3},{2014-12-21: 152.3},{2014-09-11: 642.4},{2014-02-02: 75.5},{2014-03-29: 435.4},{2014-12-23: 105.5}}";
+	private String[] turnToArray(Map.Entry<LocalDate, Double> entry) {
+		return new String[] { "\"" + entry.getKey().toString() + "\"", Double.toString(entry.getValue())};
+	}
+	
+	public static void main(String[] args) {
+		DataSource src = new FootballGoalsSource();
+		System.out.println(new SingleDataSource(src).getData());
 	}
 
 }

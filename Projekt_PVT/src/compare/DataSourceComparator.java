@@ -1,8 +1,12 @@
 package compare;
 
-import com.owlike.genson.Genson;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
 
 import domain.DataSource;
+import domain.FootballGoalsSource;
+import domain.GoldPriceSource;
 import domain.SpectatorsSource;
 import domain.StaticJSONSource;
 
@@ -26,13 +30,20 @@ public class DataSourceComparator implements JSONbuilder {
 		builder = new DataCollectionBuilder(source1, source2, res);
 		result = builder.getResult();
 	}
+
+	private String[] turnToArray(MatchedDataPair pair) {
+		return new String[] { pair.getXValue() + "," + pair.getYValue() };
+		
+	}
 	
-	/* (non-Javadoc)
-	 * @see compare.JSONbuilder#getData()
-	 */
 	@Override
 	public String getData() {
-		return new Genson().serialize(result.getData());
+		
+		Map<String, MatchedDataPair> data = new TreeMap<>(result.getData());
+		String[][] result = data.values().stream().map(this::turnToArray).toArray(String[][]::new);
+		return "{\"dataset\":" + Arrays.deepToString(result) + "}";
+		
+		//return new Genson().serialize(result.getData());
 //		StringBuilder sb = new StringBuilder();
 //		
 //		sb.append("{");
@@ -51,8 +62,8 @@ public class DataSourceComparator implements JSONbuilder {
 	}
 	
 	public static void main(String[] args) {
-		SpectatorsSource a = new SpectatorsSource();
-		StaticJSONSource c = new StaticJSONSource();
+		DataSource a = new FootballGoalsSource();
+		DataSource c = new GoldPriceSource();
 		
 		JSONbuilder comp = new DataSourceComparator(c, a);
 		
