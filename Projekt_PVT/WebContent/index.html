@@ -11,7 +11,7 @@
 <script>
 	console.log("Börjar...");
 	//var json = "http://rigel.hig.se:8080/Bulle/ServletTest?datasource=goals&datasource=gold&pretty=true"; //Funkar inte!!
-	var json = "http://localhost:8080/Proj/ServletTest?datasource=gold&datasource=goals";
+	var json = "http://localhost:8080/Proj/ServletTest?datasource=goals&datasource=gold";
 	
 /*  	var jsonDates = [];
 	var jsonData = [];
@@ -37,17 +37,31 @@
 	            renderTo: 'container',
 	            type: 'scatter'
 	        },
+	       /*  xAxis: {
+	        	type: 'datetime'
+	        }, */
 	        series: [{}]
 	    };
+	    
+	    // http://stackoverflow.com/questions/3066586/get-string-in-yyyymmdd-format-from-js-date-object
+	    Date.prototype.yyyymmdd = function() {
+	    	   var yyyy = this.getFullYear().toString();
+	    	   var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+	    	   var dd  = this.getDate().toString();
+	    	   return yyyy + (mm[1]?mm:"0"+mm[0]) + (dd[1]?dd:"0"+dd[0]); // padding
+	    	  };
+
 
 	    //http://www.highcharts.com/docs/working-with-data/custom-preprocessing (längst ner)
 	    $.getJSON(json, function(data) { 
 	    	var set = data.dataset; // sparar arrayen av arrayer i variabel
+	/*     	$.each(set, function(whatisthisvariable, value) { // försöker på nåt sätt parsa varje datum i arrayerna
+				value[0] = new Date().yyyymmdd();
+	    	}); */
 	        options.series[0].data = set;
 	        var chart = new Highcharts.Chart(options);
 	        console.log("gjort chart");
 	    });
-
 	});
 
 	

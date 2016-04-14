@@ -37,7 +37,7 @@ public class DataSourceComparator implements JSONbuilder {
 	}
 	
 	@Override
-	public String getData() {
+	public String toJsonString() {
 		
 		Map<String, MatchedDataPair> data = new TreeMap<>(result.getData());
 		String[][] result = data.values().stream().map(this::turnToArray).toArray(String[][]::new);
@@ -67,7 +67,7 @@ public class DataSourceComparator implements JSONbuilder {
 		
 		JSONbuilder comp = new DataSourceComparator(c, a);
 		
-		System.out.println(comp.getData());
+		System.out.println(comp.toJsonString());
 	}
 	
 }

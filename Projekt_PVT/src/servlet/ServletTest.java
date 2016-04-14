@@ -44,7 +44,7 @@ public class ServletTest extends HttpServlet implements Servlet {
         
         try{
         	
-        	String json = jsonBuilder.getSources(datasource).getData();
+        	String json = jsonBuilder.getSources(datasource).toJsonString();
         	
         	response.getWriter().append(pretty ? format.format(json): json);
         }

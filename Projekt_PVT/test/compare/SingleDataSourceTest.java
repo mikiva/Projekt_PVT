@@ -42,13 +42,13 @@ public class SingleDataSourceTest {
 	@Test
 	public void getJsonStringTest() throws Exception {
 		
-		assertEquals(src.getData().getClass(), String.class);
+		assertEquals(src.toJsonString().getClass(), String.class);
 	}
 	
 	@Test
 	public void checkJsonStringTest() throws Exception {
 		
-		assertTrue(src.getData().contains("{"));
+		assertTrue(src.toJsonString().contains("{"));
 		
 	}
 	
@@ -57,7 +57,7 @@ public class SingleDataSourceTest {
 		
 		when(data.getData()).thenReturn(map);
 		
-		assertEquals(src.getData(), expectedJson);
+		assertEquals(src.toJsonString(), expectedJson);
 		
 		
 	}

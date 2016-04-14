@@ -19,7 +19,7 @@ public class SingleDataSource implements JSONbuilder{
 	}
 
 	@Override
-	public String getData() {
+	public String toJsonString() {
 		Map<LocalDate, Double> data = new TreeMap<>(src.getData());
 		String[][] result = data.entrySet().stream().map(this::turnToArray).toArray(String[][]::new);
 		return "{\"dataset\":" + Arrays.deepToString(result) + "}";
@@ -31,7 +31,7 @@ public class SingleDataSource implements JSONbuilder{
 	
 	public static void main(String[] args) {
 		DataSource src = new FootballGoalsSource();
-		System.out.println(new SingleDataSource(src).getData());
+		System.out.println(new SingleDataSource(src).toJsonString());
 	}
 
 }
