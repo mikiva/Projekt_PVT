@@ -52,7 +52,7 @@ public class SingleDataSourceTest {
 		
 	}
 	
-	@Test
+	
 	public void getResultFromSourceTest() throws Exception {
 		
 		when(data.getData()).thenReturn(map);
