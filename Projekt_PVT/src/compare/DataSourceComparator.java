@@ -41,7 +41,7 @@ public class DataSourceComparator implements JSONbuilder {
 		
 		Map<String, MatchedDataPair> data = new TreeMap<>(result.getData());
 		String[][] result = data.values().stream().map(this::turnToArray).toArray(String[][]::new);
-		return "{\"dataset\":" + Arrays.deepToString(result) + "}";
+		return "{"+ Arrays.deepToString(result) + "}";
 		
 		//return new Genson().serialize(result.getData());
 //		StringBuilder sb = new StringBuilder();

@@ -22,7 +22,7 @@ public class SingleDataSource implements JSONbuilder{
 	public String toJsonString() {
 		Map<LocalDate, Double> data = new TreeMap<>(src.getData());
 		String[][] result = data.entrySet().stream().map(this::turnToArray).toArray(String[][]::new);
-		return "{\"dataset\":" + Arrays.deepToString(result) + "}";
+		return "{"+Arrays.deepToString(result) + "}";
 	}
 	
 	private String[] turnToArray(Map.Entry<LocalDate, Double> entry) {
