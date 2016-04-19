@@ -31,43 +31,19 @@ public class DataSourceComparator implements JSONbuilder {
 		result = builder.getResult();
 	}
 
-	private String[] turnToArray(MatchedDataPair pair) {
-		return new String[] { pair.getXValue() + "," + pair.getYValue() };
+	private String turnToJavaScriptObject(Map.Entry<String, MatchedDataPair> entry) {
+		return "{" +
+				"\"x\":" + entry.getValue().getXValue() +
+				",\"y\":" + entry.getValue().getYValue() + 
+				",\"date\":" +  "\"" + entry.getKey() + "\"" +
+			"}";
 		
 	}
 	
 	@Override
 	public String toJsonString() {
-		
 		Map<String, MatchedDataPair> data = new TreeMap<>(result.getData());
-		String[][] result = data.values().stream().map(this::turnToArray).toArray(String[][]::new);
-		return "{"+ Arrays.deepToString(result) + "}";
-		
-		//return new Genson().serialize(result.getData());
-//		StringBuilder sb = new StringBuilder();
-//		
-//		sb.append("{");
-//		sb.append("\"Data\": [");
-//		
-//		result.getData().forEach((date, match) -> {
-//			sb.append(
-//		            "{\"Date\":" + "\"" + date + "\"" + "," + 
-//					"\"" + source1.getName() + "\":" + match.getXValue() + "," +
-//					"\"" + source2.getName() + "\":" + match.getYValue() + " },");
-//		});
-//		sb.deleteCharAt(sb.length() - 1);
-//		sb.append("]}");
-//		
-//		return sb.toString();
+		String[] result = data.entrySet().stream().map(this::turnToJavaScriptObject).toArray(String[]::new);
+		return "{\"data\":"+ Arrays.deepToString(result) + "}";
 	}
-	
-	public static void main(String[] args) {
-		DataSource a = new FootballGoalsSource();
-		DataSource c = new GoldPriceSource();
-		
-		JSONbuilder comp = new DataSourceComparator(c, a);
-		
-		System.out.println(comp.toJsonString());
-	}
-	
 }
