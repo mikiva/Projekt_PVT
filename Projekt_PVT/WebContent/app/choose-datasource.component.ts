@@ -1,18 +1,23 @@
-import {Component} from 'angular2/core';
-import {NumberService} from './test-numbers.service'
+import {Component, Input, OnChanges} from 'angular2/core';
 
 @Component({
     selector: 'choose-source',
-    templateUrl: 'app/choose-datasource.html',
-    providers: [NumberService]
-
-
+    templateUrl: 'app/choose-datasource.html'
 })
-export class ChooseSource {
-private items : number[]
-    constructor(nbr: NumberService) {
-        this.items = nbr.getNumbers();
+export class ChooseSource implements OnChanges{
+        
+    dataSources : string []=["gold", "spectators", "goals", "temperature", "static"];
+    @input() datasource: string;
+    ds: string;
+    
+    constructor() {
     }
-
-
+    
+    ngnOnChanges(): void {
+        this.ds = this.datasource;    
+    }
+    
+    getDatasource(): string {
+        return this.ds;
+    }
 }
