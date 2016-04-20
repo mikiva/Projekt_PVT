@@ -26,7 +26,6 @@ export class Graph implements OnInit {
     options: Object;
 
     constructor(private datasourceService: DatasourceService) {
-
     }
 
     errorMessage: string;
@@ -37,17 +36,16 @@ export class Graph implements OnInit {
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
-                () => this.datasource[0].x? this.plotGraph('scatter') : this.plotGraph('line') );
+                () => this.plotGraph() );
     }
     
-    plotGraph(type : string) {
+    private plotGraph() {
         this.options = {
             title: { text: 'hej' },
             series: [{
                 data: this.datasource,
-                type: type,
+                type: this.datasource[0].x? 'scatter' : 'line',
             }]
         };
-        
     }
 }
