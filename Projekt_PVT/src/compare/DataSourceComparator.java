@@ -37,7 +37,6 @@ public class DataSourceComparator implements JSONbuilder {
 				",\"y\":" + entry.getValue().getYValue() + 
 				",\"date\":" +  "\"" + entry.getKey() + "\"" +
 			"}";
-		
 	}
 	
 	@Override
