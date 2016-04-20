@@ -1,15 +1,23 @@
-import {Component} from 'angular2/core';
-
+import {Component, Input, OnChanges} from 'angular2/core';
 
 @Component({
     selector: 'choose-source',
     templateUrl: 'app/choose-datasource.html'
 })
-export class ChooseSource {
+export class ChooseSource implements OnChanges{
         
-    dataSource : string []=["gold", "spectators", "goals", "temperature", "static"];
+    dataSources : string []=["gold", "spectators", "goals", "temperature", "static"];
+    @input() datasource: string;
+    ds: string;
     
     constructor() {
-        
+    }
+    
+    ngnOnChanges(): void {
+        this.ds = this.datasource;    
+    }
+    
+    getDatasource(): string {
+        return this.ds;
     }
 }
