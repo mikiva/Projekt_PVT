@@ -7,14 +7,14 @@ import {Component, Input, OnChanges} from 'angular2/core';
 export class ChooseSource implements OnChanges{
         
     dataSources : string []=["gold", "spectators", "goals", "temperature", "static"];
-    @input() datasource: string;
+    @Input() datasource: string;
     ds: string;
     
     constructor() {
     }
     
     ngnOnChanges(): void {
-        this.ds = this.datasource;    
+        this.ds = this.datasource; 
     }
     
     getDatasource(): string {

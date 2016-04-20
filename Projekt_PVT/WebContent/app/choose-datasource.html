@@ -1,5 +1,5 @@
 <select>
-	<option *ngFor[datasource]="#item of dataSources">{{item}}</option>
+	<option *ngFor="#item of dataSources" (click)="ngnOnChanges()">{{item}}</option>
 </select>
    
 
