@@ -1,18 +1,15 @@
 import {Component} from 'angular2/core';
-import {NumberService} from './test-numbers.service'
+
 
 @Component({
     selector: 'choose-source',
-    templateUrl: 'app/choose-datasource.html',
-    providers: [NumberService]
-
-
+    templateUrl: 'app/choose-datasource.html'
 })
 export class ChooseSource {
-private items : number[]
-    constructor(nbr: NumberService) {
-        this.items = nbr.getNumbers();
+        
+    dataSource : string []=["gold", "spectators", "goals", "temperature", "static"];
+    
+    constructor() {
+        
     }
-
-
 }
