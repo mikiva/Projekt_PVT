@@ -1,0 +1,10 @@
+<p>Hej</p>
+{{data}}
+
+<ul *ngIf='datasource && datasource.length'>
+	<li *ngFor='#data of datasource'>
+		{{data.x}}
+		{{data.y}}
+		{{data.date}}
+	<li>
+</ul>
