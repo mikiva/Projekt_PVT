@@ -16,80 +16,38 @@ import 'rxjs/Rx';
     			display: block;
                 width: 45%;
                 height: 35%;
-             
+
     		}
     		`],
-            providers: [DatasourceService, HTTP_PROVIDERS]
+    providers: [DatasourceService, HTTP_PROVIDERS]
 })
 export class Graph implements OnInit {
+
+    options: Object;
+
     constructor(private datasourceService: DatasourceService) {
-       
+
     }
-    
-        errorMessage: string;
+
+    errorMessage: string;
     datasource: IDatasource[];
-    ds: IDatasource[] = [
-		{
-			"x":3.0,
-			"y":6711.0,
-			"date":"2014-04-06"
-		},
-		 {
-			"x":3.0,
-			"y":3173.0,
-			"date":"2014-04-17"
-		},
-		 {
-			"x":2.0,
-			"y":2837.0,
-			"date":"2014-04-28"
-		},
-		 {
-			"x":2.0,
-			"y":3091.0,
-			"date":"2014-05-08"
-		},
-		 {
-			"x":1.0,
-			"y":3060.0,
-			"date":"2014-05-11"
-		},
-		 {
-			"x":2.0,
-			"y":4199.0,
-			"date":"2014-05-26"
-		}];
-
-
 
     ngOnInit(): void {
         this.datasourceService.getData()
             .subscribe(
                 datasource => this.datasource = datasource,
-                error =>  this.errorMessage = <any>error,
-                () => this.go() );
-                
-                
-                        
-}
+                error => this.errorMessage = <any>error,
+                () => this.datasource[0].x? this.plotGraph('scatter') : this.plotGraph('line') );
+    }
     
-    
-    go(){
-        
+    plotGraph(type : string) {
         this.options = {
             title: { text: 'hej' },
             series: [{
                 data: this.datasource,
-                type: 'scatter'
+                type: type,
             }]
-
         };
         
     }
-    
-    
-    
-    
-    
-    options: Object;
 }

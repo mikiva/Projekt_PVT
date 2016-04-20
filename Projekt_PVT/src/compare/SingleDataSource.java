@@ -29,7 +29,7 @@ public class SingleDataSource implements JSONbuilder{
 	private String turnToJavaScriptObject(Map.Entry<LocalDate, Double> entry) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("{");
-		stringBuilder.append("\"x\":");
+		stringBuilder.append("\"y\":");
 		stringBuilder.append(entry.getValue());
 		stringBuilder.append(",\"date\":");
 		stringBuilder.append("\"");
