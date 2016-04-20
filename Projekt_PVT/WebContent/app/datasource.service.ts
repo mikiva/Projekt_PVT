@@ -5,7 +5,7 @@ import { IDatasource } from './datasource';
 
 @Injectable()
 export class DatasourceService {
-    private url = 'http://localhost:8080/Proj/ServletTest?datasource=goals&datasource=spectators&pretty=true';
+    private url = 'http://localhost:8080/Proj/ServletTest?datasource=goals&datasource=spectators';
 
     constructor(private http: Http) { }
 
