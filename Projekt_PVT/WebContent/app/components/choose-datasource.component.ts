@@ -2,7 +2,7 @@ import {Component, Input, OnChanges} from 'angular2/core';
 
 @Component({
     selector: 'choose-source',
-    templateUrl: 'app/choose-datasource.html'
+    templateUrl: 'app/html/choose-datasource.html'
 })
 export class ChooseSource implements OnChanges{
         

@@ -1,24 +1,15 @@
-import { Component, OnInit } from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
-import {DatasourceService} from './datasource.service';
+import {DatasourceService} from '../service/datasource.service';
 import {IDatasource} from './datasource';
 import {HTTP_PROVIDERS} from 'angular2/http';
-import 'rxjs/Rx';
 
 @Component({
     selector: 'graph',
     directives: [CHART_DIRECTIVES, ChooseSource],
-    templateUrl: 'app/graph.html'
-    ,
-    styles: [`
-    	chart{
-    			display: block;
-                width: 45%;
-                height: 35%;
-
-    		}
-    		`],
+    templateUrl: 'app/html/graph.html',
+    stylesUrl: 'css/graph.css',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
 export class Graph implements OnInit {
