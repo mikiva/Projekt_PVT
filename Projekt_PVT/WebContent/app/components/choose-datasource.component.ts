@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, Output, EventEmitter} from 'angular2/core';
+import {Component, Output, EventEmitter} from 'angular2/core';
 
 @Component({
     selector: 'choose-source',
@@ -6,11 +6,8 @@ import {Component, Input, OnChanges, Output, EventEmitter} from 'angular2/core';
 })
 export class ChooseSource {
     
-    @Input() input: string = "hej";
     @Output() output: EventEmitter<string> = new EventEmitter<string>();
-    
     dataSources : string []=["gold", "spectators", "goals", "temperature", "static"];
-    
     ds: string;
     
     constructor() {

@@ -1,4 +1,4 @@
-import {Component, Output} from 'angular2/core';
+import {Component, Output, EventEmitter} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
@@ -17,12 +17,15 @@ export class Graph {
     options: Object;
     errorMessage: string;
     datasource: IDatasource[];
+     source: string;
+     @Output source: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(private dataSourceService: DatasourceService) {
     }
     
-    plot(source : string) {
-        this.dataSourceService.getData(source)
+    plot(source : string) : void {
+        this.source = source;
+        this.dataSourceService.getData(this.source, null)
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
@@ -34,9 +37,13 @@ export class Graph {
             title: { text: 'hej' },
             series: [{
                 data: this.datasource,
-                type: this.datasource[0].x? 'scatter' : 'line',
+                type: 'line',
                 turboThreshold: 0
             }]
         };
+    }
+    
+    emitSource() : void {
+        this.source.emit(source);
     }
 }
