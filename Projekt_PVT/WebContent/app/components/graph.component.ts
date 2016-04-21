@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, Output} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
@@ -12,33 +12,24 @@ import {HTTP_PROVIDERS} from 'angular2/http';
     stylesUrl: 'css/graph.css',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
-export class Graph implements OnInit {
+export class Graph {
 
     options: Object;
-
-    constructor(private datasourceService: DatasourceService) {
-    }
-
     errorMessage: string;
     datasource: IDatasource[];
 
-    ngOnInit(): void {
-        this.datasourceService.getData(null)
-            .subscribe(
-                datasource => this.datasource = datasource,
-                error => this.errorMessage = <any>error,
-                () => this.plotGraph() );
+    constructor(private dataSourceService: DatasourceService) {
     }
     
     plot(source : string) {
-        this.datasourceService.getData(source)
+        this.dataSourceService.getData(source)
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
                 () => this.plotGraph() );
     }
     
-    private plotGraph() {
+    private plotGraph() : void {
         this.options = {
             title: { text: 'hej' },
             series: [{
@@ -47,9 +38,5 @@ export class Graph implements OnInit {
                 turboThreshold: 0
             }]
         };
-    }
-    
-    print(text : string) : void {
-        console.log(text);
     }
 }
