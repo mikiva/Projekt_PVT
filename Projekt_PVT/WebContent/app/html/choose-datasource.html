@@ -1,5 +1,6 @@
-<select>
-	<option *ngFor="#item of dataSources" (click)="ngnOnChanges()">{{item}}</option>
+
+
+<select (change)="onClick($event.target.value)">
+	<option *ngFor="#item of dataSources">{{item}}</option>
 </select>
-   
 

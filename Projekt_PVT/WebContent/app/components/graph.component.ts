@@ -23,7 +23,15 @@ export class Graph implements OnInit {
     datasource: IDatasource[];
 
     ngOnInit(): void {
-        this.datasourceService.getData()
+        this.datasourceService.getData(null)
+            .subscribe(
+                datasource => this.datasource = datasource,
+                error => this.errorMessage = <any>error,
+                () => this.plotGraph() );
+    }
+    
+    plot(source : string) {
+        this.datasourceService.getData(source)
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
@@ -36,7 +44,12 @@ export class Graph implements OnInit {
             series: [{
                 data: this.datasource,
                 type: this.datasource[0].x? 'scatter' : 'line',
+                turboThreshold: 0
             }]
         };
+    }
+    
+    print(text : string) : void {
+        console.log(text);
     }
 }

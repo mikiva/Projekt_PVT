@@ -9,8 +9,8 @@ export class DatasourceService {
 
     constructor(private http: Http) { }
 
-    getData(): Observable<IDatasource[]> {
-        return this.http.get(this.getUrl('goals', null))
+    getData(sourceOne : string): Observable<IDatasource[]> {
+        return this.http.get(this.getUrl(sourceOne, null))
             .map((response: Response) => <IDatasource[]> response.json().data)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
