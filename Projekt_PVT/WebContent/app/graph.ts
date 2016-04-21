@@ -32,14 +32,22 @@ export class Graph implements OnInit {
     datasource: IDatasource[];
 
     ngOnInit(): void {
-        this.datasourceService.getData()
+        this.datasourceService.getData('goals')
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
                 () => this.plotGraph() );
     }
     
-    private plotGraph() {
+    plot(source : string) {
+        this.datasourceService.getData(source)
+            .subscribe(
+                datasource => this.datasource = datasource,
+                error => this.errorMessage = <any>error,
+                () => this.plotGraph() );
+    }
+    
+    plotGraph() {
         this.options = {
             title: { text: 'hej' },
             series: [{
