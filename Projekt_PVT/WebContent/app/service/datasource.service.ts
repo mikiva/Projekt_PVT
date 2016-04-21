@@ -1,7 +1,7 @@
-import { Injectable } from 'angular2/core';
-import { Http, Response } from 'angular2/http';
-import { Observable } from 'rxjs/Observable';
-import { IDatasource } from './datasource';
+import {Injectable} from 'angular2/core';
+import {Http, Response} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
+import {IDatasource} from './interface/datasource';
 
 @Injectable()
 export class DatasourceService {
@@ -9,8 +9,8 @@ export class DatasourceService {
 
     constructor(private http: Http) { }
 
-    getData(source : string): Observable<IDatasource[]> {
-        return this.http.get(this.getUrl(source, null))
+    getData(sourceOne : string): Observable<IDatasource[]> {
+        return this.http.get(this.getUrl(sourceOne, null))
             .map((response: Response) => <IDatasource[]> response.json().data)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);

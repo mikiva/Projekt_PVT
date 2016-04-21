@@ -1,5 +1,6 @@
-<select>
+
+
+<select (change)="onClick($event.target.value)">
 	<option *ngFor="#item of dataSources">{{item}}</option>
 </select>
-   
 
