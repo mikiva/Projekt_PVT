@@ -10,8 +10,10 @@ import {GraphCorrelationComponent} from './graph-correlation.component';
 
 export class GraphContainerComponent {
     
-    sourceOne: string = '';
-    sourceTwo: string = '';
+    constructor(){}
+    
+    sourceOne: string = 'goals';
+    sourceTwo: string = 'spectators';
     
     
     public setSourceOne(sourceOne : string) {
@@ -22,6 +24,11 @@ export class GraphContainerComponent {
     public setSourceTwo(sourceTwo : string) {
         console.log(sourceTwo + ' set source two');
         this.sourceTwo = sourceTwo;
+    }
+    
+    public print(text: any){
+        
+        console.log(text.toString() + ' soruce set');
     }
     
     

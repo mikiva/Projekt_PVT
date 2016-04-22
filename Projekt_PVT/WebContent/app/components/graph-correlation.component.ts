@@ -9,7 +9,7 @@ import {HTTP_PROVIDERS} from 'angular2/http';
     selector: 'graph-correlation',
     directives: [CHART_DIRECTIVES, ChooseSource],
     templateUrl: 'app/html/graph-correlation.html',
-    stylesUrl: 'app/css/graph.css',
+    stylesUrl: 'css/graph.css',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
 export class GraphCorrelationComponent implements OnChanges{
