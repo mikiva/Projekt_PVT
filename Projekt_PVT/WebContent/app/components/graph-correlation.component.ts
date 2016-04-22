@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, OnChanges} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
@@ -9,10 +9,10 @@ import {HTTP_PROVIDERS} from 'angular2/http';
     selector: 'graph-correlation',
     directives: [CHART_DIRECTIVES, ChooseSource],
     templateUrl: 'app/html/graph-correlation.html',
-    stylesUrl: 'css/graph.css',
+    stylesUrl: 'app/css/graph.css',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
-export class GraphCorrelationComponent {
+export class GraphCorrelationComponent implements OnChanges{
 
     options: Object;
     errorMessage: string;
@@ -21,6 +21,8 @@ export class GraphCorrelationComponent {
     @Input() sourceTwo: string;
 
     constructor(private dataSourceService: DatasourceService) {
+        console.log(this.sourceOne);
+        console.log(this.sourceTwo);
     }
     
     plot() {
@@ -40,5 +42,16 @@ export class GraphCorrelationComponent {
                 turboThreshold: 0
             }]
         };
+    }
+    
+    public ngOnChanges(sourceOne : string, sourceTwo: string): void{
+        
+        console.log('changes');
+        
+        
+       if (this.sourceOne != null && this.sourceTwo != null)
+          this.plot();
+     
+        
     }
 }

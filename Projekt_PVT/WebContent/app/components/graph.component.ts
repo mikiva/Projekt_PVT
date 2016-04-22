@@ -2,8 +2,9 @@ import {Component, Output, EventEmitter} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
-import {IDatasource} from './datasource';
+import {IDatasource} from '../interface/datasource';
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {GraphCorrelationComponent} from'./graph-correlation.component';
 
 @Component({
     selector: 'graph',
@@ -18,7 +19,7 @@ export class Graph {
     errorMessage: string;
     datasource: IDatasource[];
      source: string;
-     @Output source: EventEmitter<string> = new EventEmitter<string>();
+     @Output sourceOut: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(private dataSourceService: DatasourceService) {
     }
@@ -30,6 +31,9 @@ export class Graph {
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
                 () => this.plotGraph() );
+                
+                this.emitSource();
+                
     }
     
     private plotGraph() : void {
@@ -44,6 +48,7 @@ export class Graph {
     }
     
     emitSource() : void {
-        this.source.emit(source);
+        console.log(this.source);
+        this.sourceOut.emit(this.source);
     }
 }

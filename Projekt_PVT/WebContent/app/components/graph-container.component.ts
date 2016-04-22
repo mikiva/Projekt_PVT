@@ -10,15 +10,17 @@ import {GraphCorrelationComponent} from './graph-correlation.component';
 
 export class GraphContainerComponent {
     
-    sourceOne: string = "";
-    sourceTwo: string = "";
+    sourceOne: string = '';
+    sourceTwo: string = '';
     
     
     public setSourceOne(sourceOne : string) {
         this.sourceOne = sourceOne;
+        console.log(this.sourceOne + ' set source one');
     }
     
     public setSourceTwo(sourceTwo : string) {
+        console.log(sourceTwo + ' set source two');
         this.sourceTwo = sourceTwo;
     }
     
