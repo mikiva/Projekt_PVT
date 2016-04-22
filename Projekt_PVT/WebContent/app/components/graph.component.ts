@@ -18,27 +18,31 @@ export class Graph {
     options: Object;
     errorMessage: string;
     datasource: IDatasource[];
-     source: string;
-     @Output sourceOut: EventEmitter<string> = new EventEmitter<string>();
+    source: string;
+    @Output sourceOut: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(private dataSourceService: DatasourceService) {
     }
-    
-    plot(source : string) : void {
+
+    plot(source: string): void {
         this.source = source;
         this.dataSourceService.getData(this.source, null)
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
-                () => this.plotGraph() );
-                
-                this.emitSource();
-                
+                () => this.plotGraph());
+
+        this.emitSource();
+
     }
-    
-    private plotGraph() : void {
+      private plotGraph():  void {
         this.options = {
             title: { text: this.source },
+             yAxis: {
+                 title: {
+                     text: this.source
+             }
+            },
             series: [{
                 data: this.datasource,
                 type: 'line',
@@ -46,8 +50,7 @@ export class Graph {
             }]
         };
     }
-    
-    emitSource() : void {
+     emitSource():  void {
         console.log(this.source);
         this.sourceOut.emit(this.source);
     }
