@@ -10,7 +10,7 @@ import {GraphCorrelationComponent} from'./graph-correlation.component';
     selector: 'graph',
     directives: [CHART_DIRECTIVES, ChooseSource],
     templateUrl: 'app/html/graph.html',
-    stylesUrl: 'css/graph.css',
+    stylesUrl: '../css/graph.css',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
 export class Graph {
@@ -38,7 +38,7 @@ export class Graph {
     
     private plotGraph() : void {
         this.options = {
-            title: { text: 'hej' },
+            title: { text: this.source },
             series: [{
                 data: this.datasource,
                 type: 'line',

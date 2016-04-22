@@ -2,7 +2,7 @@ import {Component, Input, OnChanges} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
-import {IDatasource} from './datasource';
+import {IDatasource} from '../interface/datasource';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
@@ -35,7 +35,7 @@ export class GraphCorrelationComponent implements OnChanges{
     
     private plotGraph() : void {
         this.options = {
-            title: { text: 'hej' },
+            title: { text: this.sourceOne },
             series: [{
                 data: this.datasource,
                 type: 'scatter',
