@@ -1,4 +1,7 @@
-<graph id="1" (sourceOut)="print($event)">1</graph>
-<graph id="2" (sourceOut)="setSourceTwo($event)" [testInput]="sourceOne">2</graph>
+<choose-source (output)="setSourceOne($event)"></choose-source>
+<choose-source (output)="setSourceTwo($event)"></choose-source>
+<graph id="1" [sourceInput]="sourceOne">1</graph>
+<graph id="2" [sourceInput]="sourceTwo">2</graph>
 <graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation>
+
 

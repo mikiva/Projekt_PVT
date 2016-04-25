@@ -41,6 +41,7 @@ export class GraphCorrelationComponent implements OnChanges {
         };
     }
     ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-        console.log('CHANGdE');
+        if(this.sourceOne != null && this.sourceTwo != null) 
+            this.plot();
     }
 }

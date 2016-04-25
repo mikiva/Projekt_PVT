@@ -17,16 +17,15 @@ export class Graph implements OnChanges {
     options: Object;
     errorMessage: string;
     datasource: IDatasource[];
-    source: string;
-    @Output() sourceOut: EventEmitter<string> = new EventEmitter<string>();
-    @Input() testInput: string; 
+    //source: string;
+    //@Output() sourceOutput: EventEmitter<string> = new EventEmitter<string>();
+    @Input() sourceInput: string;
 
     constructor(private dataSourceService: DatasourceService) {
     }
 
-    plot(source: string): void {
-        this.source = source;
-        this.dataSourceService.getData(this.source, null)
+    plot(): void {
+        this.dataSourceService.getData(this.sourceInput, null)
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
@@ -36,10 +35,10 @@ export class Graph implements OnChanges {
     
      private plotGraph():  void {
         this.options = {
-            title: { text: this.source },
+            title: { text: this.sourceInput },
              yAxis: {
                  title: {
-                     text: this.source
+                     text: this.sourceInput
              }
             },
             series: [{
@@ -48,10 +47,11 @@ export class Graph implements OnChanges {
                 turboThreshold: 0
             }]
         };
-        this.sourceOut.emit('goals');
+        //this.sourceOutput.emit(this.source);
     }
     
-    ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-        console.log('GRAPH CHANGE');
-    }
+  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+        if(this.sourceInput != null) 
+            this.plot();
+  }
 }

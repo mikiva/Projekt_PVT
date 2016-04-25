@@ -1,32 +1,26 @@
 import {Component} from 'angular2/core';
 import {Graph} from './graph.component';
 import {GraphCorrelationComponent} from './graph-correlation.component';
+import {ChooseSource} from './choose-datasource.component';
 
 @Component({
     selector: 'graph-container',
-    directives: [Graph, GraphCorrelationComponent],
+    directives: [Graph, GraphCorrelationComponent, ChooseSource],
     templateUrl: 'app/html/graph-container.html',
 })
 
-export class GraphContainerComponent {
+export class GraphContainerComponent {    
+    
+    sourceOne: string;
+    sourceTwo: string;
     
     constructor(){}
     
-    sourceOne: string = 'goals';
-    sourceTwo: string = 'spectators';
-    
-    
     public setSourceOne(sourceOne : string) : void {
         this.sourceOne = sourceOne;
-        console.log(this.sourceOne + ' set source one');
     }
     
     public setSourceTwo(sourceTwo : string) : void {
-        console.log(sourceTwo + ' set source two');
         this.sourceTwo = sourceTwo;
-    }
-    
-    public print(thing: Object) : void {
-        console.log(thing);
-    }      
+    }     
 }
