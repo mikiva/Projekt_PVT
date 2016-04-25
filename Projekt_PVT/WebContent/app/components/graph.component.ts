@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from 'angular2/core';
+import {Component, Output, EventEmitter, OnChanges, Input, SimpleChange} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
@@ -10,16 +10,16 @@ import {GraphCorrelationComponent} from'./graph-correlation.component';
     selector: 'graph',
     directives: [CHART_DIRECTIVES, ChooseSource],
     templateUrl: 'app/html/graph.html',
-    stylesUrl: '../css/graph.css',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
-export class Graph {
+export class Graph implements OnChanges {
 
     options: Object;
     errorMessage: string;
     datasource: IDatasource[];
     source: string;
-    @Output sourceOut: EventEmitter<string> = new EventEmitter<string>();
+    @Output() sourceOut: EventEmitter<string> = new EventEmitter<string>();
+    @Input() testInput: string; 
 
     constructor(private dataSourceService: DatasourceService) {
     }
@@ -31,11 +31,10 @@ export class Graph {
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
                 () => this.plotGraph());
-
-        this.emitSource();
-
+          
     }
-      private plotGraph():  void {
+    
+     private plotGraph():  void {
         this.options = {
             title: { text: this.source },
              yAxis: {
@@ -49,9 +48,10 @@ export class Graph {
                 turboThreshold: 0
             }]
         };
+        this.sourceOut.emit('goals');
     }
-     emitSource():  void {
-        console.log(this.source);
-        this.sourceOut.emit(this.source);
+    
+    ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+        console.log('GRAPH CHANGE');
     }
 }

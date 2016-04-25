@@ -12,7 +12,6 @@ export class DatasourceService {
     getData(sourceOne: string, sourceTwo: string): Observable<IDatasource[]> {
         return this.http.get(this.getUrl(sourceOne, sourceTwo))
             .map((response: Response) => <IDatasource[]> response.json().data)
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 

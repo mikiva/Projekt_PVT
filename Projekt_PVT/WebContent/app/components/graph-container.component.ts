@@ -16,20 +16,17 @@ export class GraphContainerComponent {
     sourceTwo: string = 'spectators';
     
     
-    public setSourceOne(sourceOne : string) {
+    public setSourceOne(sourceOne : string) : void {
         this.sourceOne = sourceOne;
         console.log(this.sourceOne + ' set source one');
     }
     
-    public setSourceTwo(sourceTwo : string) {
+    public setSourceTwo(sourceTwo : string) : void {
         console.log(sourceTwo + ' set source two');
         this.sourceTwo = sourceTwo;
     }
     
-    public print(text: any){
-        
-        console.log(text.toString() + ' soruce set');
-    }
-    
-    
+    public print(thing: Object) : void {
+        console.log(thing);
+    }      
 }
