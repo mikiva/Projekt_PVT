@@ -3,6 +3,7 @@ import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
 import {IDatasource} from '../interface/datasource';
+import {DataSourceJson} from '../interface/datasource-json';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {GraphCorrelationComponent} from'./graph-correlation.component';
 
@@ -16,7 +17,7 @@ export class Graph implements OnChanges {
 
     options: Object;
     errorMessage: string;
-    datasource: IDatasource[];
+    datasource: DataSourceJson;
     @Input() sourceInput: string;
 
     constructor(private dataSourceService: DatasourceService) {
@@ -40,14 +41,14 @@ export class Graph implements OnChanges {
              }
             },
             series: [{
-                data: this.datasource,
+                data: this.datasource.data,
                 type: 'line',
                 turboThreshold: 0
             }]
         };
     }
     
-  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+  ngOnChanges(changes: {[source: string]: SimpleChange}) {
         if(this.sourceInput != null) 
             this.plot();
   }

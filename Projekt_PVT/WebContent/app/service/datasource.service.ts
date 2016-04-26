@@ -2,6 +2,7 @@ import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {IDatasource} from './interface/datasource';
+import {DataSourceJson} from 'app/interface/datasource-json';
 
 @Injectable()
 export class DatasourceService {
@@ -9,9 +10,9 @@ export class DatasourceService {
 
     constructor(private http: Http) { }
 
-    getData(sourceOne: string, sourceTwo: string): Observable<IDatasource[]> {
+    getData(sourceOne: string, sourceTwo: string): Observable<DataSourceJson> {
         return this.http.get(this.getUrl(sourceOne, sourceTwo))
-            .map((response: Response) => <IDatasource[]> response.json().data)
+            .map((response: Response) => <DataSourceJson> response.json())
             .catch(this.handleError);
     }
 
