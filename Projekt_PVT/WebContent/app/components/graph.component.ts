@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, OnChanges, Input, SimpleChange} from 'angular2/core';
+import {Component, OnChanges, Input, SimpleChange} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
@@ -17,8 +17,6 @@ export class Graph implements OnChanges {
     options: Object;
     errorMessage: string;
     datasource: IDatasource[];
-    //source: string;
-    //@Output() sourceOutput: EventEmitter<string> = new EventEmitter<string>();
     @Input() sourceInput: string;
 
     constructor(private dataSourceService: DatasourceService) {
@@ -47,7 +45,6 @@ export class Graph implements OnChanges {
                 turboThreshold: 0
             }]
         };
-        //this.sourceOutput.emit(this.source);
     }
     
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
