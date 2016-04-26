@@ -7,6 +7,7 @@ import {DataSourceJson} from 'app/interface/datasource-json';
 @Injectable()
 export class DatasourceService {
     private url = 'http://localhost:8080/Proj/ServletTest?';
+    //private url = 'http://rigel.se:8080/Bulle/ServletTest?';
 
     constructor(private http: Http) { }
 

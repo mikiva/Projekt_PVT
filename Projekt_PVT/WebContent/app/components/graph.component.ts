@@ -33,12 +33,18 @@ export class Graph implements OnChanges {
     }
     
      private plotGraph():  void {
+        var dates = [];
+        this.datasource.data.forEach(data => dates.push(data.date));
+         
         this.options = {
             title: { text: this.sourceInput },
              yAxis: {
                  title: {
                      text: this.sourceInput
              }
+            },
+            xAxis: {
+                categories: dates
             },
             series: [{
                 data: this.datasource.data,
