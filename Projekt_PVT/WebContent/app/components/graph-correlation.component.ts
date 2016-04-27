@@ -28,13 +28,14 @@ export class GraphCorrelationComponent implements OnChanges {
     
     saveInstance(chart: HighchartsChartObject) {
         this.chart = chart;
+        console.log(this.datasource);
     }
     
     onPointHover(point: HighchartsPointObject) : void {
         this.chart.options.tooltip.formatter = () : string => {
-            return "<b>Date: " + point.date + "</b><br>" + 
-            "source1: " + point.x + "<br>" +
-            "source2: " + point.y;
+            return "<b>Date: " + point.date + "</b><br>" 
+            .concat(this.datasource.xUnit + ": ") + point.x + "<br>"
+            .concat(this.datasource.yUnit + ": ") + point.y;
         }
     }
     
