@@ -1,1 +1,5 @@
-<chart [options]="options">corr chart</chart>
+<chart [options]="options" (load)="saveInstance($event.context)">
+    <series>
+        <point (mouseOver)="onPointHover($event.context)"></point>
+    </series>
+</chart>
