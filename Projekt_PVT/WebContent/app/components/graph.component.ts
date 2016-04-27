@@ -37,10 +37,10 @@ export class Graph implements OnChanges {
         this.datasource.data.forEach(data => dates.push(data.date));
          
         this.options = {
-            title: { text: this.sourceInput },
+            title: { text: this.datasource.name },
              yAxis: {
                  title: {
-                     text: this.sourceInput
+                     text: this.datasource.unit
              }
             },
             xAxis: {

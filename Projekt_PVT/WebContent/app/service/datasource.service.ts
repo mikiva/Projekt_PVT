@@ -3,6 +3,7 @@ import {Http, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {IDatasource} from './interface/datasource';
 import {DataSourceJson} from 'app/interface/datasource-json';
+import {DataSourceSingleJson} from 'app/interface/datasource-single-json';
 
 @Injectable()
 export class DatasourceService {
@@ -11,9 +12,9 @@ export class DatasourceService {
 
     constructor(private http: Http) { }
 
-    getData(sourceOne: string, sourceTwo: string): Observable<DataSourceJson> {
+    getData(sourceOne: string, sourceTwo: string): Observable<DataSourceJson | DataSourceSingleJson> {
         return this.http.get(this.getUrl(sourceOne, sourceTwo))
-            .map((response: Response) => <DataSourceJson> response.json())
+            .map((response: Response) => <DataSourceJson | DataSourceSingleJson> response.json())
             .catch(this.handleError);
     }
 
