@@ -45,7 +45,7 @@ export class GraphCorrelationComponent implements OnChanges {
         this.options = {
             title: { text: this.sourceOne },
             plotOptions: {
-              area: { turboThreshold: 0 }  
+              scatter: { turboThreshold: 0 }  
             },
             xAxis: {
               title: { text: xName }  
