@@ -31,14 +31,6 @@ export class GraphCorrelationComponent implements OnChanges {
         console.log(this.datasource);
     }
     
-    onPointHover(point: HighchartsPointObject) : void {
-        this.chart.options.tooltip.formatter = () : string => {
-            return "<b>Date: " + point.date + "</b><br>" 
-            .concat(this.datasource.xUnit + ": ") + point.x + "<br>"
-            .concat(this.datasource.yUnit + ": ") + point.y;
-        }
-    }
-    
     plot() {
         this.dataSourceService.getData(this.sourceOne, this.sourceTwo)
             .subscribe(
@@ -50,13 +42,26 @@ export class GraphCorrelationComponent implements OnChanges {
     
     
     private plotGraph() : void {
+        var xName = this.datasource.xName;
+        
         this.options = {
             title: { text: this.sourceOne },
             plotOptions: {
               area: { turboThreshold: 0 }  
             },
+            xAxis: {
+              title: { text: this.datasource.xName }  
+            },
+            yAxis: {
+              title: { text: this.datasource.yName }  
+            },
             tooltip: {
-                formatter: (): boolean => false
+                formatter: function() {
+                    var yName = this.series.yAxis.userOptions.title.text;
+                    return 'Date: ' + this.point.date + '<br>' + 
+                            xName + ': ' + this.point.x + '<br>' + 
+                            yName + ': ' + this.point.y;
+                }
             },
             series: [{
                 data: this.datasource.data,
