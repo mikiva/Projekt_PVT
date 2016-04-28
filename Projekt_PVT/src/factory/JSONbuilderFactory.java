@@ -38,6 +38,11 @@ public class JSONbuilderFactory {
 
 	}
 
+	
+	public JSONbuilder getSources (DataSource... dataSource){
+		return new DataSourceComparator(dataSource[0], dataSource[1]);
+	}
+	
 
 	public static void main(String[] args) {
 

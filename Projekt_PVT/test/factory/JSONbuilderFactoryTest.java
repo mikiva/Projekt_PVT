@@ -38,7 +38,7 @@ public class JSONbuilderFactoryTest {
 	@Test(expected = FactoryException.class)
 	public void getManyDataSourcesTest() throws Exception {
 		
-		jFac.getSources();
+	
 		
 	}
 }

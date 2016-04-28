@@ -7,6 +7,7 @@ import {DataSourceJson} from '../interface/datasource-json';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {GraphCorrelationComponent} from'./graph-correlation.component';
 import {DataSourceSingleJson} from '../interface/datasource-single-json';
+import 'rxjs/Rx';
 
 @Component({
     selector: 'graph',

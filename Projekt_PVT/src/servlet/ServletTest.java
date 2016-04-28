@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import compare.DataSourceComparator;
 import compare.JSONbuilder;
 import domain.DataSource;
+import domain.QuandlSource;
 import factory.DataSourceFactory;
 import factory.JSONbuilderFactory;
 
@@ -41,30 +42,31 @@ public class ServletTest extends HttpServlet implements Servlet {
         JsonFormatter format = new JsonFormatter();
         
         String datasource[] = request.getParameterValues("datasource");
-        
-        try{
+        String database1 = request.getParameter("database1");
+        String database2 = request.getParameter("database2");
+        String values1 = request.getParameter("values1");
+        String values2 = request.getParameter("values2");
+               
+        try{   	
+        	QuandlSource quandlSource1 = new QuandlSource();
+        	quandlSource1.setParameters(database1, values1);
+        	QuandlSource quandlSource2 = new QuandlSource();
+        	quandlSource2.setParameters(database2, values2);
         	
-        	String json = jsonBuilder.getSources(datasource).toJsonString();
+        	System.out.println(quandlSource1.getDataBase());
+        	System.out.println(quandlSource2.getDataBase());
+        	
+        	
+        	String json = jsonBuilder.getSources(quandlSource1, quandlSource2).toJsonString();
         	
         	response.getWriter().append(pretty ? format.format(json): json);
+        	
+        	System.out.println(quandlSource2.getName());
+        	
         }
         catch(RuntimeException e){
         	response.getWriter().append(e.getMessage());
-        }
-        
-        
-//        String datasource1 = request.getParameter("datasource1");
-//        String datasource2 = request.getParameter("datasource2");
-        
-//        try (PrintWriter writer = response.getWriter()) {
-//        	DataSource source1 = DataSourceFactory.get(datasource1);
-//        	DataSource source2 = DataSourceFactory.get(datasource2);
-//            JSONbuilder gt = new DataSourceComparator(source1, source2);
-//            writer.append((pretty ? format.format(gt.getData()) : gt.getData()));
-//		} catch (RuntimeException e) {
-//			response.getWriter().append(e.getMessage());
-//		}
-//        
+        }    
 }
 
 	/**
