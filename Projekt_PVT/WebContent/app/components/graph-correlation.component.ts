@@ -28,7 +28,6 @@ export class GraphCorrelationComponent implements OnChanges {
     
     saveInstance(chart: HighchartsChartObject) {
         this.chart = chart;
-        console.log(this.datasource);
     }
     
     plot() {
@@ -38,11 +37,10 @@ export class GraphCorrelationComponent implements OnChanges {
                 error => this.errorMessage = <any>error,
                 () => this.plotGraph());
     }
-    
-    
-    
+
     private plotGraph() : void {
         var xName = this.datasource.xName;
+        var yName = this.datasource.yName;
         
         this.options = {
             title: { text: this.sourceOne },
@@ -50,14 +48,13 @@ export class GraphCorrelationComponent implements OnChanges {
               area: { turboThreshold: 0 }  
             },
             xAxis: {
-              title: { text: this.datasource.xName }  
+              title: { text: xName }  
             },
             yAxis: {
-              title: { text: this.datasource.yName }  
+              title: { text: yName }  
             },
             tooltip: {
                 formatter: function() {
-                    var yName = this.series.yAxis.userOptions.title.text;
                     return 'Date: ' + this.point.date + '<br>' + 
                             xName + ': ' + this.point.x + '<br>' + 
                             yName + ': ' + this.point.y;
