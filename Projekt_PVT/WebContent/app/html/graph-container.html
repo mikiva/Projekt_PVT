@@ -1,10 +1,15 @@
-<choose-source (output)="setSourceOne($event)"></choose-source>
-<choose-source (output)="setSourceTwo($event)"></choose-source>
+<div align="center"><choose-source (output)="setSourceOne($event)"></choose-source>
+<choose-source (output)="setSourceTwo($event)"></choose-source></div>
+
+<table style="width:100%">
+<tr>
+
+<td><graph id="1" [sourceInput]="sourceOne">1</graph></td>
+<td><graph id="2" [sourceInput]="sourceTwo">2</graph></td>
+</tr>
+</table>
 
 
-
-<graph id="1" [sourceInput]="sourceOne">1</graph>
-<graph id="2" [sourceInput]="sourceTwo">2</graph>
-<graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation>
+<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation></div>
 
 
