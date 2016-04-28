@@ -50,15 +50,15 @@ export class GraphCorrelationComponent implements OnChanges {
         var yName = this.datasource.yName;
 
         this.options = {
-            title: { text: this.sourceOne },
+            title: { text: this.datasource.yName + " (Y-axis) och " + this.datasource.xName + " (X-axis)" },
             plotOptions: {
                 scatter: { turboThreshold: 0 }
             },
             xAxis: {
-                title: { text: xName }
+                title: { text: this.datasource.xUnit }
             },
             yAxis: {
-                title: { text: yName }
+                title: { text: this.datasource.yUnit }
             },
             tooltip: {
                 formatter: function() {
