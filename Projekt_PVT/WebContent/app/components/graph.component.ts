@@ -6,6 +6,7 @@ import {IDatasource} from '../interface/datasource';
 import {DataSourceJson} from '../interface/datasource-json';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {GraphCorrelationComponent} from'./graph-correlation.component';
+import {DataSourceSingleJson} from '../interface/datasource-single-json';
 
 @Component({
     selector: 'graph',
@@ -17,7 +18,7 @@ export class Graph implements OnChanges {
 
     options: Object;
     errorMessage: string;
-    datasource: DataSourceJson;
+    datasource: DataSourceSingleJson;
     @Input() sourceInput: string;
 
     constructor(private dataSourceService: DatasourceService) {
@@ -47,6 +48,7 @@ export class Graph implements OnChanges {
                 categories: dates
             },
             series: [{
+                name: this.datasource.unit,
                 data: this.datasource.data,
                 type: 'line',
                 turboThreshold: 0
