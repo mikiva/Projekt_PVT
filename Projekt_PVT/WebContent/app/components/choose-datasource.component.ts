@@ -12,8 +12,9 @@ export class ChooseSource implements OnInit {
     @Input() input: string = "hej";
     @Output() output: EventEmitter<string> = new EventEmitter<string>();
     @Output() index: EventEmitter<number>= new EventEmitter<number>();
-    menu: Menu;
+    menu: Menu[];
     underMenu: String[];
+    underMenuState: boolean = false;
     errorMessage: string;
     
     constructor(private datasourceService: DatasourceService) {
@@ -27,14 +28,16 @@ export class ChooseSource implements OnInit {
 
     }
 
-    public ind(value): void {
-        console.log();
+    private fillUnderMenu(index): void {
+        this.underMenu = this.menu[index].values;
+        this.underMenuState = true;
+        console.log(this.menu);
     }
     
-    public onClick(value, i) {
+    public onClick(value, index) {
         this.output.emit(value);
+        this.fillUnderMenu(index);
         console.log(value);
-        console.log(i);
-        //console.log(value);
+        console.log(index);
     }
 }
