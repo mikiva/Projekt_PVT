@@ -26,7 +26,7 @@ export class DatasourceService {
     
     getMenu(): Observable<Menu[]> {
         return this.http.get(this.menuUrl)
-            .map((response: Response) => <Menu[]> response.json())
+            .map((response: Response) => <Menu[]> response.json().data)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
 

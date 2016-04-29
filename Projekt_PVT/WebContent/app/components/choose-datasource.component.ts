@@ -27,8 +27,8 @@ export class ChooseSource implements OnInit {
 
     }
 
-    fillUnderMenu(): void {
-        
+    public ind(value): void {
+        console.log();
     }
     
     public onClick(value, i) {
