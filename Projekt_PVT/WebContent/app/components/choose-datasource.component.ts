@@ -7,7 +7,7 @@ import {Component, Output, EventEmitter} from 'angular2/core';
 export class ChooseSource {
     
     @Output() output: EventEmitter<string> = new EventEmitter<string>();
-    dataSources : string []=["gold", "spectators", "goals", "temperature", "static"];
+    dataSources : string []=[" ", "gold", "spectators", "goals", "temperature", "static"];
     ds: string;
     
     constructor() {
