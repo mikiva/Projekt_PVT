@@ -1,12 +1,13 @@
-package domain;
+package database.misc;
 
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class TemperatureSource implements DataSource {
+import compare.DataSource;
 
+class TemperatureSource implements DataSource {
+	
 	private final String csvLink;
 
 	public TemperatureSource() {
@@ -30,4 +31,5 @@ public class TemperatureSource implements DataSource {
 		return csvData.keySet().stream().collect(Collectors.toMap
 				(key -> LocalDate.parse(key), key -> Double.parseDouble(csvData.get(key))));
 	}
+
 }

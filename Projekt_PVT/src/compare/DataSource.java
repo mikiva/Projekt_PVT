@@ -1,4 +1,4 @@
-package domain;
+package compare;
 
 import java.time.LocalDate;
 import java.util.Map;

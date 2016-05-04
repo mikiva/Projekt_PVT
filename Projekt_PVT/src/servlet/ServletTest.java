@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -10,12 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 import compare.DataSourceComparator;
 import compare.JSONbuilder;
 import domain.DataSource;
 import domain.QuandlSource;
 import factory.DataSourceFactory;
 import factory.JSONbuilderFactory;
+=======
+import compare.DataSource;
+import database.DatabaseFactory;
+import json.JsonFormatter;
+import json.JsonStringFactory;
+>>>>>>> develop
 
 /**
  * Servlet implementation class ServletTest
@@ -23,14 +29,11 @@ import factory.JSONbuilderFactory;
 @WebServlet("/ServletTest")
 public class ServletTest extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
-	private JSONbuilderFactory jsonBuilder;
 	
     /**
      * Default constructor. 
      */
     public ServletTest() {
-    	
-    	jsonBuilder = new JSONbuilderFactory();
     }
     
 	/**
@@ -38,9 +41,9 @@ public class ServletTest extends HttpServlet implements Servlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		response.setContentType("application/json;charset=UTF-8");
-        Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
         JsonFormatter format = new JsonFormatter();
         
+<<<<<<< HEAD
         String datasource[] = request.getParameterValues("datasource");
         String database1 = request.getParameter("database1");
         String database2 = request.getParameter("database2");
@@ -59,6 +62,18 @@ public class ServletTest extends HttpServlet implements Servlet {
         	
         	String json = jsonBuilder.getSources(quandlSource1, quandlSource2).toJsonString();
         	
+=======
+        Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
+        String database1 = request.getParameter("database1");
+        String database2 = request.getParameter("database2");
+        String value1 = request.getParameter("value1");
+        String value2 = request.getParameter("value2");
+               
+        try{   	
+        	DataSource source1 = DatabaseFactory.get(database1).getSource(value1);
+        	DataSource source2 = DatabaseFactory.get(database2).getSource(value2);
+        	String json = JsonStringFactory.get(source1, source2).toJsonString();
+>>>>>>> develop
         	response.getWriter().append(pretty ? format.format(json): json);
         	
         	System.out.println(quandlSource2.getName());

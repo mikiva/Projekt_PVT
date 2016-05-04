@@ -1,4 +1,4 @@
-package servlet;
+package json;
 
 /**
  * Is used to format strings to a JSON format that is easy to read.

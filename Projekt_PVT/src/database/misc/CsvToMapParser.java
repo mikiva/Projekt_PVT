@@ -1,9 +1,12 @@
-package domain;
+package database.misc;
 
-import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class CsvToMapParser {
+import database.UrlFetcher;
 
+class CsvToMapParser {
+	
 	private final String link;
 
 	public CsvToMapParser(String link) {
@@ -22,4 +25,5 @@ public class CsvToMapParser {
 	    }
 	    return map;
 	}
+
 }

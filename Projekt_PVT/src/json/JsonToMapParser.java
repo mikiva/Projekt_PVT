@@ -1,8 +1,9 @@
-package domain;
+package json;
 
+
+import java.util.Map;
 
 import com.owlike.genson.Genson;
-import java.util.Map;
 
 
 /**
@@ -20,5 +21,9 @@ public class JsonToMapParser {
     @SuppressWarnings("unchecked")
 	public Map<String, Object> getResult() {
         return new Genson().deserialize(json, Map.class);
+    }
+    
+    public String getString() {
+    	return new Genson().deserialize(json, String.class);
     }
 }

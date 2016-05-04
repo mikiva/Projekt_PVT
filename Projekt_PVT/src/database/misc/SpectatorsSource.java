@@ -1,4 +1,4 @@
-package domain;
+package database.misc;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -6,10 +6,12 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-/**
- *
- */
-public class SpectatorsSource implements DataSource {
+import compare.DataSource;
+import database.UrlFetcher;
+import json.JsonToMapParser;
+
+class SpectatorsSource implements DataSource {
+
 	@Override
 	public String getName() {
 		return "Spectators";
@@ -62,9 +64,4 @@ public class SpectatorsSource implements DataSource {
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
-		new SpectatorsSource().getData().forEach((dates, spectators) -> System.out.println(dates + " - " + spectators));
-	}
-	
 }

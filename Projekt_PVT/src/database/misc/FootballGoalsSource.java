@@ -1,4 +1,4 @@
-package domain;
+package database.misc;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -6,12 +6,12 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-/**
- *
- * @author thomas
- */
-public class FootballGoalsSource implements DataSource {
+import compare.DataSource;
+import database.UrlFetcher;
+import json.JsonToMapParser;
 
+class FootballGoalsSource implements DataSource {
+	
 	@Override
 	public String getName() {
 		return "Antal mål per matchdag i fotbollsallsvenskan";
@@ -56,8 +56,5 @@ public class FootballGoalsSource implements DataSource {
 			result.put(date, result.get(date) + goals);
 		}
 	}
-	
-	public static void main(String[] args) {
-		new FootballGoalsSource().getData().forEach( (k,v) -> System.out.println(k + " - " + v));
-	}
+
 }

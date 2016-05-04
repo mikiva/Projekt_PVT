@@ -1,4 +1,4 @@
-package domain;
+package database.misc;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -6,7 +6,12 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class GoldPriceSource implements DataSource{
+import compare.DataSource;
+import database.UrlFetcher;
+import json.JsonToMapParser;
+
+class GoldPriceSource implements DataSource {
+
 	@Override
 	public String getName() {
 		return "Gold prices (EUR)";
@@ -54,9 +59,4 @@ public class GoldPriceSource implements DataSource{
 			result.put(dates.get(i), values.get(i));
 		}
 	}
-	
-	public static void main(String[] args) {
-		new GoldPriceSource().getData().forEach( (k,v) -> System.out.println(k + " - " + v));
-	}
-	
 }

@@ -1,4 +1,4 @@
-package domain;
+package database;
 
 
 import java.io.BufferedReader;
@@ -21,6 +21,10 @@ public class UrlFetcher {
         } catch (MalformedURLException ex) {
             throw new RuntimeException(ex);
         }
+    }
+    
+    public UrlFetcher(URL url) {
+    	this.url = url;
     }
     
     public String getContent() {
