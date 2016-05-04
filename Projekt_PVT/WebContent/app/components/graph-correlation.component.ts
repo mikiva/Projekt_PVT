@@ -1,19 +1,14 @@
 import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
 import {CHART_DIRECTIVES, Highcharts} from 'angular2-highcharts';
-import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
 import {IDatasource} from '../interface/datasource';
 import {DataSourceJson} from '../interface/datasource-json';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 
-
-
-
-
 @Component({
     selector: 'graph-correlation',
-    directives: [CHART_DIRECTIVES, ChooseSource],
+    directives: [CHART_DIRECTIVES],
     templateUrl: 'app/html/graph-correlation.html',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
@@ -49,7 +44,7 @@ export class GraphCorrelationComponent implements OnChanges {
         var xName = this.datasource.xName;
         var yName = this.datasource.yName;
 
-        this.options = {
+        this.options = {            
             title: { text: this.datasource.yName + " (Y-axis) och " + this.datasource.xName + " (X-axis)" },
             plotOptions: {
                 scatter: { turboThreshold: 0 }

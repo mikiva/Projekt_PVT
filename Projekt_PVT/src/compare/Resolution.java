@@ -1,52 +1,36 @@
 package compare;
 
-
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public enum Resolution {
-	YEAR {
-		@Override
-		public String getKey(LocalDate date) {
-			return date.getYear() + "";
-		}
-	}, 
-	MONTH {
-		@Override
-		public String getKey(LocalDate date) {
-			return date.getYear() + " " + date.getMonth().name();
-		}
-	}, 
-	WEEK {
-		@Override
-		public String getKey(LocalDate date) {
-			return date.getYear() + " Week: " + calculateWeeks(date.getDayOfYear());
-		}
-	}, 
-	DAY {
-		@Override
-		public String getKey(LocalDate date) {
-			return date.toString();
-		}	
-	};
+	
+	YEAR("yyyy"),
 
-	public abstract String getKey(LocalDate date);
+	MONTH("yyyy-MM"),
 
-	protected int calculateWeeks(int dayOfYear) {
-		int dayToCompare = 0;
-		int weekNumber = 1;
-		for (int i = 1; i < 53; i++) {
-			dayToCompare += 7;
-			if(dayOfYear <= dayToCompare){ 
-				weekNumber = i;
-				break;	
-			}
-			
-		}
-		return weekNumber;
+	QUARTER("yyyy-'Q'q"),
+
+	WEEK("YYYY-'W'w"),
+
+	DAY("yyyy-MM-dd");
+
+	final DateTimeFormatter dtf;
+
+	/**
+	 * 
+	 * @param date
+	 *            LocalDate that is to be formated.
+	 * @return a string in a format defined in the constructor.
+	 */
+	public String getLocalDate(LocalDate date) {
+		return date.format(dtf);
+	}
+
+	private Resolution(String pattern) {
+
+		dtf = DateTimeFormatter.ofPattern(pattern);
 	}
 	
-	public boolean areSame(LocalDate firstDate, LocalDate secondDate) {
-		return getKey(firstDate).equals(getKey(secondDate));
-	}
 
 }

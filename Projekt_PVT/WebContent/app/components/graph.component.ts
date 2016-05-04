@@ -1,6 +1,5 @@
-import {Component, OnChanges, Input, SimpleChange} from 'angular2/core';
+import {Component, OnChanges, Input, SimpleChange, OnInit} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
-import {ChooseSource} from './choose-datasource.component';
 import {DatasourceService} from '../service/datasource.service';
 import {IDatasource} from '../interface/datasource';
 import {DataSourceJson} from '../interface/datasource-json';
@@ -11,11 +10,11 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'graph',
-    directives: [CHART_DIRECTIVES, ChooseSource],
+    directives: [CHART_DIRECTIVES],
     templateUrl: 'app/html/graph.html',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
-export class Graph implements OnChanges {
+export class Graph implements OnChanges, OnInit {
 
     options: Object;
     errorMessage: string;
@@ -24,26 +23,42 @@ export class Graph implements OnChanges {
 
     constructor(private dataSourceService: DatasourceService) {
     }
+    ngOnInit() {
+        this.options = {
+            title: {
+                text: 'No data'
 
+            },
+
+            series: [{}],
+            noData: {
+                style: {
+                    fontSize: '20px'
+                }
+            }
+
+
+        };
+    }
     plot(): void {
         this.dataSourceService.getData(this.sourceInput, null)
             .subscribe(
-                datasource => this.datasource = datasource,
-                error => this.errorMessage = <any>error,
-                () => this.plotGraph());
-          
+            datasource => this.datasource = datasource,
+            error => this.errorMessage = <any>error,
+            () => this.plotGraph());
+
     }
-    
-     private plotGraph():  void {
+
+    private plotGraph(): void {
         var dates = [];
         this.datasource.data.forEach(data => dates.push(data.date));
-         
+
         this.options = {
             title: { text: this.datasource.name },
-             yAxis: {
-                 title: {
-                     text: this.datasource.unit
-             }
+            yAxis: {
+                title: {
+                    text: this.datasource.unit
+                }
             },
             xAxis: {
                 categories: dates
@@ -56,9 +71,9 @@ export class Graph implements OnChanges {
             }]
         };
     }
-    
-  ngOnChanges(changes: {[source: string]: SimpleChange}) {
-        if(this.sourceInput != null) 
+
+    ngOnChanges(changes: { [source: string]: SimpleChange }) {
+        if (this.sourceInput != null)
             this.plot();
-  }
+    }
 }

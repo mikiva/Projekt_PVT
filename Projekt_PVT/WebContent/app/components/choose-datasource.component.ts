@@ -11,6 +11,7 @@ import {Menu} from '../interface/menu';
 export class ChooseSource implements OnInit {
     @Input() input: string = "hej";
     @Output() output: EventEmitter<string> = new EventEmitter<string>();
+<<<<<<< HEAD
     @Output() output1: EventEmitter<string>= new EventEmitter<string>();
     menu: Menu[];
     underMenu: String[];
@@ -31,6 +32,10 @@ export class ChooseSource implements OnInit {
         this.underMenu = this.menu[index].values;
         console.log(this.menu);
     }
+=======
+    dataSources : string []=[" ", "gold", "spectators", "goals", "temperature", "static"];
+    ds: string;
+>>>>>>> develop
     
     public onUnderMenuClick(value): void {
         this.output1.emit(value);
