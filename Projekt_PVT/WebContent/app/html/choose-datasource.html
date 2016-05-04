@@ -3,7 +3,7 @@
 		{{item.database}}
 	</option>
 </select>
-<select (change)="onUnderMenuClick($event.target.value)">
+<select (change)="onUnderMenuClick($event.target.selectedIndex)">
 	<option *ngFor="#item of underMenu">
 		{{item[1]}}
 	</option>

@@ -9,10 +9,9 @@ import {Menu} from '../interface/menu';
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
 export class ChooseSource implements OnInit {
-    @Input() input: string = "hej";
-    @Output() output: EventEmitter<string> = new EventEmitter<string>();
-<<<<<<< HEAD
-    @Output() output1: EventEmitter<string>= new EventEmitter<string>();
+    @Output() sourceOutput: EventEmitter<Object>= new EventEmitter<Object>();
+    source: Object = {database: "", dataset: ""};
+        
     menu: Menu[];
     underMenu: String[];
     errorMessage: string;
@@ -20,7 +19,7 @@ export class ChooseSource implements OnInit {
     constructor(private datasourceService: DatasourceService) {
     }
     
-    ngOnInit(): void {
+    private ngOnInit(): void {
          this.datasourceService.getMenu()
              .subscribe(
                 menu => this.menu = menu,
@@ -30,22 +29,15 @@ export class ChooseSource implements OnInit {
 
     private fillUnderMenu(index): void {
         this.underMenu = this.menu[index].values;
-        console.log(this.menu);
     }
-=======
-    dataSources : string []=[" ", "gold", "spectators", "goals", "temperature", "static"];
-    ds: string;
->>>>>>> develop
     
-    public onUnderMenuClick(value): void {
-        this.output1.emit(value);
-        console.log(value);
+    public onUnderMenuClick(index): void {
+        this.source["dataset"] = this.underMenu[index][0];
+        this.sourceOutput.emit(this.source);
     }
     
     public onMenuClick(value, index): void {
-        this.output.emit(value);
+        this.source["database"] = value;
         this.fillUnderMenu(index);
-        console.log(value);
-        console.log(index);
     }
 }

@@ -1,32 +1,13 @@
-<<<<<<< HEAD
-
-
-<div align="center">
-<choose-source (output)="setSourceOne($event)"></choose-source>
-<choose-source (output)="setSourceTwo($event)"></choose-source>
-</div>
-<table style="width:100%">
-    <tr>
-        <td><graph id="1" [sourceInput]="sourceOne">1</graph></td>
-        <td><graph id="2" [sourceInput]="sourceTwo">2</graph></td>
-    </tr>
-    </table>
-=======
->>>>>>> develop
-
- <FORM action="http://localhost:8080/Proj/" method="post">
+<FORM action="http://localhost:8080/Proj/" method="post">
     <P>
     	<LABEL for="rubrik">Rubrik: </LABEL>
         <input type="text" size="30" placeholder="Skriv in en valfri rubrik!"><BR>
     </P>
  </FORM>
 
-<<<<<<< HEAD
-<div id="correlation" align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation></div>
-=======
 
 <div align="center"><choose-source (output)="setSourceOne($event)"></choose-source>
-<choose-source (output)="setSourceTwo($event)"></choose-source></div>
+<choose-source (sourceOutput)="setSourceTwo($event)"></choose-source></div>
 
 <table style="width:100%">
 <tr>
@@ -38,6 +19,3 @@
 
 
 <div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation></div>
->>>>>>> develop
-
-

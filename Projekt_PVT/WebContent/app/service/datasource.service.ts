@@ -38,6 +38,7 @@ export class DatasourceService {
     }
     
     getUrl(sourceOne : string, sourceTwo : string) {
+        console.log(sourceOne);
         //return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
         return (this.url + 'datasource=quandl&database1=ODA&values1=SWE_LE&datasource=quandl&database2=ODA&values2=PBANSOP_USD');
     }

@@ -27,9 +27,6 @@ export class GraphCorrelationComponent implements OnChanges {
 
     saveInstance(chart: HighchartsChartObject) {
         this.chart = chart;
-        
-        
-
     }
 
     plot() {
