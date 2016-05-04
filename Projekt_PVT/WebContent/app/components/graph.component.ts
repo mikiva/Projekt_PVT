@@ -41,7 +41,7 @@ export class Graph implements OnChanges, OnInit {
         };
     }
     plot(): void {
-        this.dataSourceService.getData(this.sourceInput, null)
+        this.dataSourceService.getData(this.sourceInput, this.sourceInput)
             .subscribe(
             datasource => this.datasource = datasource,
             error => this.errorMessage = <any>error,
@@ -72,8 +72,12 @@ export class Graph implements OnChanges, OnInit {
         };
     }
 
-    ngOnChanges(changes: { [source: string]: SimpleChange }) {
-        if (this.sourceInput != null)
+    ngOnChanges(): void {
+        if (this.sourceInput != null) {
+            console.log(this.sourceInput);
+            console.log(this.sourceInput);
+            console.log(this.sourceInput);
             this.plot();
+        }
     }
 }

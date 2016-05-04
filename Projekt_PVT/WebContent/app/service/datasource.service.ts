@@ -20,7 +20,7 @@ export class DatasourceService {
     getData(sourceOne: Object, sourceTwo: Object): Observable<IDatasource[]> {
         return this.http.get(this.getUrl(sourceOne, sourceTwo))
             .map((response: Response) => <IDatasource[]> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .do(data => console.log('All: ' + this.url  +  JSON.stringify(data)))
             .catch(this.handleError);
     }
     
@@ -41,6 +41,7 @@ export class DatasourceService {
         console.log(sourceOne["database"]);
         console.log(sourceOne["dataset"]);
         //return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
-        return (this.url + 'datasource=quandl&database1=ENTSOE&value1=' + sourceOne["dataset"] + '&datasource=quandl&database2=ENTSOE&value2=' + sourceOne["dataset"]);
+        return (this.url + 'datasource=quandl&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] + '&datasource=quandl&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"]);
+        //return (this.url + 'datasource=quandl&database1=ODA&value1=SWE_LE&datasource=quandl&database2=ODA&value2=PBANSOP_USD');
     }
 }

@@ -9,9 +9,10 @@ import {Menu} from '../interface/menu';
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
 export class ChooseSource implements OnInit {
-    @Output() sourceOutput: EventEmitter<Object>= new EventEmitter<Object>();
-    source: Object = {database: "", dataset: ""};
-        
+    @Output() sourceOutput: EventEmitter = new EventEmitter();
+    source: Object = null;
+    database: string;
+
     menu: Menu[];
     underMenu: String[];
     errorMessage: string;
@@ -32,12 +33,12 @@ export class ChooseSource implements OnInit {
     }
     
     public onUnderMenuClick(index): void {
-        this.source["dataset"] = this.underMenu[index][0];
+        this.source = {database: this.database, dataset: this.underMenu[index][0]};
         this.sourceOutput.emit(this.source);
     }
     
     public onMenuClick(value, index): void {
-        this.source["database"] = this.menu[index].database_link;
+        this.database = this.menu[index].database_link;
         this.fillUnderMenu(index);
     }
 }
