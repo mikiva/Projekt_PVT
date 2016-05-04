@@ -12,7 +12,7 @@ public class AvailableDatabases implements JsonString {
 		result.append("{\"data\":[");
 					for (Database db : DatabaseFactory.all()) {
 						result.append("{\"database\":\"" + db.toString() + "\",");
-						result.append("{\"database_link\":\"" + db.link() + "\",");
+						result.append("\"database_link\":\"" + db.link() + "\",");
 						result.append("\"values\":[");
 						for (String[] string: db.dataSet()) {
 							result.append("[");
