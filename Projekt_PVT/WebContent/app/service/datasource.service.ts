@@ -17,7 +17,7 @@ export class DatasourceService {
 
     constructor(private http: Http) { }
 
-    getData(sourceOne: string, sourceTwo: string): Observable<IDatasource[]> {
+    getData(sourceOne: Object, sourceTwo: Object): Observable<IDatasource[]> {
         return this.http.get(this.getUrl(sourceOne, sourceTwo))
             .map((response: Response) => <IDatasource[]> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
@@ -37,8 +37,9 @@ export class DatasourceService {
         return Observable.throw(error.json().error || 'Server error');
     }
     
-    getUrl(sourceOne : string, sourceTwo : string) {
-        console.log(sourceOne);
+    getUrl(sourceOne: Object, sourceTwo: Object) {
+        console.log(sourceOne["database"]);
+        console.log(sourceOne["dataset"]);
         //return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
         return (this.url + 'datasource=quandl&database1=ODA&values1=SWE_LE&datasource=quandl&database2=ODA&values2=PBANSOP_USD');
     }

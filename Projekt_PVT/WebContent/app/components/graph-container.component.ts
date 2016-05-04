@@ -11,16 +11,16 @@ import {ChooseSource} from './choose-datasource.component';
 
 export class GraphContainerComponent {    
     
-    sourceOne: string;
-    sourceTwo: string;
+    sourceOne: Object;
+    sourceTwo: Object;
     
     constructor(){}
     
-    public setSourceOne(sourceOne : string) : void {
+    public setSourceOne(sourceOne: Object) : void {
         this.sourceOne = sourceOne;
     }
     
-    public setSourceTwo(sourceTwo : string) : void {
+    public setSourceTwo(sourceTwo: Object) : void {
         this.sourceTwo = sourceTwo;
     }     
 }

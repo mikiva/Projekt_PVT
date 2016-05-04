@@ -19,7 +19,7 @@ export class Graph implements OnChanges, OnInit {
     options: Object;
     errorMessage: string;
     datasource: DataSourceSingleJson;
-    @Input() sourceInput: string;
+    @Input() sourceInput: Object;
 
     constructor(private dataSourceService: DatasourceService) {
     }

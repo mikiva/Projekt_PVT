@@ -18,8 +18,8 @@ export class GraphCorrelationComponent implements OnChanges {
     options: HighchartsOptions;
     errorMessage: string;
     datasource: DataSourceJson;
-    @Input() sourceOne: string;
-    @Input() sourceTwo: string;
+    @Input() sourceOne: Object;
+    @Input() sourceTwo: Object;
 
     constructor(private dataSourceService: DatasourceService) {
         
