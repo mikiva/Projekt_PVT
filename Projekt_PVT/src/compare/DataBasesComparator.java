@@ -1,14 +1,14 @@
 package compare;
 
 import domain.enums.Databases;
+import json.JsonString;
 
-public class DataBasesComparator implements JSONbuilder {
+public class DataBasesComparator implements JsonString {
 	
 	public Databases[] getValues(){
 		return Databases.values();
 	}
 
-	@Override
 	public String toJsonString() {
 		StringBuilder result = new StringBuilder();
 		result.append("{\"data\":[");
