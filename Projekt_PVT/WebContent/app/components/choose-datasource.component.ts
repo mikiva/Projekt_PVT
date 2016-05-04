@@ -37,7 +37,7 @@ export class ChooseSource implements OnInit {
     }
     
     public onMenuClick(value, index): void {
-        this.source["database"] = value;
+        this.source["database"] = this.menu[index].database_link;
         this.fillUnderMenu(index);
     }
 }
