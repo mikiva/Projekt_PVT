@@ -41,6 +41,6 @@ export class DatasourceService {
         console.log(sourceOne["database"]);
         console.log(sourceOne["dataset"]);
         //return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
-        return (this.url + 'datasource=quandl&database1=ODA&values1=SWE_LE&datasource=quandl&database2=ODA&values2=PBANSOP_USD');
+        return (this.url + 'datasource=quandl&database1=ENTSOE&value1=' + sourceOne["dataset"] + '&datasource=quandl&database2=ENTSOE&value2=' + sourceOne["dataset"]);
     }
 }
