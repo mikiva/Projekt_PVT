@@ -1,5 +1,4 @@
-
- <FORM action="http://localhost:8080/Proj/" method="post">
+<FORM action="http://localhost:8080/Proj/" method="post">
     <P>
     	<LABEL for="rubrik">Rubrik: </LABEL>
         <input type="text" size="30" placeholder="Skriv in en valfri rubrik!"><BR>
@@ -7,8 +6,10 @@
  </FORM>
 
 
-<div align="center"><choose-source (output)="setSourceOne($event)"></choose-source>
-<choose-source (output)="setSourceTwo($event)"></choose-source></div>
+<div align="center">
+	<choose-source (sourceOutput)="setSourceOne($event)"></choose-source>
+	<choose-source (sourceOutput)="setSourceTwo($event)"></choose-source>
+</div>
 
 <table style="width:100%">
 <tr>
@@ -20,5 +21,3 @@
 
 
 <div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation></div>
-
-

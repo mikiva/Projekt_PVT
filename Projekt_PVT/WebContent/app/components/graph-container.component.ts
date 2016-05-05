@@ -1,4 +1,5 @@
-import {Component} from 'angular2/core';
+import {Component, Output} from 'angular2/core';
+
 import {Graph} from './graph.component';
 import {GraphCorrelationComponent} from './graph-correlation.component';
 import {ChooseSource} from './choose-datasource.component';
@@ -11,16 +12,16 @@ import {ChooseSource} from './choose-datasource.component';
 
 export class GraphContainerComponent {    
     
-    sourceOne: string;
-    sourceTwo: string;
+    sourceOne: Object;
+    sourceTwo: Object;
     
     constructor(){}
     
-    public setSourceOne(sourceOne : string) : void {
+    public setSourceOne(sourceOne: Object) : void {
         this.sourceOne = sourceOne;
     }
     
-    public setSourceTwo(sourceTwo : string) : void {
+    public setSourceTwo(sourceTwo: Object) : void {
         this.sourceTwo = sourceTwo;
     }     
 }

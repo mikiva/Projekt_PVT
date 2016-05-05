@@ -1,21 +1,36 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
-import {IDatasource} from './interface/datasource';
-import {DataSourceJson} from 'app/interface/datasource-json';
-import {DataSourceSingleJson} from 'app/interface/datasource-single-json';
+import {IDatasource} from '../interface/datasource';
+import {DataSourceJson} from '../interface/datasource-json';
+import {DataSourceSingleJson} from '../interface/datasource-single-json';
+import {Menu} from '../interface/menu';
+
 
 @Injectable()
 export class DatasourceService {
     private url = 'http://localhost:8080/Proj/ServletTest?';
+
     //private url = 'http://rigel.se:8080/Bulle/ServletTest?';
+    private menuUrl = 'http://localhost:8080/Proj/GraphChoiceJsonServlet';
+
 
     constructor(private http: Http) { }
 
-    getData(sourceOne: string, sourceTwo: string): Observable<DataSourceJson | DataSourceSingleJson> {
+    getData(sourceOne: Object, sourceTwo?: Object): Observable<IDatasource[]> {
+        console.log(this.getUrl(sourceOne, sourceTwo));
         return this.http.get(this.getUrl(sourceOne, sourceTwo))
-            .map((response: Response) => <DataSourceJson | DataSourceSingleJson> response.json())
+            .map((response: Response) => <IDatasource[]> response.json())
+            .do(data => console.log('All: ' + this.url  +  JSON.stringify(data)))
             .catch(this.handleError);
+    }
+    
+    getMenu(): Observable<Menu[]> {
+        return this.http.get(this.menuUrl)
+            .map((response: Response) => <Menu[]> response.json().data)
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+
     }
 
     private handleError(error: Response) {
@@ -23,7 +38,12 @@ export class DatasourceService {
         return Observable.throw(error.json().error || 'Server error');
     }
     
-    getUrl(sourceOne : string, sourceTwo : string) {
-        return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
+    getUrl(sourceOne: Object, sourceTwo: Object) {
+        console.log(sourceOne["database"]);
+        console.log(sourceOne["dataset"]);
+        //return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
+        return (this.url + 'database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
+        (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : ""));
+        //return (this.url + 'datasource=quandl&database1=ODA&value1=SWE_LE&datasource=quandl&database2=ODA&value2=PBANSOP_USD');
     }
 }

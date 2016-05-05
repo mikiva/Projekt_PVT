@@ -6,6 +6,7 @@ import {DataSourceJson} from '../interface/datasource-json';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {GraphCorrelationComponent} from'./graph-correlation.component';
 import {DataSourceSingleJson} from '../interface/datasource-single-json';
+import 'rxjs/Rx';
 
 @Component({
     selector: 'graph',
@@ -18,7 +19,7 @@ export class Graph implements OnChanges, OnInit {
     options: Object;
     errorMessage: string;
     datasource: DataSourceSingleJson;
-    @Input() sourceInput: string;
+    @Input() sourceInput: Object;
 
     constructor(private dataSourceService: DatasourceService) {
     }
@@ -40,7 +41,7 @@ export class Graph implements OnChanges, OnInit {
         };
     }
     plot(): void {
-        this.dataSourceService.getData(this.sourceInput, null)
+        this.dataSourceService.getData(this.sourceInput)
             .subscribe(
             datasource => this.datasource = datasource,
             error => this.errorMessage = <any>error,
@@ -71,8 +72,12 @@ export class Graph implements OnChanges, OnInit {
         };
     }
 
-    ngOnChanges(changes: { [source: string]: SimpleChange }) {
-        if (this.sourceInput != null)
+    ngOnChanges(): void {
+        if (this.sourceInput != null) {
+            console.log(this.sourceInput);
+            console.log(this.sourceInput);
+            console.log(this.sourceInput);
             this.plot();
+        }
     }
 }

@@ -39,6 +39,8 @@ public class ServletTest extends HttpServlet implements Servlet {
         String database2 = request.getParameter("database2");
         String value1 = request.getParameter("value1");
         String value2 = request.getParameter("value2");
+        
+        System.out.println(database1 + ", " + database2 + ", " + value1 + ", " + value2);
                
         try{   	
         	DataSource source1 = DatabaseFactory.get(database1).getSource(value1);
