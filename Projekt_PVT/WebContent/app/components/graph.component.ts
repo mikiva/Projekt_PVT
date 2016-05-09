@@ -50,18 +50,17 @@ export class Graph implements OnChanges, OnInit {
     }
 
     private plotGraph(): void {
-        var dates = [];
-        this.datasource.data.forEach(data => dates.push(data.date));
+        var hasData : boolean = this.datasource.data.length != 0;
 
         this.options = {
-            title: { text: this.datasource.name },
+            title: { text: hasData? this.datasource.name: 'No data in range' },
             yAxis: {
                 title: {
                     text: this.datasource.unit
                 }
             },
             xAxis: {
-                categories: dates
+                categories: this.datasource.data.map(date => date.date)
             },
             series: [{
                 name: this.datasource.unit,
