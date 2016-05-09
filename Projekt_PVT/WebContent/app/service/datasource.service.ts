@@ -10,7 +10,6 @@ import {Menu} from '../interface/menu';
 @Injectable()
 export class DatasourceService {
     private url = 'http://localhost:8080/Proj/ServletTest?';
-
     //private url = 'http://rigel.se:8080/Bulle/ServletTest?';
     private menuUrl = 'http://localhost:8080/Proj/GraphChoiceJsonServlet';
 
@@ -38,12 +37,8 @@ export class DatasourceService {
         return Observable.throw(error.json().error || 'Server error');
     }
     
-    getUrl(sourceOne: Object, sourceTwo: Object) {
-        console.log(sourceOne["database"]);
-        console.log(sourceOne["dataset"]);
-        //return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
+    private getUrl(sourceOne: Object, sourceTwo: Object) {
         return (this.url + 'database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
         (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : ""));
-        //return (this.url + 'datasource=quandl&database1=ODA&value1=SWE_LE&datasource=quandl&database2=ODA&value2=PBANSOP_USD');
     }
 }
