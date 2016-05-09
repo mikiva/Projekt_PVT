@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import compare.DataSource;
+import compare.Resolution;
 import database.DatabaseFactory;
 import json.JsonFormatter;
 import json.JsonStringFactory;
@@ -20,6 +21,7 @@ import json.JsonStringFactory;
 @WebServlet("/ServletTest")
 public class ServletTest extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
+
 	
     /**
      * Default constructor. 
@@ -33,7 +35,11 @@ public class ServletTest extends HttpServlet implements Servlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		response.setContentType("application/json;charset=UTF-8");
         JsonFormatter format = new JsonFormatter();
+    	Resolution resolution = null;        
         
+        try{
+        resolution = Resolution.valueOf(request.getParameter("res").toUpperCase());}
+        catch(Exception e){}
         Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
         String database1 = request.getParameter("database1");
         String database2 = request.getParameter("database2");
@@ -45,7 +51,7 @@ public class ServletTest extends HttpServlet implements Servlet {
         try{   	
         	DataSource source1 = DatabaseFactory.get(database1).getSource(value1);
         	DataSource source2 = DatabaseFactory.get(database2).getSource(value2);
-        	String json = JsonStringFactory.get(source1, source2).toJsonString();
+        	String json = JsonStringFactory.get(resolution, source1, source2).toJsonString();
         	response.getWriter().append(pretty ? format.format(json): json);
         }
         catch(RuntimeException e){

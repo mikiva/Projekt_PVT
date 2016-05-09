@@ -20,6 +20,7 @@ export class Graph implements OnChanges, OnInit {
     errorMessage: string;
     datasource: DataSourceSingleJson;
     @Input() sourceInput: Object;
+    @Input() resolution: string;
 
     constructor(private dataSourceService: DatasourceService) {
     }
@@ -41,7 +42,7 @@ export class Graph implements OnChanges, OnInit {
         };
     }
     plot(): void {
-        this.dataSourceService.getData(this.sourceInput)
+        this.dataSourceService.getData(this.resolution, this.sourceInput)
             .subscribe(
             datasource => this.datasource = datasource,
             error => this.errorMessage = <any>error,

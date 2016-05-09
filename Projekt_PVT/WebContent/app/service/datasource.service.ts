@@ -17,9 +17,9 @@ export class DatasourceService {
 
     constructor(private http: Http) { }
 
-    getData(sourceOne: Object, sourceTwo?: Object): Observable<IDatasource[]> {
-        console.log(this.getUrl(sourceOne, sourceTwo));
-        return this.http.get(this.getUrl(sourceOne, sourceTwo))
+    getData(resolution: string, sourceOne: Object, sourceTwo?: Object): Observable<IDatasource[]> {
+        console.log(this.getUrl(sourceOne, sourceTwo, resolution));
+        return this.http.get(this.getUrl(sourceOne, sourceTwo, resolution))
             .map((response: Response) => <IDatasource[]> response.json())
             .do(data => console.log('All: ' + this.url  +  JSON.stringify(data)))
             .catch(this.handleError);
@@ -38,11 +38,11 @@ export class DatasourceService {
         return Observable.throw(error.json().error || 'Server error');
     }
     
-    getUrl(sourceOne: Object, sourceTwo: Object) {
+    getUrl(sourceOne: Object, sourceTwo: Object, resolution: string) {
         console.log(sourceOne["database"]);
         console.log(sourceOne["dataset"]);
         //return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
-        return (this.url + 'database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
+        return (this.url + 'res=' + (resolution? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
         (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : ""));
         //return (this.url + 'datasource=quandl&database1=ODA&value1=SWE_LE&datasource=quandl&database2=ODA&value2=PBANSOP_USD');
     }
