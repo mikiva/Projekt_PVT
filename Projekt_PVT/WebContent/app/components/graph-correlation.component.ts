@@ -20,6 +20,7 @@ export class GraphCorrelationComponent implements OnChanges {
     datasource: DataSourceJson;
     @Input() sourceOne: Object;
     @Input() sourceTwo: Object;
+    @Input() resolution: string;
 
     constructor(private dataSourceService: DatasourceService) {
         
@@ -30,7 +31,7 @@ export class GraphCorrelationComponent implements OnChanges {
     }
 
     plot() {
-        this.dataSourceService.getData(this.sourceOne, this.sourceTwo)
+        this.dataSourceService.getData(this.resolution, this.sourceOne, this.sourceTwo)
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,

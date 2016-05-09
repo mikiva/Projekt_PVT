@@ -9,15 +9,18 @@
 <div align="center">
 	<choose-source (sourceOutput)="setSourceOne($event)"></choose-source>
 	<choose-source (sourceOutput)="setSourceTwo($event)"></choose-source>
+    <td><choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution></td>
 </div>
 
 <table style="width:100%">
 <tr>
 
-<td align="center"><graph id="1" [sourceInput]="sourceOne">1</graph></td>
-<td align="center"><graph id="2" [sourceInput]="sourceTwo">2</graph></td>
+<td align="center"><graph id="1" [sourceInput]="sourceOne" [resolution]="resolution">1</graph></td>
+<td align="center"><graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution">2</graph></td>
+
 </tr>
 </table>
+   
 
 
-<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation></div>
+<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution">corr</graph-correlation></div>
