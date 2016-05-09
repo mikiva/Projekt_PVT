@@ -1,25 +1,36 @@
 {
   "name": "projekt",
   "version": "1.0.0",
-  "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "lite": "lite-server"
+ "scripts": {
+    "postinstall": "typings install --ambient",
+    "clean": "rimraf built/",
+    "copy": "cp src/{index.html,styles.css} built/",
+    "copytemplates": "cp src/app/{*.html,*.css} built/app/",
+    "build": "tsc && npm run copy && npm run copytemplates",
+    "watch": "tsc --watch",
+    "serve": "http-server -p 9090 -c-1",
+    "test": "karma start karma.conf.js"
   },
-  "license": "ISC",
   "dependencies": {
-    "angular2": "2.0.0-beta.15",
-    "angular2-highcharts": "0.0.8",
+    "angular2": "2.0.0-beta.17",
+    "clang-format": "^1.0.35",
+    "es6-promise": "^3.0.2",
     "es6-shim": "^0.35.0",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
-    "systemjs": "0.19.26",
-    "typescript": "^1.8.10",
-    "zone.js": "0.6.10"
+    "systemjs": "0.19.20",
+    "zone.js": "0.6.12"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0",
-    "lite-server": "^2.2.0"
+    "http-server": "^0.8.5",
+    "jasmine":  d"2.3.2",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-cli": "^0.0.4",
+    "karma-jasmine": "^0.3.6",
+    "rimraf": "^2.4.3",
+    "systemjs": "^0.19.4",
+    "typescript": "1.8.10",
+    "typings": "^0.6.6"
   }
 }
