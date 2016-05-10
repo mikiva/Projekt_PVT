@@ -1,15 +1,8 @@
 import {Component, Output} from 'angular2/core';
-
 import {Graph} from './graph.component';
 import {GraphCorrelationComponent} from './graph-correlation.component';
 import {ChooseSource} from './choose-datasource.component';
-
 import {SampleDatePicker} from './sampleapp';
-
-@Component({
-    selector: 'graph-container',
-    directives: [Graph, GraphCorrelationComponent, ChooseSource, SampleDatePicker],
-
 import {ChooseResolution} from './choose-resolution.component';
 
 @Component({
