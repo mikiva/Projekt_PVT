@@ -1,18 +1,18 @@
 {
   "name": "projekt",
-  "version": "1.0.0",
- "scripts": {
+  "version": "0.0.2",
+  "scripts": {
     "postinstall": "typings install --ambient",
     "clean": "rimraf built/",
-    "copy": "cp src/{index.html,styles.css} built/",
-    "copytemplates": "cp src/app/{*.html,*.css} built/app/",
-    "build": "tsc && npm run copy && npm run copytemplates",
+    "copy": "cp index.html built/",
+    "copytemplates": "cp app/{*.html,*.css} built/",
+    "build": "tsc && npm run copy",
     "watch": "tsc --watch",
     "serve": "http-server -p 9090 -c-1",
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js && tcs"
   },
   "dependencies": {
-    "angular2": "2.0.0-beta.17",
+    "angular2": "2.0.0-beta.16",
     "clang-format": "^1.0.35",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.35.0",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "http-server": "^0.8.5",
-    "jasmine":  d"2.3.2",
+    "jasmine": "2.3.2",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.1",
     "karma-cli": "^0.0.4",
