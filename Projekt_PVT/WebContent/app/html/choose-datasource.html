@@ -1,6 +1,11 @@
-
-
-<select (change)="onClick($event.target.value)">
-	<option *ngFor="#item of dataSources">{{item}}</option>
+<select (change)="onMenuClick($event.target.value, $event.target.selectedIndex)">
+	<option *ngFor="let item of menu">
+		{{item.database}}
+	</option>
 </select>
-
+<select (change)="onUnderMenuClick($event.target.selectedIndex)">
+	<option *ngFor="let item of underMenu">
+		{{item[1]}}
+	</option>
+</select>
+<br>

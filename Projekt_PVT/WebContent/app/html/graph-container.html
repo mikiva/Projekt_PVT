@@ -1,4 +1,39 @@
-<graph id="1" (sourceOut)="setSourceOne($event.target.value)">1</graph>
-<graph id="2" (sourceOut)="setSourceTwo($event.target.value)">2</graph>
-<graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation>
+<p>From what date:</p>
+<sample-date-picker id="datepickerbefore"></sample-date-picker>
+<p>To what date:</p>
+<sample-date-picker id="datepickerafter"></sample-date-picker>
 
+<!--<choose-source (output)="setSourceOne($event)"></choose-source>-->
+<!--<choose-source (output)="setSourceTwo($event)"></choose-source>-->
+<!--<graph id="1" [sourceInput]="sourceOne">1</graph>-->
+<!--<graph id="2" [sourceInput]="sourceTwo">2</graph>-->
+<!--<graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation>-->
+
+<FORM action="http://localhost:8080/Proj/" method="post">
+    <P>
+    	<center>
+    		<LABEL for="rubrik">Rubrik: </LABEL>
+        	<input type="text" size="30" placeholder="Skriv in en valfri rubrik!"><BR>
+        </center>
+    </P>
+ </FORM>
+
+
+<div align="center">
+	<choose-source (sourceOutput)="setSourceOne($event)"></choose-source>
+	<choose-source (sourceOutput)="setSourceTwo($event)"></choose-source>
+    <td><choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution></td>
+</div>
+
+<table style="width:100%">
+<tr>
+
+<td align="center"><graph id="1" [sourceInput]="sourceOne" [resolution]="resolution">1</graph></td>
+<td align="center"><graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution">2</graph></td>
+
+</tr>
+</table>
+   
+
+
+<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution">corr</graph-correlation></div>

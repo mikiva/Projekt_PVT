@@ -1,35 +1,33 @@
-import {Component} from 'angular2/core';
+import {Component, Output} from 'angular2/core';
 import {Graph} from './graph.component';
 import {GraphCorrelationComponent} from './graph-correlation.component';
+import {ChooseSource} from './choose-datasource.component';
+import {SampleDatePicker} from './sampleapp';
+import {ChooseResolution} from './choose-resolution.component';
 
 @Component({
     selector: 'graph-container',
-    directives: [Graph, GraphCorrelationComponent],
+    directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker],
     templateUrl: 'app/html/graph-container.html',
 })
 
-export class GraphContainerComponent {
+export class GraphContainerComponent {    
+    
+    sourceOne: Object;
+    sourceTwo: Object;
+    resolution: string;
     
     constructor(){}
     
-    sourceOne: string = 'goals';
-    sourceTwo: string = 'spectators';
-    
-    
-    public setSourceOne(sourceOne : string) {
+    public setSourceOne(sourceOne: Object) : void {
         this.sourceOne = sourceOne;
-        console.log(this.sourceOne + ' set source one');
     }
     
-    public setSourceTwo(sourceTwo : string) {
-        console.log(sourceTwo + ' set source two');
+    public setSourceTwo(sourceTwo: Object) : void {
         this.sourceTwo = sourceTwo;
-    }
+    }  
     
-    public print(text: any){
-        
-        console.log(text.toString() + ' soruce set');
-    }
-    
-    
+    public setResolution(resolution : string) : void{
+        this.resolution = resolution;
+    }   
 }

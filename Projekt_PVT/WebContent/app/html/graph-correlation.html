@@ -1,2 +1,6 @@
-<chart [options]="options">corr chart</chart>
-<button (click)="plot($event)">Press me naoo</button>
+<chart [options]="options" (load)="saveInstance($event.context)">
+    <series>
+        <point></point>
+    </series>
+</chart>
+

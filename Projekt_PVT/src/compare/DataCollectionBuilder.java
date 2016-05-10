@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import domain.DataSource;
 
 public class DataCollectionBuilder {
 
@@ -50,8 +49,8 @@ public class DataCollectionBuilder {
 		int i = 0;
 		for (Entry<LocalDate, Double> xSize : xMap.entrySet()) {
 			for (Entry<LocalDate, Double> ySize : yMap.entrySet()) {
-				if(xSize.getKey().equals(ySize.getKey())) {
-					addToResultData(xSize.getKey().toString(), new MatchedDataPair(xSize.getValue(), ySize.getValue()));
+				if(resolution.getLocalDate(xSize.getKey()).equals(resolution.getLocalDate(ySize.getKey()))) {
+					addToResultData(resolution.getLocalDate(xSize.getKey()), new MatchedDataPair(xSize.getValue(), ySize.getValue()));
 				}
 			}
 		}
