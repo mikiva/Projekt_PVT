@@ -25,7 +25,7 @@ public class SingleDataSourceJson implements JsonString {
 	private List<Double> sameDateValues;
 
 	public SingleDataSourceJson(DataSource src) {
-		this.src = src;
+		this(src, Resolution.DAY);
 	}
 
 	public SingleDataSourceJson(DataSource src, Resolution res) {
