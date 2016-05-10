@@ -55,14 +55,5 @@ public class SingleDataSourceTest {
 		assertTrue(src.toJsonString().contains("{"));
 		
 	}
-	
-	@Test
-	public void getResultFromSourceTest() throws Exception {
-		
-		when(data.getData()).thenReturn(map);
-		
-		assertEquals(src.toJsonString(), expectedJson);
-		
-		
-	}
+
 }
