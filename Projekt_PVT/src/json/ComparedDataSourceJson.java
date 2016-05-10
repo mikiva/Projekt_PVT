@@ -10,25 +10,24 @@ import compare.DataSource;
 import compare.MatchedDataPair;
 import compare.Resolution;
 
+
+
 public class ComparedDataSourceJson implements JsonString {
 
 	public DataSource source1;
 	public DataSource source2;
-	public DataCollectionBuilder builder;
 	public DataCollection result;
 	
 	public ComparedDataSourceJson(DataSource source1, DataSource source2) {
 		this.source1 = source1;
 		this.source2 = source2;
-		builder = new DataCollectionBuilder(source1, source2, Resolution.DAY);
-		result = builder.getResult();
+		result = new DataCollectionBuilder(source1, source2, Resolution.DAY).getResult();
 	}
 	
 	public ComparedDataSourceJson(DataSource source1, DataSource source2, Resolution res) {
 		this.source1 = source1;
 		this.source2 = source2;
-		builder = new DataCollectionBuilder(source1, source2, res);
-		result = builder.getResult();
+		result = new DataCollectionBuilder(source1, source2, res).getResult();
 	}
 
 	private String turnToJavaScriptObject(Map.Entry<String, MatchedDataPair> entry) {
@@ -58,4 +57,6 @@ public class ComparedDataSourceJson implements JsonString {
 	private String getSourceName(DataSource source, String name) {
 		return "\"" + name + "\":\"" + source.getName() + "\",";
 	}
+	
+	
 }
