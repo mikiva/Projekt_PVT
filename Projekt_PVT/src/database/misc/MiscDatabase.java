@@ -38,6 +38,11 @@ public class MiscDatabase implements Database {
 	public DataSource getSource(String id) {
 		return data_sources.get(id);
 	}
+	
+	@Override
+	public String toString() {
+		return "Nostalgikällor";
+	}
 
 	@Override
 	public int hashCode() {
