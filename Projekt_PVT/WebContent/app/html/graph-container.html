@@ -1,7 +1,7 @@
 <p>From what date:</p>
-<sample-date-picker id="datepickerbefore"></sample-date-picker>
+<sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker>
 <p>To what date:</p>
-<sample-date-picker id="datepickerafter"></sample-date-picker>
+<sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker>
 
 <!--<choose-source (output)="setSourceOne($event)"></choose-source>-->
 <!--<choose-source (output)="setSourceTwo($event)"></choose-source>-->
