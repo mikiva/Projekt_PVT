@@ -33,7 +33,7 @@ export class GraphCorrelationComponent implements OnChanges {
     }
 
     plot() {
-        this.dataSourceService.getData(this.resolution, this.sourceOne, this.sourceTwo)
+        this.dataSourceService.getData(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo)
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,

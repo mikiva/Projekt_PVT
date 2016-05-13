@@ -15,10 +15,9 @@ export class DatasourceService {
 
 
     constructor(private http: Http) { }
-
-    getData(resolution: string, sourceOne: Object, sourceTwo?: Object): Observable<IDatasource[]> {
-        console.log(this.getUrl(sourceOne, sourceTwo, resolution));
-        return this.http.get(this.getUrl(sourceOne, sourceTwo, resolution))
+    
+    getData(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo?: Object): Observable<IDatasource[]> {
+        return this.http.get(this.getUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter))
             .map((response: Response) => <IDatasource[]> response.json())
             .do(data => console.log('All: ' + this.url  +  JSON.stringify(data)))
             .catch(this.handleError);
@@ -37,9 +36,11 @@ export class DatasourceService {
         return Observable.throw(error.json().error || 'Server error');
     }
 
-    getUrl(sourceOne: Object, sourceTwo: Object, resolution: string) {
-        console.log(sourceOne["database"]);
-        console.log(sourceOne["dataset"]);
+    getUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string) {
+        console.log("-----");
+        console.log(dateBefore);
+        console.log(dateAfter);
+        console.log("-----");
         //return (this.url + 'datasource=' + sourceOne) + (sourceTwo? '&datasource=' + sourceTwo : '');
         return (this.url + 'res=' + (resolution? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
         (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : ""));
