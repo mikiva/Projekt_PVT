@@ -16,7 +16,9 @@ export class SampleDatePicker implements OnInit {
         height: '34px',
         width: '260px'
     };
+    
     selectedDate: string = '2016-05-13';
+    @Output() output: EventEmitter<string> = new EventEmitter<string>();
 
     constructor() {}
 
@@ -25,6 +27,6 @@ export class SampleDatePicker implements OnInit {
     }
 
     onDateChanged(event) {
-        console.log('onDateChanged(): ', event.date, ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
+        console.log(event.formatted);
     }
 }
