@@ -39,6 +39,6 @@ export class DatasourceService {
     getUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string) {
         return (this.url + 'res=' + (resolution? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
         (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : "")
-        + '&startDate=' + (dateBefore || '0000-01-01') + '&endDate=' + (dateAfter || new Date().toISOString().slice(0,10)));
+        + '&startDate=' + (dateBefore || '0000-01-01') + '&endDate=' + (dateAfter || '9999-12-30'));
     }
 }
