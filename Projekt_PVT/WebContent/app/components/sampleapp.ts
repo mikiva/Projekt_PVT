@@ -10,13 +10,13 @@ import {MyDatePicker} from './mydatepicker';
 export class SampleDatePicker implements OnInit {
     private myDatePickerOptions = {
         todayBtnTxt: 'Today',
-        dateFormat: 'yyyy.mm.dd',
+        dateFormat: 'yyyy-mm-dd',
         firstDayOfWeek: 'mo',
         sunHighlight: true,
         height: '34px',
         width: '260px'
     };
-    selectedDate: string = '2015.12.20';
+    selectedDate: string = '2016-05-13';
 
     constructor() {}
 
