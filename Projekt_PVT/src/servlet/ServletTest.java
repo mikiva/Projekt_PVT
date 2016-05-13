@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import compare.DataSource;
+import compare.DateFilter;
 import compare.Resolution;
 import database.DatabaseFactory;
 import json.JsonFormatter;
@@ -46,12 +47,20 @@ public class ServletTest extends HttpServlet implements Servlet {
         String value1 = request.getParameter("value1");
         String value2 = request.getParameter("value2");
         
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+        
         System.out.println(database1 + ", " + database2 + ", " + value1 + ", " + value2);
                
         try{   	
         	DataSource source1 = DatabaseFactory.get(database1).getSource(value1);
         	DataSource source2 = DatabaseFactory.get(database2).getSource(value2);
-        	String json = JsonStringFactory.get(resolution, source1, source2).toJsonString();
+        	
+        	DateFilter filter = new DateFilter();
+        	DataSource filteredSource1 = filter.getFilteredData(source1, startDate, endDate);
+        	DataSource filteredSource2 = filter.getFilteredData(source2, startDate, endDate);
+        	
+        	String json = JsonStringFactory.get(resolution, filteredSource1, filteredSource2).toJsonString();
         	response.getWriter().append(pretty ? format.format(json): json);
         }
         catch(RuntimeException e){
