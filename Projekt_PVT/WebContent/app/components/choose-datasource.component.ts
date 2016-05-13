@@ -1,4 +1,4 @@
-import {Component, Output, Input, EventEmitter, OnInit, OnChanges} from 'angular2/core';
+import {Component, Output, Input, EventEmitter, OnInit, OnChanges, selectedDate} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {DatasourceService} from '../service/datasource.service';
 import {Menu} from '../interface/menu';
@@ -14,7 +14,7 @@ export class ChooseSource implements OnInit {
     database: string;
 
     menu: Menu[];
-    underMenu: String[];
+    underMenu: String[][];
     errorMessage: string;
     
     constructor(private datasourceService: DatasourceService) {
@@ -28,16 +28,16 @@ export class ChooseSource implements OnInit {
 
     }
 
-    private fillUnderMenu(index): void {
+    private fillUnderMenu(index: number): void {
         this.underMenu = this.menu[index].values;
     }
     
-    public onUnderMenuClick(index): void {
+    public onUnderMenuClick(index: number): void {
         this.source = {database: this.database, dataset: this.underMenu[index][0]};
         this.sourceOutput.emit(this.source);
     }
     
-    public onMenuClick(value, index): void {
+    public onMenuClick(value, index: number): void {
         this.database = this.menu[index].database_link;
         this.fillUnderMenu(index);
     }

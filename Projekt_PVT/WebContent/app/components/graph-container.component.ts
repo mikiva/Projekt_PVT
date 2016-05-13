@@ -2,8 +2,10 @@ import {Component, Output} from 'angular2/core';
 import {Graph} from './graph.component';
 import {GraphCorrelationComponent} from './graph-correlation.component';
 import {ChooseSource} from './choose-datasource.component';
-import {SampleDatePicker} from './sampleapp';
 import {ChooseResolution} from './choose-resolution.component';
+import {SampleDatePicker} from './sampleapp';
+import {MyDatePicker} from './mydatepicker';
+
 
 @Component({
     selector: 'graph-container',
@@ -11,23 +13,38 @@ import {ChooseResolution} from './choose-resolution.component';
     templateUrl: 'app/html/graph-container.html',
 })
 
-export class GraphContainerComponent {    
-    
+export class GraphContainerComponent {
+
     sourceOne: Object;
     sourceTwo: Object;
     resolution: string;
+    dateBefore: string;
+    dateAfter: string;
     
-    constructor(){}
     
-    public setSourceOne(sourceOne: Object) : void {
-        this.sourceOne = sourceOne;
+    public setDateBefore(dateBefore: string) : void {
+        this.dateBefore = dateBefore;
+        console.log(dateBefore);
     }
     
-    public setSourceTwo(sourceTwo: Object) : void {
+    public setDateAfter(dateAfter: string) : void {
+        this.dateAfter = dateAfter;
+        console.log(dateAfter);
+        console.log(dateAfter);
+        console.log(dateAfter);
+    }
+
+    constructor() { }
+
+    public setSourceOne(sourceOne: Object): void {
+        this.sourceOne = sourceOne;
+    }
+
+    public setSourceTwo(sourceTwo: Object): void {
         this.sourceTwo = sourceTwo;
-    }  
-    
-    public setResolution(resolution : string) : void{
+    }
+
+    public setResolution(resolution: string): void {
         this.resolution = resolution;
-    }   
+    }
 }

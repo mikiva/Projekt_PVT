@@ -21,6 +21,8 @@ export class GraphCorrelationComponent implements OnChanges {
     @Input() sourceOne: Object;
     @Input() sourceTwo: Object;
     @Input() resolution: string;
+    @Input() dateBefore: string;
+    @Input() dateAfter: string;
 
     constructor(private dataSourceService: DatasourceService) {
         
@@ -31,7 +33,7 @@ export class GraphCorrelationComponent implements OnChanges {
     }
 
     plot() {
-        this.dataSourceService.getData(this.resolution, this.sourceOne, this.sourceTwo)
+        this.dataSourceService.getData(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo)
             .subscribe(
                 datasource => this.datasource = datasource,
                 error => this.errorMessage = <any>error,
@@ -64,7 +66,7 @@ export class GraphCorrelationComponent implements OnChanges {
                 }
             },
             series: [{
-                regression: hasData,
+                regression: (hasData && this.datasource.data.length >1) ,
                 regressionSettings:{
                     type: 'linear',
                     color: 'rgba(23, 123, 53, .9)'

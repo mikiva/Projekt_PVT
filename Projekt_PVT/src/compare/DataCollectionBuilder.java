@@ -13,7 +13,6 @@ public class DataCollectionBuilder {
 
 	private DataSource xData;
 	private DataSource yData;
-	@SuppressWarnings("unused")
 	private Resolution resolution;
 	private Map<String, List<MatchedDataPair>> resultData;
 	private Map<String, MatchedDataPair> finalResult;
@@ -45,8 +44,6 @@ public class DataCollectionBuilder {
 	private void addMatchesToResult() {
 		Map<LocalDate, Double> xMap = xData.getData();
 		Map<LocalDate, Double> yMap = yData.getData();
-		@SuppressWarnings("unused")
-		int i = 0;
 		for (Entry<LocalDate, Double> xSize : xMap.entrySet()) {
 			for (Entry<LocalDate, Double> ySize : yMap.entrySet()) {
 				if(resolution.getLocalDate(xSize.getKey()).equals(resolution.getLocalDate(ySize.getKey()))) {
@@ -54,14 +51,6 @@ public class DataCollectionBuilder {
 				}
 			}
 		}
-		
-//		xData.getData().forEach( (xKey, xData) -> {
-//			yData.getData().forEach( (yKey, yData) -> {
-//				if(resolution.areSame(xKey, yKey)) {
-//					addToResultData(resolution.getKey(xKey), new MatchedDataPair(xData, yData));
-//				}
-//			});
-//		});
 	}
 
 	private void addToResultData(String key, MatchedDataPair match) {
