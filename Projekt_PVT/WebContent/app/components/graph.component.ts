@@ -45,7 +45,7 @@ export class Graph implements OnChanges, OnInit {
         };
     }
     plot(): void {
-        this.dataSourceService.getData(this.resolution, this.sourceInput, this.selectedDate)
+        this.dataSourceService.getData(this.dateBefore, this.dateAfter, this.resolution, this.sourceInput)
             .subscribe(
             datasource => this.datasource = datasource,
             error => this.errorMessage = <any>error,
