@@ -21,6 +21,8 @@ export class GraphCorrelationComponent implements OnChanges {
     @Input() sourceOne: Object;
     @Input() sourceTwo: Object;
     @Input() resolution: string;
+    @Input() dateBefore: string;
+    @Input() dateAfter: string;
 
     constructor(private dataSourceService: DatasourceService) {
         

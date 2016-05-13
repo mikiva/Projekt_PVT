@@ -21,7 +21,9 @@ export class Graph implements OnChanges, OnInit {
     datasource: DataSourceSingleJson;
     @Input() sourceInput: Object;
     @Input() resolution: string;
-    @Input() selectedDate: string;
+    @Input() dateBefore: string;
+    @Input() dateAfter: string;
+    
 
     constructor(private dataSourceService: DatasourceService) {
     }

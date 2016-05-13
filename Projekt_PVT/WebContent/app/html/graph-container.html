@@ -28,12 +28,12 @@
 <table style="width:100%">
 <tr>
 
-<td align="center"><graph id="1" [sourceInput]="sourceOne" [resolution]="resolution">1</graph></td>
-<td align="center"><graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution">2</graph></td>
+<td align="center"><graph id="1" [sourceInput]="sourceOne" [resolution]="resolution" [dateBefore]="setdateBefore" [dateAfter]="setDateAfter">1</graph></td>
+<td align="center"><graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution" [dateBefore]="setdateBefore" [dateAfter]="setDateAfter">2</graph></td>
 
 </tr>
 </table>
    
 
 
-<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution">corr</graph-correlation></div>
+<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution"  [dateBefore]="setdateBefore" [dateAfter]="setDateAfter">corr</graph-correlation></div>
