@@ -4,6 +4,7 @@ import {GraphCorrelationComponent} from './graph-correlation.component';
 import {ChooseSource} from './choose-datasource.component';
 import {SampleDatePicker} from './sampleapp';
 import {ChooseResolution} from './choose-resolution.component';
+import {MyDatePicker} from './mydatepicker';
 
 @Component({
     selector: 'graph-container',
@@ -16,8 +17,17 @@ export class GraphContainerComponent {
     sourceOne: Object;
     sourceTwo: Object;
     resolution: string;
+    selectedDate: string;
     
     constructor(){}
+    
+    public selectedDateBefore(selectedDate: string) : void{
+        this.selectedDate = selectedDate;
+    }
+    
+    public selectedDateAfter(selectedDate: string) : void{
+        this.selectedDate = selectedDate;
+    }
     
     public setSourceOne(sourceOne: Object) : void {
         this.sourceOne = sourceOne;
@@ -29,5 +39,5 @@ export class GraphContainerComponent {
     
     public setResolution(resolution : string) : void{
         this.resolution = resolution;
-    }   
+    }
 }

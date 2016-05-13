@@ -1,4 +1,4 @@
-import {Component, OnChanges, Input, SimpleChange, OnInit} from 'angular2/core';
+import {Component, OnChanges, Input, SimpleChange, OnInit, selectedDate} from 'angular2/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {DatasourceService} from '../service/datasource.service';
 import {IDatasource} from '../interface/datasource';
@@ -21,6 +21,7 @@ export class Graph implements OnChanges, OnInit {
     datasource: DataSourceSingleJson;
     @Input() sourceInput: Object;
     @Input() resolution: string;
+    @Input() selectedDate: string;
 
     constructor(private dataSourceService: DatasourceService) {
     }
@@ -42,7 +43,7 @@ export class Graph implements OnChanges, OnInit {
         };
     }
     plot(): void {
-        this.dataSourceService.getData(this.resolution, this.sourceInput)
+        this.dataSourceService.getData(this.resolution, this.sourceInput, this.selectedDate)
             .subscribe(
             datasource => this.datasource = datasource,
             error => this.errorMessage = <any>error,
