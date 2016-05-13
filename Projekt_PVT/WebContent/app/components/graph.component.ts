@@ -21,7 +21,9 @@ export class Graph implements OnChanges, OnInit {
     datasource: DataSourceSingleJson;
     @Input() sourceInput: Object;
     @Input() resolution: string;
-    @Input() selectedDate: string;
+    @Input() dateBefore: string;
+    @Input() dateAfter: string;
+    
 
     constructor(private dataSourceService: DatasourceService) {
     }
@@ -43,7 +45,7 @@ export class Graph implements OnChanges, OnInit {
         };
     }
     plot(): void {
-        this.dataSourceService.getData(this.resolution, this.sourceInput, this.selectedDate)
+        this.dataSourceService.getData(this.dateBefore, this.dateAfter, this.resolution, this.sourceInput)
             .subscribe(
             datasource => this.datasource = datasource,
             error => this.errorMessage = <any>error,

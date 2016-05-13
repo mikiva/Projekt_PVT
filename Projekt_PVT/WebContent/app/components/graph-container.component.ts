@@ -18,15 +18,20 @@ export class GraphContainerComponent {
     sourceOne: Object;
     sourceTwo: Object;
     resolution: string;
-    selectedDate: string;
+    dateBefore: string;
+    dateAfter: string;
     
     
-    public selectedDateBefore(selectedDate: string) : void{
-        this.selectedDate = selectedDate;
+    public setDateBefore(dateBefore: string) : void {
+        this.dateBefore = dateBefore;
+        console.log(dateBefore);
     }
     
-    public selectedDateAfter(selectedDate: string) : void{
-        this.selectedDate = selectedDate;
+    public setDateAfter(dateAfter: string) : void {
+        this.dateAfter = dateAfter;
+        console.log(dateAfter);
+        console.log(dateAfter);
+        console.log(dateAfter);
     }
 
     constructor() { }

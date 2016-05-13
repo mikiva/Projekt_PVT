@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
 import {MyDatePicker} from './mydatepicker';
 
 @Component({
@@ -10,13 +10,15 @@ import {MyDatePicker} from './mydatepicker';
 export class SampleDatePicker implements OnInit {
     private myDatePickerOptions = {
         todayBtnTxt: 'Today',
-        dateFormat: 'yyyy.mm.dd',
+        dateFormat: 'yyyy-mm-dd',
         firstDayOfWeek: 'mo',
         sunHighlight: true,
         height: '34px',
         width: '260px'
     };
-    selectedDate: string = '2015.12.20';
+    
+    selectedDate: string = '2016-05-13';
+    @Output() date: EventEmitter<string> = new EventEmitter<string>();
 
     constructor() {}
 
@@ -25,6 +27,7 @@ export class SampleDatePicker implements OnInit {
     }
 
     onDateChanged(event) {
-        console.log('onDateChanged(): ', event.date, ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
+        console.log(event.formatted);
+        this.date.emit(event.formatted);
     }
 }

@@ -1,7 +1,7 @@
 <p>From what date:</p>
-<sample-date-picker id="datepickerbefore"></sample-date-picker>
+<sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker>
 <p>To what date:</p>
-<sample-date-picker id="datepickerafter"></sample-date-picker>
+<sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker>
 
 <!--<choose-source (output)="setSourceOne($event)"></choose-source>-->
 <!--<choose-source (output)="setSourceTwo($event)"></choose-source>-->
@@ -28,12 +28,12 @@
 <table style="width:100%">
 <tr>
 
-<td align="center"><graph id="1" [sourceInput]="sourceOne" [resolution]="resolution">1</graph></td>
-<td align="center"><graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution">2</graph></td>
+<td align="center"><graph id="1" [sourceInput]="sourceOne" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">1</graph></td>
+<td align="center"><graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">2</graph></td>
 
 </tr>
 </table>
    
 
 
-<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution">corr</graph-correlation></div>
+<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution"  [dateBefore]="dateBefore" [dateAfter]="dateAfter">corr</graph-correlation></div>
