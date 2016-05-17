@@ -1,9 +1,9 @@
-import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
+import {Component, Input, OnChanges, SimpleChange} from '@angular/core';
 import {CHART_DIRECTIVES, Highcharts} from 'angular2-highcharts';
 import {DatasourceService} from '../service/datasource.service';
 import {IDatasource} from '../interface/datasource';
 import {DataSourceJson} from '../interface/datasource-json';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {HTTP_PROVIDERS} from '@angular/http';
 
 
 @Component({
