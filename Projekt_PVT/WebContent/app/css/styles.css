@@ -1,0 +1,13 @@
+.left-column, .right-column{
+    float:right;
+}
+
+.left-column{
+    width: 30%;
+}
+.right-column{
+    
+}
+.center{
+    float:center;
+}

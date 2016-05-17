@@ -1,22 +1,25 @@
-<p>From what date:</p>
-<sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker>
-<p>To what date:</p>
-<sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker>
 
+<div class="left-column">
+<p align="right">From what date:
+<sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker>
+To what date:  
+<sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker></p>
+</div>
 <!--<choose-source (output)="setSourceOne($event)"></choose-source>-->
 <!--<choose-source (output)="setSourceTwo($event)"></choose-source>-->
 <!--<graph id="1" [sourceInput]="sourceOne">1</graph>-->
 <!--<graph id="2" [sourceInput]="sourceTwo">2</graph>-->
 <!--<graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo">corr</graph-correlation>-->
-
-<FORM action="http://localhost:8080/Proj/" method="post">
+<div class="center">
+<FORM  action="http://localhost:8080/Proj/" method="post">
     <P>
     	<center>
     		<LABEL for="rubrik">Rubrik: </LABEL>
-        	<input type="text" size="30" placeholder="Skriv in en valfri rubrik!"><BR>
+        	<input type="text" size="25" placeholder="Skriv in en valfri rubrik!"><BR>
         </center>
     </P>
  </FORM>
+
 
 
 <div align="center">
@@ -24,7 +27,7 @@
 	<choose-source (sourceOutput)="setSourceTwo($event)"></choose-source>
     <td><choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution></td>
 </div>
-
+</div>
 <table style="width:100%">
 <tr>
 
