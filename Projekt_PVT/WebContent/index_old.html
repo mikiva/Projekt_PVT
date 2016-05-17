@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- Basic Page Needs
+ 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ 	<meta charset="utf-8">
+ 	<title>PVT Projekt</title>
+ 	<meta name="description" content="">
+ 	<meta name="author" content="">
+ 	
+ 	<!-- Mobile Specific Metas
+ 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	
+ 	<!-- FONT
+ 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ 	<!-- <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"> -->
+ 	
+ 	<!-- CSS
+ 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+ 	<!-- <link rel="stylesheet" href="css/normalize.css">  -->
+ 	<!-- <link rel="stylesheet" href="css/skeleton.css"> -->
+ 	<link rel="stylesheet" href="app/css/styles.css">
+ 	
+ 	<!-- JAVASCRIPT
+ 	IE required polyfills (from CDN), in this exact order
+ 	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.25/system-polyfills.js"></script>
+    <script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+    <script src="https://code.angularjs.org/tools/system.js"></script>
+    <script src="https://code.angularjs.org/tools/typescript.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.17/angular2-polyfills.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.17/Rx.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.17/angular2.dev.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.17/http.dev.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.5/immutable.min.js"></script>
+
+  <!--   <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/typescript/lib/typescript.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script> -->
+    <!-- Configure SystemJS -->
+    <script>
+    System.config({
+    	transpiler: 'typescript',
+    	typescriptOptions: { 
+    		emitDecoratorMetadata: true 
+    	},
+        packages: {        
+        	app: {
+            	defaultExtension: 'ts'
+          	},
+          	'angular2-highcharts' : {
+                main: 'index',
+                format: 'cjs',
+                defaultExtension: 'js',
+            }
+            
+      	},
+      	map: {
+            'angular2-highcharts': 'https://cdn.rawgit.com/gevgeny/angular2-highcharts/master/dist',
+            'highcharts/highstock.src': 'https://cdn.rawgit.com/highcharts/highcharts-dist/v4.2.1/highstock.js',
+            'highcharts-plugins/highcharts-regression': 'https://cdn.rawgit.com/phpepe/highcharts-regression/master/highcharts-regression.js'
+          }
+      });
+      System.import('app/main')
+      	.then(null, console.error.bind(console));
+ 	</script>
+ 	
+ </head>
+ <body>
+ 
+ 	<app>Loading...</app>
+ 	
+</body>
+</html>
+

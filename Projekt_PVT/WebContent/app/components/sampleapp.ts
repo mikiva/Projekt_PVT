@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {MyDatePicker} from './mydatepicker';
 
 @Component({

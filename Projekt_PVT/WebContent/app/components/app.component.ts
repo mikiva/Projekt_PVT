@@ -1,9 +1,9 @@
-import {Component}  from 'angular2/core';
+import {Component}  from '@angular/core';
 import {GraphContainerComponent} from './graph-container.component';
 import 'rxjs/Rx';
 
 @Component( {
-    selector: "app",
+    selector: "my-app",
     templateUrl: "app/html/app.html",
     directives: [GraphContainerComponent]
 })

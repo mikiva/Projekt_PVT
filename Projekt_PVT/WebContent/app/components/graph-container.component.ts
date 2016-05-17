@@ -1,4 +1,4 @@
-import {Component, Output} from 'angular2/core';
+import {Component, Output} from '@angular/core';
 import {Graph} from './graph.component';
 import {GraphCorrelationComponent} from './graph-correlation.component';
 import {ChooseSource} from './choose-datasource.component';

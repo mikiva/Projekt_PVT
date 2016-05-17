@@ -1,9 +1,9 @@
-import {Component, OnChanges, Input, SimpleChange, OnInit, selectedDate} from 'angular2/core';
+import {Component, OnChanges, Input, SimpleChange, OnInit, selectedDate} from '@angular/core';
 import {CHART_DIRECTIVES} from 'angular2-highcharts';
 import {DatasourceService} from '../service/datasource.service';
 import {IDatasource} from '../interface/datasource';
 import {DataSourceJson} from '../interface/datasource-json';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {HTTP_PROVIDERS} from '@angular/http';
 import {GraphCorrelationComponent} from'./graph-correlation.component';
 import {DataSourceSingleJson} from '../interface/datasource-single-json';
 import 'rxjs/Rx';
