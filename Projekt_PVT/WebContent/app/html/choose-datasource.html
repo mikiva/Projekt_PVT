@@ -4,6 +4,7 @@
 		{{item.database}}
 	</option>
 </select>
+<br style="clear:both" />
 <select (change)="onUnderMenuClick($event.target.selectedIndex-1)">
 	<option disabled="disabled">Choose data source</option>
 	<option *ngFor="let item of underMenu">

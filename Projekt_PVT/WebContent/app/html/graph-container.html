@@ -1,10 +1,6 @@
 
-<div class="left-column">
-<p align="right">From what date:
-<sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker>
-To what date:  
-<sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker></p>
-</div>
+
+
 <!--<choose-source (output)="setSourceOne($event)"></choose-source>-->
 <!--<choose-source (output)="setSourceTwo($event)"></choose-source>-->
 <!--<graph id="1" [sourceInput]="sourceOne">1</graph>-->
@@ -23,20 +19,41 @@ To what date:
 
 
 <div align="center">
-	<choose-source (sourceOutput)="setSourceOne($event)"></choose-source>
-	<choose-source (sourceOutput)="setSourceTwo($event)"></choose-source>
+	
+	
     <td><choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution></td>
 </div>
 </div>
-<table style="width:100%">
-<tr>
 
-<td align="center"><graph id="1" [sourceInput]="sourceOne" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">1</graph></td>
-<td align="center"><graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">2</graph></td>
 
-</tr>
-</table>
+<div class="dateDiv">
+<div class="dateLeftDiv">
+<p align="center">From what date:</p>
+<p align="center"><sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker></p>
+</div>
+<div style="float:left">
+<p align="center">To what date:</p>  
+<p align="center"><sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker></p>
+</div>
+</div>
+
+
+
+<br style="clear:both" />
+
+<div class="graphWrapper">
+
+<div class="graphDivS">
+	<graph id="1" [sourceInput]="sourceOne" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">1</graph>
+	<choose-source (sourceOutput)="setSourceOne($event)"></choose-source>
+	</div>	
+
+<div class="graphDivS">
+<graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">2</graph>
+<choose-source (sourceOutput)="setSourceTwo($event)"></choose-source>
+</div>
    
-
-
-<div align="center"><graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution"  [dateBefore]="dateBefore" [dateAfter]="dateAfter">corr</graph-correlation></div>
+   <div style="padding-top:45px;float:left">
+	<graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution"  [dateBefore]="dateBefore" [dateAfter]="dateAfter">corr</graph-correlation>
+   </div>
+</div>

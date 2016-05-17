@@ -72,7 +72,7 @@ export class MyDatePicker implements OnInit, OnChanges {
     todayBtnTxt:string = 'Today';
     firstDayOfWeek:string = 'mo';
     sunHighlight:boolean = true;
-    height:string = '34px';
+    height:string = '5px';
     width:string = '100%';
 
     private _locales:Locales = {

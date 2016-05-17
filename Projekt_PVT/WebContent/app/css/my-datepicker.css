@@ -92,7 +92,7 @@
 
 .mydp .header {
     width: 100%;
-    height: 36px;
+    height: 24px;
     margin-bottom: 1px;
     background-color: #FAFAFA;
 }
@@ -103,7 +103,7 @@
 }
 
 .mydp .header td:nth-child(1) {
-    font-size: 16px;
+    font-size: 13px;
     padding-left: 4px;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .mydp .header td:nth-child(3) {
-    font-size: 16px;
+    font-size: 13px;
     padding-right: 4px;
 }
 

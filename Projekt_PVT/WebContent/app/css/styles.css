@@ -1,13 +1,25 @@
 .left-column, .right-column{
     float:right;
 }
-
-.left-column{
-    width: 30%;
-}
-.right-column{
-    
-}
 .center{
+    float:left;
+}
+.dateLeftDiv{
+    float:left;
+    padding-right:15px;
+}
+.dateDiv{
+    float:left;
+    padding-left: 30px;
+}
+.graph-style{
+    width:500px;
+    height:300px;    
+}
+.graphWrapper{
     float:center;
 }
+.graphDivS{
+    float:left;
+}
+
