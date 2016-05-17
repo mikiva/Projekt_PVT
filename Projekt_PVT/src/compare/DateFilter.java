@@ -7,12 +7,10 @@ import java.util.Map;
 
 public class DateFilter {
 
-	public DataSource getFilteredData(DataSource source, String startDate, String endDate) {
-		if (source == null) return null;
+	public DataSource getFilteredData(DataSource source, LocalDate startDate, LocalDate endDate) {
+		if (source == null || startDate == null || endDate == null) return null;
 		
-		LocalDate start = LocalDate.parse(startDate);
-		LocalDate end = LocalDate.parse(endDate);
-		Map<LocalDate, Double> result = filterData(source, start, end);
+		Map<LocalDate, Double> result = filterData(source, startDate, endDate);
 
 		return new FilteredDataSource(source, result);
 	}

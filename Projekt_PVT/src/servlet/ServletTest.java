@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -47,14 +49,12 @@ public class ServletTest extends HttpServlet implements Servlet {
         String value1 = request.getParameter("value1");
         String value2 = request.getParameter("value2");
         
-        String startDate = request.getParameter("startDate");
-        String endDate = request.getParameter("endDate");
-        
-        System.out.println(database1 + ", " + database2 + ", " + value1 + ", " + value2);
-               
         try{   	
         	DataSource source1 = DatabaseFactory.get(database1).getSource(value1);
         	DataSource source2 = DatabaseFactory.get(database2).getSource(value2);
+        	
+        	LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
+        	LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
         	
         	DateFilter filter = new DateFilter();
         	DataSource filteredSource1 = filter.getFilteredData(source1, startDate, endDate);
@@ -62,6 +62,9 @@ public class ServletTest extends HttpServlet implements Servlet {
         	
         	String json = JsonStringFactory.get(resolution, filteredSource1, filteredSource2).toJsonString();
         	response.getWriter().append(pretty ? format.format(json): json);
+        }
+        catch(DateTimeParseException e) {
+        	response.getWriter().append(e.getMessage());
         }
         catch(RuntimeException e){
         	response.getWriter().append(e.getMessage());

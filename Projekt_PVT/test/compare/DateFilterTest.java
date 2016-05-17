@@ -14,7 +14,9 @@ public class DateFilterTest {
 	@Test
 	public void filteringDataFromEmptySourceShouldReturnEmptySource() throws Exception {
 		DataSource emptySource = mock(DataSource.class);	
-		assertTrue(new DateFilter().getFilteredData(emptySource, "2014-01-01", "2015-01-01").getData().isEmpty());
+		LocalDate endDate = LocalDate.parse("2015-01-01");
+		LocalDate startDate = LocalDate.parse("2014-01-01");
+		assertTrue(new DateFilter().getFilteredData(emptySource, startDate, endDate).getData().isEmpty());
 	}
 	
 	@Test
@@ -22,9 +24,9 @@ public class DateFilterTest {
 		assertNull(new DateFilter().getFilteredData(null, null, null));
 	}
 	
-	@Test(expected=NullPointerException.class)
-	public void throwsExceptionIfDateStringsAreInvalid() throws Exception {
-		new DateFilter().getFilteredData(mock(DataSource.class), null, null);
+	@Test
+	public void returnNullIfDateStringsAreInvalid() throws Exception {
+		assertNull(new DateFilter().getFilteredData(mock(DataSource.class), null, null));
 	}
 	
 	@Test
@@ -49,7 +51,9 @@ public class DateFilterTest {
 		
 		when(expectedSource.getData()).thenReturn(expectedMap);
 		
-		assertEquals(expectedSource.getData(), new DateFilter().getFilteredData(source, "2014-01-01", "2015-01-01").getData());
+		LocalDate endDate = LocalDate.parse("2015-01-01");
+		LocalDate startDate = LocalDate.parse("2014-01-01");
+		assertEquals(expectedSource.getData(), new DateFilter().getFilteredData(source, startDate, endDate).getData());
 		
 	}
 	
