@@ -1,17 +1,18 @@
 import {Component, OnChanges, Input, SimpleChange, OnInit, selectedDate} from '@angular/core';
-import {CHART_DIRECTIVES} from 'angular2-highcharts';
-import {DatasourceService} from '../service/datasource.service';
-import {IDatasource} from '../interface/datasource';
-import {DataSourceJson} from '../interface/datasource-json';
 import {HTTP_PROVIDERS} from '@angular/http';
+
+import {CHART_DIRECTIVES} from 'angular2-highcharts';
+import {DatasourceService} from '../shared/datasource.service';
 import {GraphCorrelationComponent} from'./graph-correlation.component';
-import {DataSourceSingleJson} from '../interface/datasource-single-json';
+import {DataSourceSingleJson} from './datasource-single-json';
+import {IDatasource} from '../shared/datasource';
+import {DataSourceJson} from '../shared/datasource-json';
 import 'rxjs/Rx';
 
 @Component({
     selector: 'graph',
     directives: [CHART_DIRECTIVES],
-    templateUrl: 'app/html/graph.html',
+    templateUrl: 'src/app/graph-container/graph/graph.html',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
 export class Graph implements OnChanges, OnInit {
@@ -53,6 +54,12 @@ export class Graph implements OnChanges, OnInit {
 
     }
 
+    ngOnChanges(): void {
+        if (this.sourceInput != null) {
+            this.plot();
+        }
+    }
+    
     private plotGraph(): void {
         var hasData : boolean = this.datasource.data.length != 0;
 
@@ -73,14 +80,5 @@ export class Graph implements OnChanges, OnInit {
                 turboThreshold: 0
             }]
         };
-    }
-
-    ngOnChanges(): void {
-        if (this.sourceInput != null) {
-            console.log(this.sourceInput);
-            console.log(this.sourceInput);
-            console.log(this.sourceInput);
-            this.plot();
-        }
     }
 }

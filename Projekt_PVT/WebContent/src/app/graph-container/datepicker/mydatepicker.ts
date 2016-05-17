@@ -2,8 +2,8 @@ import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange,
 import {NgIf, NgFor, NgClass, NgStyle, NgModel} from '@angular/common';
 import {MyDate, MyMonth} from './interfaces';
 
-const styles: string = 'app/css/my-datepicker.css';
-const template: string = 'app/html/my-datepicker.html';
+const styles: string = 'src/app/graph-container/datepicker/my-datepicker.css';
+const template: string = 'src/app/graph-container/datepicker/my-datepicker.html';
 
 interface DayLabels {
     [day: string]: string;

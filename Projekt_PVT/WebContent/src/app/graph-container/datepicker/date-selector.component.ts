@@ -4,7 +4,7 @@ import {DatePicker} from 'ng2-datePicker;
 
 @Component( {
     selector: "date-selector",
-    templateUrl: "app/html/date-selector.html",
+    templateUrl: "src/html/date-selector.html",
     directives: [NgIf, DatePicker, FORM_DIRECTIVES],
     bindings: [DatePicker]
 })

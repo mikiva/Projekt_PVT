@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {MyDatePicker} from './mydatepicker';
 
 @Component({
@@ -7,7 +7,7 @@ import {MyDatePicker} from './mydatepicker';
     directives: [MyDatePicker]
 })
 
-export class SampleDatePicker implements OnInit {
+export class SampleDatePicker {
     private myDatePickerOptions = {
         todayBtnTxt: 'Today',
         dateFormat: 'yyyy-mm-dd',
@@ -20,14 +20,8 @@ export class SampleDatePicker implements OnInit {
     selectedDate: string = '2016-05-13';
     @Output() date: EventEmitter<string> = new EventEmitter<string>();
 
-    constructor() {}
-
-    ngOnInit() {
-        console.log('onInit(): SampleDatePicker')
-    }
 
     onDateChanged(event) {
-        console.log(event.formatted);
         this.date.emit(event.formatted);
     }
 }

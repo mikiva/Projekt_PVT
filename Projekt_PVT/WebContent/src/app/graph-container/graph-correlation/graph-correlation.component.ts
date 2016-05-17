@@ -1,15 +1,15 @@
 import {Component, Input, OnChanges, SimpleChange} from '@angular/core';
-import {CHART_DIRECTIVES, Highcharts} from 'angular2-highcharts';
-import {DatasourceService} from '../service/datasource.service';
-import {IDatasource} from '../interface/datasource';
-import {DataSourceJson} from '../interface/datasource-json';
 import {HTTP_PROVIDERS} from '@angular/http';
 
+import {CHART_DIRECTIVES, Highcharts} from 'angular2-highcharts';
+import {DatasourceService} from '../shared/datasource.service';
+import {IDatasource} from '../shared/datasource';
+import {DataSourceJson} from '../shared/datasource-json';
 
 @Component({
     selector: 'graph-correlation',
     directives: [CHART_DIRECTIVES],
-    templateUrl: 'app/html/graph-correlation.html',
+    templateUrl: 'src/app/graph-container/graph-correlation/graph-correlation.html',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
 export class GraphCorrelationComponent implements OnChanges {
