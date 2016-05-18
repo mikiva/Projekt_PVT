@@ -28,7 +28,6 @@ export class DatasourceService {
             .map((response: Response) => <Menu[]> response.json().data)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
-
     }
 
     private handleError(error: Response) {
