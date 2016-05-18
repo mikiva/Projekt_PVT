@@ -1,6 +1,8 @@
 
 
 var dots = window.setInterval( function() {
+   
+   
     var wait = document.getElementById("wait");
     
     if (wait == null)
