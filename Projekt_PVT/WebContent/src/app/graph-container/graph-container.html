@@ -3,7 +3,7 @@
 	<form  action="http://localhost:8080/Proj/" method="post">
     	<p>
     		<center>
-    			<label for="rubrik">Rubrik: </label>
+    			<label for="rubrik">Heading: </label>
         	<input type="text" size="25" placeholder="Skriv in en valfri rubrik!">
         	<br>
         </center>
@@ -12,7 +12,10 @@
 <div align="center">
 	
 	
-    <td><choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution></td>
+    <td>
+    	<label for="rubrik">Choose resolution: </label>
+    	<choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution>
+    </td>
 </div>
 </div>
 
