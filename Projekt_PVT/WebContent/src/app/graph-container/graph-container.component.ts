@@ -6,12 +6,15 @@ import {ChooseSource} from './choose-datasource/choose-datasource.component';
 import {ChooseResolution} from './choose-resolution/choose-resolution.component';
 import {SampleDatePicker} from './datepicker/sampleapp';
 import {MyDatePicker} from './mydatepicker';
+import {DatabaseService} from './shared/database.service';
+import {HTTP_PROVIDERS} from '@angular/http';
 
 
 @Component({
     selector: 'graph-container',
     directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker],
     templateUrl: 'src/app/graph-container/graph-container.html',
+    providers: [DatabaseService, HTTP_PROVIDERS]
 })
 export class GraphContainerComponent {
 
@@ -20,8 +23,9 @@ export class GraphContainerComponent {
     resolution: string;
     dateBefore: string;
     dateAfter: string;
+    selectedData: string[];
     
-    constructor() {}
+    constructor(private databaseService: DatabaseService) {}
     
     setDateBefore(dateBefore: string) : void {
         this.dateBefore = dateBefore;
@@ -43,4 +47,8 @@ export class GraphContainerComponent {
     setResolution(resolution: string): void {
         this.resolution = resolution;
     }
+ 
+ saveAnalysis(){
+     this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo);
+ }
 }
