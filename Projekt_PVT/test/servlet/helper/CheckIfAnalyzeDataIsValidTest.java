@@ -14,12 +14,12 @@ public class CheckIfAnalyzeDataIsValidTest {
 		ciadv = new CheckIfAnalyzeDataIsValid();
 	}
 
-	/*@Test
+	@Test
 	public void testValidDate() {
-		assertTrue(ciadv.validDate("0000-01-01"));
+		assertTrue(ciadv.validDate("0001-01-01"));
 		assertTrue(ciadv.validDate("4000-01-01"));
 		assertTrue(ciadv.validDate("2016-05-18"));
-	}*/
+	}
 
 	@Test
 	public void testValidResulution() {
