@@ -1,4 +1,5 @@
 import {Component, Output} from '@angular/core';
+import {HTTP_PROVIDERS} from '@angular/http';
 
 import {Graph} from './graph/graph.component';
 import {GraphCorrelationComponent} from './graph-correlation/graph-correlation.component';
@@ -7,7 +8,6 @@ import {ChooseResolution} from './choose-resolution/choose-resolution.component'
 import {SampleDatePicker} from './datepicker/sampleapp';
 import {MyDatePicker} from './mydatepicker';
 import {DatabaseService} from './shared/database.service';
-import {HTTP_PROVIDERS} from '@angular/http';
 
 
 @Component({
