@@ -19,7 +19,7 @@ class GoldPriceSource implements DataSource {
 
 	@Override
 	public String getUnit() {
-		return "EUR";
+		return "EUR per ounce";
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
