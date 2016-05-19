@@ -38,5 +38,11 @@ public class CheckIfAnalyzeDataIsValidTest {
 		assertTrue(ciadv.dataSetExist("ODA", "SWE_LP"));
 		assertFalse(ciadv.dataSetExist("ODA", "SWE"));
 	}
-
+	@Test
+	public void testIsAlphaNumeric() {
+		assertTrue(ciadv.isAlphaNumeric("ODA"));
+		assertTrue(ciadv.isAlphaNumeric("1234"));
+		assertFalse(ciadv.isAlphaNumeric("123AD--"));
+		assertFalse(ciadv.isAlphaNumeric("+++"));
+	}
 }
