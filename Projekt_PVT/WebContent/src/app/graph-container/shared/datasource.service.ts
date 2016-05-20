@@ -5,6 +5,7 @@ import {IDatasource} from './datasource';
 import {DataSourceJson} from './datasource-json';
 import {DataSourceSingleJson} from '../graph/datasource-single-json';
 import {Menu} from '../choose-datasource/menu';
+import {Heading} from '../saved-headers-interface/saved-headers/';
 
 
 @Injectable()
@@ -35,7 +36,7 @@ export class DatasourceService {
     
     getSavedHeaders(): Observable<Menu[]> {
         return this.http.get(this.menuHeadersUrl)
-            .map((response: Response) => <Menu[]> response.json().data)
+            .map((response: Response) => <Menu[]> response.json().headings)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
 

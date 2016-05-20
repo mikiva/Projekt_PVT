@@ -1,6 +1,6 @@
 import {Component, Output, EventEmitter, OnInit} from '@angular/core';
 import {DatasourceService} from '../shared/datasource.service';
-import {saved-headers} from './saved-headers/saved-headers-interface';
+import {Heading} from './saved-headers/saved-headers-interface';
 
 @Component({
     selector: 'saved-headers',
@@ -8,11 +8,13 @@ import {saved-headers} from './saved-headers/saved-headers-interface';
     providers: [DatasourceService]
 })
 
-export class SavedHeaders implements OnInit{
-      
-    constructor() {}
+export class SavedHeaders implements OnInit {
     
+    heading: Heading[];
+    errorMessage: string;
     @Output() output: EventEmitter<string> = new EventEmitter<string>();
+    
+    constructor(private datasourceService: DatasourceService) {}
 
     onClick(value: string) {
         this.output.emit(value);
@@ -25,6 +27,5 @@ export class SavedHeaders implements OnInit{
                 heading => this.heading = heading,
                 error =>  this.errorMessage = <any>error);
     }
-        
 }
 
