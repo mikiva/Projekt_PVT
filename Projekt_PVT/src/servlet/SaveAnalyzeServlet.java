@@ -71,7 +71,7 @@ public class SaveAnalyzeServlet extends HttpServlet {
 			SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 			db.saveData(analysis);
 			
-			response.getWriter().append(errorMessage.toString());
+			response.getWriter().append("Analys " + analysis.getTitle() + " sparad i databas!");
 		} else {
 			response.getWriter().append(errorMessage.toString());
 		}
