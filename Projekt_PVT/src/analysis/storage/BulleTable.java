@@ -9,10 +9,10 @@ import analysis.Analysis;
 public class BulleTable implements SqlTable {
 
 	private final static String URL = "jdbc:postgresql://localhost:5433/Bulle";
-	private final static String USERNAME = "webbulle";
-	private final static String PASSWORD = "bulle4bulle";
-	//private final static String USERNAME = "ndi14psd";
-	//private final static String PASSWORD = "mitt lösenord";
+//	private final static String USERNAME = "webbulle";
+//	private final static String PASSWORD = "bulle4bulle";
+	private final static String USERNAME = "ndi14psd";
+	private final static String PASSWORD = "*******";
 
 	private static SqlTable singel = null;
 
