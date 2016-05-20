@@ -2,7 +2,7 @@ package database;
 
 import compare.DataSource;
 
-class NullDatabase implements Database {
+public class NullDatabase implements Database {
 
 	@Override
 	public String link() {

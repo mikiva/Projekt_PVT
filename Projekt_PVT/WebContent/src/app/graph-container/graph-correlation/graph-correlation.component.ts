@@ -44,7 +44,7 @@ export class GraphCorrelationComponent implements OnChanges {
         var xName = this.datasource.xName;
         var yName = this.datasource.yName;
 
-        var title : string = this.datasource.yName + " (Y-axis) och " + this.datasource.xName + " (X-axis)";        
+        var title : string = this.datasource.yName + " (Y-axis) and " + this.datasource.xName + " (X-axis)";        
         var hasData : boolean = this.datasource.data.length != 0;
 
         this.options = {            
