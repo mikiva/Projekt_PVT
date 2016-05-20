@@ -13,6 +13,9 @@ import analysis.Analysis;
 import analysis.AnalysisTitle;
 import analysis.DatabaseWithSource;
 import analysis.DateRange;
+import analysis.storage.AnalysisDatabase;
+import analysis.storage.SqlDatabase;
+import analysis.storage.SqlTable;
 import compare.Resolution;
 import database.misc.MiscDatabase;
 

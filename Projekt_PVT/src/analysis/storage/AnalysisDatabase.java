@@ -1,4 +1,4 @@
-package sql;
+package analysis.storage;
 
 import analysis.Analysis;
 import analysis.AnalysisTitle;
