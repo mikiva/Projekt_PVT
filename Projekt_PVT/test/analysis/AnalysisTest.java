@@ -19,7 +19,7 @@ public class AnalysisTest {
 	private DatabaseWithSource dbAndSource2;
 	private Resolution resolution;
 	private DateRange dates;
-	private AnalysisTitle title;
+	private Title title;
 
 	@Before
 	public void setUp() {
@@ -31,7 +31,7 @@ public class AnalysisTest {
 		dbAndSource2 = new DatabaseWithSource(mockDB2, "id_2");
 		resolution = Resolution.DAY;
 		dates = new DateRange("2015-01-01", "2016-01-01");
-		title = new AnalysisTitle("Title");
+		title = new Title("Title");
 		analysis =  new Analysis(dbAndSource1, dbAndSource2, resolution, dates, title);
 	}
 	

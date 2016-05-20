@@ -1,4 +1,4 @@
-package analysis.storage;
+package analysis.database;
 
 import java.sql.Connection;
 

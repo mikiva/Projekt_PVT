@@ -1,4 +1,4 @@
-package analysis.storage;
+package analysis.database;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -13,7 +13,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import analysis.Analysis;
-import analysis.AnalysisTitle;
+import analysis.Title;
+import analysis.database.SqlDatabase;
+import analysis.database.SqlTable;
 
 public class SqlDatabaseTest {
 
@@ -39,9 +41,9 @@ public class SqlDatabaseTest {
 	@Ignore
 	public void canStoreAndRetrieveValues() throws Exception {
 		Analysis a = mock(Analysis.class);
-		AnalysisTitle title = new AnalysisTitle("Titel");
+		Title title = new Title("Titel");
 		when(a.getTitle()).thenReturn(title);
-		assertTrue("save data", sql.saveData(a));
+		sql.saveData(a);
 		assertEquals("get saved data", a, sql.getSavedData(title));
 		
 		//TODO: mocka på något sätt

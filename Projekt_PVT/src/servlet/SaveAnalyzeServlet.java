@@ -9,6 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mockito.asm.util.CheckAnnotationAdapter;
 
+import analysis.Analysis;
+import analysis.DatabaseWithSource;
+import analysis.DateRange;
+import analysis.Title;
+import analysis.database.AnalysisTable;
+import analysis.database.SqlDatabase;
+import compare.Resolution;
+import database.DatabaseFactory;
 import servlet.helper.CheckIfAnalyzeDataIsValid;
 
 /**
@@ -54,7 +62,18 @@ public class SaveAnalyzeServlet extends HttpServlet {
 			errorMessage.append("Wrong dateset format");
 		
 		if (errorMessage.length() == 0)	{
-			System.out.println("ingen fel. sql query här sen");
+			
+			Title analysisTitle = new Title(title);
+			Resolution res = Resolution.valueOf(resolution);
+			DateRange dateRange = new DateRange(dateBefore, dateAfter);
+			DatabaseWithSource dbWithSource1 = new DatabaseWithSource(DatabaseFactory.get(databaseOne), datasetOne);
+			DatabaseWithSource dbWithSource2 = new DatabaseWithSource(DatabaseFactory.get(dataBaseTwo), datasetTwo);
+			
+			Analysis analysis = new Analysis(dbWithSource1, dbWithSource2, res, dateRange, analysisTitle);
+			
+			SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
+			db.saveData(analysis);
+			
 			response.getWriter().append(errorMessage.toString());
 		} else {
 			response.getWriter().append(errorMessage.toString());

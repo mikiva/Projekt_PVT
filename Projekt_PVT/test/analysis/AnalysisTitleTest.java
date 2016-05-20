@@ -4,24 +4,24 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import analysis.AnalysisTitle.TitleException;
+import analysis.Title.TitleException;
 
 public class AnalysisTitleTest {
 
 	@Test(expected = TitleException.class)
 	public void titleCannotBeNull() {
-		new AnalysisTitle(null);
+		new Title(null);
 	}
 	
 	@Test(expected = TitleException.class)
 	public void titleCannotBeEmpty() throws Exception {
-		new AnalysisTitle("");
+		new Title("");
 	}
 	
 	@Test
 	public void toStringReturnsTheTitle() throws Exception {
 		String title = "Title";
-		assertEquals(title, new AnalysisTitle(title).toString());
+		assertEquals(title, new Title(title).toString());
 	}
 
 }

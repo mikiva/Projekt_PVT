@@ -13,7 +13,7 @@ public class GoldPriceSourceTest {
 	
 	@Test
 	public void unitIsAsExpected() throws Exception {
-		assertEquals("EUR", new GoldPriceSource().getUnit());
+		assertEquals("EUR per ounce", new GoldPriceSource().getUnit());
 	}
 
 }

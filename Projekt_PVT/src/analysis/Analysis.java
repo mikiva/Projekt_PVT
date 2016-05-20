@@ -12,10 +12,10 @@ public class Analysis {
 	private final DatabaseWithSource dbAndSource2;
 	private final Resolution resolution;
 	private final DateRange dates;
-	private final AnalysisTitle title;
+	private final Title title;
 
 	public Analysis(DatabaseWithSource dbAndSource1, DatabaseWithSource dbAndSource2, Resolution resolution,
-			DateRange dates, AnalysisTitle title) {
+			DateRange dates, Title title) {
 		checkForNull(dbAndSource1, dbAndSource2, resolution, dates, title);
 		this.dbAndSource1 = dbAndSource1;
 		this.dbAndSource2 = dbAndSource2;
@@ -55,7 +55,7 @@ public class Analysis {
 		return dates;
 	}
 
-	public AnalysisTitle getTitle() {
+	public Title getTitle() {
 		return title;
 	}
 

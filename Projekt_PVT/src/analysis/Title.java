@@ -1,10 +1,10 @@
 package analysis;
 
-public final class AnalysisTitle {
+public final class Title {
 
 	private final String text;
 
-	public AnalysisTitle(String text) {
+	public Title(String text) {
 		if(text == null || text.isEmpty()) throw new TitleException();
 		this.text = text;
 	}
@@ -34,7 +34,7 @@ public final class AnalysisTitle {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AnalysisTitle other = (AnalysisTitle) obj;
+		Title other = (Title) obj;
 		if (text == null) {
 			if (other.text != null)
 				return false;

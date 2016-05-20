@@ -1,11 +1,11 @@
-package analysis.storage;
+package analysis.database;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import analysis.Analysis;
-import analysis.AnalysisTitle;
+import analysis.Title;
 import analysis.DatabaseWithSource;
 import analysis.DateRange;
 import compare.Resolution;
@@ -24,26 +24,26 @@ public class SqlDatabase {
 	}
 
 
-	public boolean saveData(Analysis a) {
+	public void saveData(Analysis a) {
 		String query = "INSERT INTO \"" + table.name() + "\"\nVALUES ('" + a.getTitle() + "','"
 				+ a.getFirstDatabaseWithSource().getDatabase().link() + "','"
 				+ a.getFirstDatabaseWithSource().getSourceId() + "','"
 				+ a.getSecondDatabaseAndSource().getDatabase().link() + "','"
-				+ a.getSecondDatabaseAndSource().getSourceId() + "','" + a.getResolution() + "','"
-				+ a.getDateRange().getStartDate() + "','" + a.getDateRange().getEndDate() + "');";
+				+ a.getSecondDatabaseAndSource().getSourceId() + "','" 
+				+ a.getResolution() + "','"
+				+ a.getDateRange().getStartDate() + "','" 
+				+ a.getDateRange().getEndDate() + "');";
 
 		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
 			conn.createStatement().executeQuery(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
 		}
-		return true;
 	}
 
 
-	public Analysis getSavedData(AnalysisTitle title) {
+	public Analysis getSavedData(Title title) {
 		Analysis analysis = null;
 		String query = "SELECT * FROM \"" + table.name() + "\" WHERE \"TITLE\"='" + title + "'";
 		System.out.println(query);
@@ -51,7 +51,7 @@ public class SqlDatabase {
 			ResultSet rs = conn.createStatement().executeQuery(query);
 
 			while (rs.next()) {
-				AnalysisTitle aTitle = new AnalysisTitle(rs.getString("TITLE"));
+				Title aTitle = new Title(rs.getString("TITLE"));
 				Database db1 = DatabaseFactory.get(rs.getString("DATABASE_1"));
 				DatabaseWithSource dbWithSource1 = new DatabaseWithSource(db1, rs.getString("SOURCE_1"));
 				Database db2 = DatabaseFactory.get(rs.getString("DATABASE_2"));
@@ -70,11 +70,11 @@ public class SqlDatabase {
 	public static void main(String[] args) {
 		Analysis a = new Analysis(new DatabaseWithSource(new MiscDatabase(), "spectators"),
 				new DatabaseWithSource(new MiscDatabase(), "temperature"), Resolution.DAY,
-				new DateRange("2015-02-14", "2016-03-18"), new AnalysisTitle("Java"));
-		SqlTable table = BulleTable.getInstance();
+				new DateRange("2015-02-14", "2016-03-18"), new Title("Java"));
+		SqlTable table = AnalysisTable.getInstance();
 		SqlDatabase db = new SqlDatabase(table);
 
-		System.out.println(db.getSavedData(new AnalysisTitle("Java")));
+		System.out.println(db.getSavedData(new Title("Java")));
 	}
 
 }

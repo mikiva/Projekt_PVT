@@ -1,4 +1,4 @@
-package analysis.storage;
+package analysis.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import analysis.Analysis;
 
-public class BulleTable implements SqlTable {
+public class AnalysisTable implements SqlTable {
 
 	private final static String URL = "jdbc:postgresql://localhost:5433/Bulle";
 //	private final static String USERNAME = "webbulle";
@@ -16,12 +16,12 @@ public class BulleTable implements SqlTable {
 
 	private static SqlTable singel = null;
 
-	private BulleTable() {
+	private AnalysisTable() {
 	}
 
 	public static SqlTable getInstance() {
 		if (singel == null)
-			singel = new BulleTable();
+			singel = new AnalysisTable();
 		return singel;
 	}
 
