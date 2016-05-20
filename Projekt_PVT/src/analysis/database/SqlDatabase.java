@@ -1,6 +1,7 @@
 package analysis.database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -25,18 +26,22 @@ public class SqlDatabase {
 
 
 	public void saveData(Analysis a) {
-		String query = "INSERT INTO \"" + table.name() + "\"\nVALUES ('" + a.getTitle() + "','"
-				+ a.getFirstDatabaseWithSource().getDatabase().link() + "','"
-				+ a.getFirstDatabaseWithSource().getSourceId() + "','"
-				+ a.getSecondDatabaseAndSource().getDatabase().link() + "','"
-				+ a.getSecondDatabaseAndSource().getSourceId() + "','" 
-				+ a.getResolution() + "','"
-				+ a.getDateRange().getStartDate() + "','" 
-				+ a.getDateRange().getEndDate() + "');";
+		String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
-			conn.createStatement().executeQuery(query);
+			PreparedStatement statement = conn.prepareStatement(query);
+			
+			statement.setString(1, a.getTitle().toString());
+			statement.setString(2, a.getFirstDatabaseWithSource().getDatabase().link());
+			statement.setString(3, a.getFirstDatabaseWithSource().getSourceId());
+			statement.setString(4, a.getSecondDatabaseAndSource().getDatabase().link());
+			statement.setString(5, a.getSecondDatabaseAndSource().getSourceId());
+			statement.setString(6, a.getResolution().toString());
+			statement.setString(7, a.getDateRange().getStartDate().toString());
+			statement.setString(8, a.getDateRange().getEndDate().toString());
+			
+			statement.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,11 +75,12 @@ public class SqlDatabase {
 	public static void main(String[] args) {
 		Analysis a = new Analysis(new DatabaseWithSource(new MiscDatabase(), "spectators"),
 				new DatabaseWithSource(new MiscDatabase(), "temperature"), Resolution.DAY,
-				new DateRange("2015-02-14", "2016-03-18"), new Title("Java"));
+				new DateRange("2015-02-14", "2016-03-18"), new Title("PreparedStatement"));
 		SqlTable table = AnalysisTable.getInstance();
 		SqlDatabase db = new SqlDatabase(table);
 
-		System.out.println(db.getSavedData(new Title("Java")));
+		db.saveData(a);
+		System.out.println("Hämtade analys: " + db.getSavedData(new Title("PreparedStatement")).getTitle());
 	}
 
 }
