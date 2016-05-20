@@ -12,7 +12,7 @@ import compare.Resolution;
 import database.Database;
 import database.DatabaseFactory;
 
-public class SqlDatabase implements AnalysisTable {
+public class SqlDatabase implements AnalysisDatabase {
 
 	private final SqlTable table;
 
@@ -24,8 +24,18 @@ public class SqlDatabase implements AnalysisTable {
 
 	@Override
 	public boolean saveData(Analysis a) {
+		String query = "INSERT INTO " + table.name() + 
+				"\nVALUES ('" + a.getTitle() + "','" + a.getFirstDatabaseWithSource().getDatabase().link() + "','" +
+				a.getFirstDatabaseWithSource().getSourceId() + "','" + 
+				a.getSecondDatabaseAndSource().getDatabase().link() + "','" + 
+				a.getSecondDatabaseAndSource().getSourceId() + "','" +
+				a.getResolution() + "','" +
+				a.getDateRange().getStartDate() + "','" +
+				a.getDateRange().getEndDate() + "');";
+		
+		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
-			conn.createStatement().executeQuery("sql query för att spara i databas");
+			conn.createStatement().executeQuery(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;

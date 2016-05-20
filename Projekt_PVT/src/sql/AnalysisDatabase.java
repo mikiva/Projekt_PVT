@@ -3,7 +3,7 @@ package sql;
 import analysis.Analysis;
 import analysis.AnalysisTitle;
 
-public interface AnalysisTable {
+public interface AnalysisDatabase {
 
 	boolean saveData(Analysis a);
 

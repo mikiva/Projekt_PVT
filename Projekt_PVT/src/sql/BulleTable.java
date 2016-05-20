@@ -19,12 +19,13 @@ public class BulleTable implements SqlTable {
 	private BulleTable() {
 	}
 
-	public static SqlTable getDatabase() {
+	public static SqlTable getInstance() {
 		if (singel == null)
 			singel = new BulleTable();
 		return singel;
 	}
 
+	@Override
 	public Connection connectToDatabase() {
 		Connection conn = null;
 		try {
@@ -36,5 +37,10 @@ public class BulleTable implements SqlTable {
 			e.printStackTrace();
 		}
 		return conn;
+	}
+	
+	@Override
+	public String name() {
+		return "Analysis";
 	}
 }
