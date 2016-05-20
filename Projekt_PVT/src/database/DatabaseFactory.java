@@ -26,5 +26,4 @@ public class DatabaseFactory {
 	public static Database[] all() {
 		return DATABASES.values().toArray(new Database[0]);
 	}
-
 }

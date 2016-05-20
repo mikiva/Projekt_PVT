@@ -1,3 +1,6 @@
-/build/
+/node_modules/
+/typings/
+build/
+built/
+WebContent/app-01
 /target/
-/WebContent/app-01
