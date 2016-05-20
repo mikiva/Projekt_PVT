@@ -12,6 +12,7 @@ export class DatasourceService {
     private url = 'http://localhost:8080/Proj/ServletTest?';
     //private url = 'http://rigel.se:8080/Bulle/ServletTest?';
     private menuUrl = 'http://localhost:8080/Proj/GraphChoiceJsonServlet';
+    private menuHeadersUrl = 'http://localhost:8080/Proj/GetAvailableAnalyzeServlet';
 
 
     constructor(private http: Http) { }
@@ -28,7 +29,13 @@ export class DatasourceService {
             .map((response: Response) => <Menu[]> response.json().data)
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
-
+    }
+    
+    getSavedHeaders(): Observable<Menu[]> {
+        return this.http.get(this.menuHeadersUrl)
+            .map((response: Response) => <Menu[]> response.json().data)
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
     }
 
     private handleError(error: Response) {

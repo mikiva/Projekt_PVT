@@ -6,11 +6,12 @@ import {ChooseSource} from './choose-datasource/choose-datasource.component';
 import {ChooseResolution} from './choose-resolution/choose-resolution.component';
 import {SampleDatePicker} from './datepicker/sampleapp';
 import {MyDatePicker} from './mydatepicker';
+import {SavedHeaders} from './saved-headers/saved-headers.component';
 
 
 @Component({
     selector: 'graph-container',
-    directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker],
+    directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker, SavedHeaders],
     templateUrl: 'src/app/graph-container/graph-container.html',
 })
 export class GraphContainerComponent {

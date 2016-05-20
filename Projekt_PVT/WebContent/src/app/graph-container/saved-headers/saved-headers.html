@@ -1,0 +1,5 @@
+<select (change)="onClick($event.target.value)">
+	<option *ngFor="let item of savedheaders">{{item}}</option>
+</select>
+
+<button type="submit" value="Submit">Submit</button>
