@@ -44,14 +44,12 @@ public class SingleDataSourceTest {
 	@Test
 	public void getJsonStringTest() throws Exception {
 		
-		System.out.println(src.toJsonString());
 		//assertEquals(src.toJsonString().getClass(), String.class);
 	}
 	
 	@Test
 	public void checkJsonStringTest() throws Exception {
 		
-		System.out.println(src.toJsonString());
 		assertTrue(src.toJsonString().contains("{"));
 		
 	}
