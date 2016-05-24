@@ -4,15 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import analysis.Analysis;
-import analysis.Title;
 import analysis.DatabaseWithSource;
 import analysis.DateRange;
+import analysis.Title;
 import compare.Resolution;
 import database.Database;
 import database.DatabaseFactory;
-import database.misc.MiscDatabase;
 
 public class SqlDatabase {
 
@@ -24,14 +25,13 @@ public class SqlDatabase {
 		this.table = table;
 	}
 
-
 	public void saveData(Analysis a) {
 		String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
 			PreparedStatement statement = conn.prepareStatement(query);
-			
+
 			statement.setString(1, a.getTitle().toString());
 			statement.setString(2, a.getFirstDatabaseWithSource().getDatabase().link());
 			statement.setString(3, a.getFirstDatabaseWithSource().getSourceId());
@@ -40,13 +40,12 @@ public class SqlDatabase {
 			statement.setString(6, a.getResolution().toString());
 			statement.setString(7, a.getDateRange().getStartDate().toString());
 			statement.setString(8, a.getDateRange().getEndDate().toString());
-			
+
 			statement.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
 
 	public Analysis getSavedData(Title title) {
 		Analysis analysis = null;
@@ -72,15 +71,24 @@ public class SqlDatabase {
 		return analysis;
 	}
 
-	public static void main(String[] args) {
-		Analysis a = new Analysis(new DatabaseWithSource(new MiscDatabase(), "spectators"),
-				new DatabaseWithSource(new MiscDatabase(), "temperature"), Resolution.DAY,
-				new DateRange("2015-02-14", "2016-03-18"), new Title("PreparedStatement"));
-		SqlTable table = AnalysisTable.getInstance();
-		SqlDatabase db = new SqlDatabase(table);
+	public List<Title> getSavedTitles() {
+		List<Title> titles = new ArrayList<>();
+		
+		try (Connection conn = table.connectToDatabase()) {
+			String query = "SELECT * FROM ?";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, table.name());
+			
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				titles.add(new Title(rs.getString("TITLE")));
+			}
 
-		db.saveData(a);
-		System.out.println("Hämtade analys: " + db.getSavedData(new Title("PreparedStatement")).getTitle());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException("Something happened");
+		}
+		return titles;
 	}
-
 }
