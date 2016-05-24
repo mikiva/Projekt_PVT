@@ -75,11 +75,7 @@ public class SqlDatabase {
 		List<Title> titles = new ArrayList<>();
 		
 		try (Connection conn = table.connectToDatabase()) {
-			String query = "SELECT * FROM \"?\")";
-			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, table.name());			
-			ResultSet rs = ps.executeQuery();
-			//ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
+			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
 			while (rs.next()) {
 				titles.add(new Title(rs.getString("TITLE")));
 			}
