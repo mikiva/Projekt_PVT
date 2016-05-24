@@ -20,15 +20,18 @@ export class DatabaseService {
         this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title);
         console.log(this.url);
 
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", this.url, false ); // false for synchronous request
+        xmlHttp.send( null );
+        
 
         //this.http(this.url);
-        this.http.post(this.url);
+        //this.http.post(this.url);
 
        /*this.http.get(this.url)
             .do(data => console.log('Something works'))
             .catch(this.handleError);*/
             
-            console.log("hoppar tamejfan över!!");
             
             
     }
@@ -36,7 +39,7 @@ export class DatabaseService {
         console.log(error);
         return Observable.throw(error.json().error || 'Server error');
     }
-    
+ 
     
     public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string) {
         return (this.saveUrl + 'title=' + (title ? title : 'NoTitle') + '&res=' + (resolution ? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
