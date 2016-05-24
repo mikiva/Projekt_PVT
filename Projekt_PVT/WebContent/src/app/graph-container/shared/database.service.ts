@@ -28,7 +28,7 @@ export class DatabaseService{
     public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string){
         return (this.saveUrl + 'title='+ (title? title: 'NoTitle') + '&res=' + (resolution? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
             (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : "")
-            + '&startDate=' + (dateBefore || '0000-01-01') + '&endDate=' + (dateAfter || '9999-12-30'));
+            + '&startDate=' + (dateBefore || '0001-01-01') + '&endDate=' + (dateAfter || '9999-12-30'));
         
     }
 }
