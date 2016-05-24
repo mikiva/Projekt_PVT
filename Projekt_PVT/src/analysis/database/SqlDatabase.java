@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import analysis.Analysis;
-import analysis.Title;
 import analysis.DatabaseWithSource;
 import analysis.DateRange;
+import analysis.Title;
 import compare.Resolution;
 import database.Database;
 import database.DatabaseFactory;
@@ -17,6 +19,7 @@ import database.misc.MiscDatabase;
 public class SqlDatabase {
 
 	private final SqlTable table;
+	private final static List<Analysis> SAVED_LIST = new ArrayList<>();
 
 	public SqlDatabase(SqlTable table) {
 		if (table == null)
@@ -26,22 +29,24 @@ public class SqlDatabase {
 
 
 	public void saveData(Analysis a) {
-		String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO ? \nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
 			PreparedStatement statement = conn.prepareStatement(query);
 			
-			statement.setString(1, a.getTitle().toString());
-			statement.setString(2, a.getFirstDatabaseWithSource().getDatabase().link());
-			statement.setString(3, a.getFirstDatabaseWithSource().getSourceId());
-			statement.setString(4, a.getSecondDatabaseAndSource().getDatabase().link());
-			statement.setString(5, a.getSecondDatabaseAndSource().getSourceId());
-			statement.setString(6, a.getResolution().toString());
-			statement.setString(7, a.getDateRange().getStartDate().toString());
-			statement.setString(8, a.getDateRange().getEndDate().toString());
+			statement.setString(1, table.name());
+			statement.setString(2, a.getTitle().toString());
+			statement.setString(3, a.getFirstDatabaseWithSource().getDatabase().link());
+			statement.setString(4, a.getFirstDatabaseWithSource().getSourceId());
+			statement.setString(5, a.getSecondDatabaseAndSource().getDatabase().link());
+			statement.setString(6, a.getSecondDatabaseAndSource().getSourceId());
+			statement.setString(7, a.getResolution().toString());
+			statement.setString(8, a.getDateRange().getStartDate().toString());
+			statement.setString(9, a.getDateRange().getEndDate().toString());
 			
 			statement.executeQuery();
+			SqlDatabase.SAVED_LIST.add(a);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,10 +55,13 @@ public class SqlDatabase {
 
 	public Analysis getSavedData(Title title) {
 		Analysis analysis = null;
-		String query = "SELECT * FROM \"" + table.name() + "\" WHERE \"TITLE\"='" + title + "'";
+		String query = "SELECT * FROM ? WHERE \"TITLE\"=?";
 		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
-			ResultSet rs = conn.createStatement().executeQuery(query);
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, table.name());
+			statement.setString(2, title.toString());
+			ResultSet rs = statement.executeQuery(query);
 
 			while (rs.next()) {
 				Title aTitle = new Title(rs.getString("TITLE"));
@@ -68,6 +76,7 @@ public class SqlDatabase {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println(e);
 		}
 		return analysis;
 	}
