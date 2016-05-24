@@ -15,18 +15,18 @@ export class DatabaseService {
 
     constructor(private http: Http) { }
 
-    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string): Observable<string> {
+    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string): void {
 
         this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title);
         console.log(this.url);
 
 
         //this.http(this.url);
+        this.http.get(this.url);
 
-
-       return this.http.get(this.url)
+       /*this.http.get(this.url)
             .do(data => console.log('Something works'))
-            .catch(this.handleError);
+            .catch(this.handleError);*/
             
             
             
