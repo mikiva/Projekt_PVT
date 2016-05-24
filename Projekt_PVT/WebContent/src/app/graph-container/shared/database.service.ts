@@ -25,7 +25,6 @@ export class DatabaseService {
 
 
        return this.http.get(this.url)
-            .map((response: Response) => <string> response.toString())
             .do(data => console.log('Something works'))
             .catch(new Error());
     }
