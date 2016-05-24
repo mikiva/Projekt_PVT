@@ -28,7 +28,7 @@ public class SqlDatabase {
 	public void saveData(Analysis a) {
 		
 		if(getSavedTitles().contains(a.getTitle())) {
-			throw new RuntimeException("Title already exsists!");
+			throw new RuntimeException("Title already exists!");
 		}
 		
 		String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
