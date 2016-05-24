@@ -62,7 +62,7 @@ public class SaveAnalyzeServlet extends HttpServlet {
 		if (errorMessage.length() == 0)	{
 			
 			Title analysisTitle = new Title(title);
-			Resolution res = Resolution.valueOf(resolution);
+			Resolution res = Resolution.valueOf(resolution.toUpperCase());
 			DateRange dateRange = new DateRange(dateBefore, dateAfter);
 			DatabaseWithSource dbWithSource1 = new DatabaseWithSource(DatabaseFactory.get(databaseOne), datasetOne);
 			DatabaseWithSource dbWithSource2 = new DatabaseWithSource(DatabaseFactory.get(dataBaseTwo), datasetTwo);
