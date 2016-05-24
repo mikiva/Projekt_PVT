@@ -26,8 +26,17 @@ export class DatabaseService {
 
        return this.http.get(this.url)
             .do(data => console.log('Something works'))
-            .catch(new Error());
+            .catch(this.handleError);
+            
+            
+            
     }
+        private handleError(error: Response) {
+        console.log(error);
+        return Observable.throw(error.json().error || 'Server error');
+    }
+    
+    
     public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string) {
         return (this.saveUrl + 'title=' + (title ? title : 'NoTitle') + '&res=' + (resolution ? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
             (sourceTwo ? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : "")
