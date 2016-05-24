@@ -1,10 +1,8 @@
 package analysis;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 import compare.Resolution;
-import database.Database;
 
 public class Analysis {
 
@@ -34,10 +32,6 @@ public class Analysis {
 					",\nTitle: " + title);
 		}
 	}
-	
-	public static void main(String[] args) {
-		new Analysis(null, null, null, null, null);
-	}
 
 	public DatabaseWithSource getFirstDatabaseWithSource() {
 		return dbAndSource1;
@@ -58,5 +52,53 @@ public class Analysis {
 	public Title getTitle() {
 		return title;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dates == null) ? 0 : dates.hashCode());
+		result = prime * result + ((dbAndSource1 == null) ? 0 : dbAndSource1.hashCode());
+		result = prime * result + ((dbAndSource2 == null) ? 0 : dbAndSource2.hashCode());
+		result = prime * result + ((resolution == null) ? 0 : resolution.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Analysis other = (Analysis) obj;
+		if (dates == null) {
+			if (other.dates != null)
+				return false;
+		} else if (!dates.equals(other.dates))
+			return false;
+		if (dbAndSource1 == null) {
+			if (other.dbAndSource1 != null)
+				return false;
+		} else if (!dbAndSource1.equals(other.dbAndSource1))
+			return false;
+		if (dbAndSource2 == null) {
+			if (other.dbAndSource2 != null)
+				return false;
+		} else if (!dbAndSource2.equals(other.dbAndSource2))
+			return false;
+		if (resolution != other.resolution)
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+	
+	
 
 }

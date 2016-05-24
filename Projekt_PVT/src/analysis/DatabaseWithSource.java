@@ -55,6 +55,45 @@ public class DatabaseWithSource {
 		}
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dataSource == null) ? 0 : dataSource.hashCode());
+		result = prime * result + ((database == null) ? 0 : database.hashCode());
+		result = prime * result + ((sourceId == null) ? 0 : sourceId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DatabaseWithSource other = (DatabaseWithSource) obj;
+		if (dataSource == null) {
+			if (other.dataSource != null)
+				return false;
+		} else if (!dataSource.equals(other.dataSource))
+			return false;
+		if (database == null) {
+			if (other.database != null)
+				return false;
+		} else if (!database.equals(other.database))
+			return false;
+		if (sourceId == null) {
+			if (other.sourceId != null)
+				return false;
+		} else if (!sourceId.equals(other.sourceId))
+			return false;
+		return true;
+	}
+	
+	
+
 
 
 }

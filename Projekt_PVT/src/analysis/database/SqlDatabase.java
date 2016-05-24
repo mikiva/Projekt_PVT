@@ -19,7 +19,7 @@ import database.misc.MiscDatabase;
 public class SqlDatabase {
 
 	private final SqlTable table;
-	private final static List<Analysis> SAVED_LIST = new ArrayList<>();
+	private final static List<Title> SAVED_LIST = new ArrayList<>();
 
 	public SqlDatabase(SqlTable table) {
 		if (table == null)
@@ -31,7 +31,9 @@ public class SqlDatabase {
 	public void saveData(Analysis a) {
 		String query = "INSERT INTO ? \nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-		System.out.println(query);
+		if(SAVED_LIST.contains(a))
+			throw new RuntimeException("There is already an analysis with that name!");
+		
 		try (Connection conn = table.connectToDatabase()) {
 			PreparedStatement statement = conn.prepareStatement(query);
 			
@@ -46,7 +48,7 @@ public class SqlDatabase {
 			statement.setString(9, a.getDateRange().getEndDate().toString());
 			
 			statement.executeQuery();
-			SqlDatabase.SAVED_LIST.add(a);
+			SqlDatabase.SAVED_LIST.add(a.getTitle());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
