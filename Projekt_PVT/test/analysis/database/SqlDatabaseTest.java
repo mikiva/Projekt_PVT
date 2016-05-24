@@ -35,6 +35,7 @@ public class SqlDatabaseTest {
 	}
 	
 	@Test
+	@Ignore
 	public void getTitlesOfSavedAnalyses() throws Exception {
 		Connection mockedConnection = mock(Connection.class);
 		PreparedStatement mockedStatement = mock(PreparedStatement.class);

@@ -75,7 +75,7 @@ public class SqlDatabase {
 		List<Title> titles = new ArrayList<>();
 		
 		try (Connection conn = table.connectToDatabase()) {
-			String query = "SELECT * FROM ?";
+			String query = "SELECT * FROM (?)";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, table.name());
 			
@@ -87,6 +87,7 @@ public class SqlDatabase {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(e);
 			throw new RuntimeException("Something happened");
 		}
 		return titles;
