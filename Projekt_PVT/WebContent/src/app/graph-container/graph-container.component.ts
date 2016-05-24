@@ -49,6 +49,11 @@ export class GraphContainerComponent {
     }
  
  saveAnalysis(){
-     this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo);
+     this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
+ }
+ getTitle(){
+     
+     return document.getElementById("title").innerText;
+     
  }
 }
