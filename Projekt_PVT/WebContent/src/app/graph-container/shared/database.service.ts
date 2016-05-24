@@ -15,19 +15,20 @@ export class DatabaseService {
 
     constructor(private http: Http) { }
 
-    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string): void {
+    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string): string {
 
         this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title);
         console.log(this.url);
+        var result: string;
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", this.url, true);
-        xhttp.send();
-    }
-        private handleError(error: Response) {
-        console.log(error);
-        return Observable.throw(error.json().error || 'Server error');
-    }
+        this.http.get(this.url)
+            .subscribe(
+            text => result = <string> text,
+            err => this.logError('Something went wrong!'),
+            () => console.log(result));
+            
+        return result;
+     }
     
     public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string) {
         return (this.saveUrl + 'title=' + (title ? title : 'NoTitle') + '&res=' + (resolution ? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
