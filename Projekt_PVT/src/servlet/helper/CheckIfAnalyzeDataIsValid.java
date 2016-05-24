@@ -25,7 +25,7 @@ public class CheckIfAnalyzeDataIsValid {
 	}
 
 	public boolean validResulution(String resulution) {
-		return Arrays.stream(Resolution.values()).anyMatch(e -> e.name().equals(resulution));
+		return Arrays.stream(Resolution.values()).anyMatch(e -> e.name().equals(resulution.toUpperCase()));
 	}
 
 	public boolean databaseExist(String database) {
