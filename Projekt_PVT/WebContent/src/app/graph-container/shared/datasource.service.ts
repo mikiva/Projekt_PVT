@@ -9,9 +9,9 @@ import {Menu} from '../choose-datasource/menu';
 
 @Injectable()
 export class DatasourceService {
-    private url = 'http://localhost:8080/Proj/ServletTest?';
+    private url = 'http://localhost:8080/Bulle-dev/ServletTest?';
     //private url = 'http://rigel.se:8080/Bulle/ServletTest?';
-    private menuUrl = 'http://localhost:8080/Proj/GraphChoiceJsonServlet';
+    private menuUrl = 'http://localhost:8080/Bulle-dev/GraphChoiceJsonServlet';
     
     
 
