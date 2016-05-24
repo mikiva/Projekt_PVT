@@ -1,11 +1,18 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import analysis.Analysis;
+import analysis.Title;
+import analysis.database.AnalysisTable;
+import analysis.database.SqlDatabase;
 
 /**
  * Servlet implementation class GetAvailableAnalyzeServlet
@@ -24,8 +31,15 @@ public class GetAvailableAnalyzeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
+		List<Title> titles = db.getSavedTitles();
+		
+		StringBuilder builder = new StringBuilder();
+		for (Title title : titles) {
+			builder.append(title + "\n");
+		}
+		response.getWriter().append(builder.toString());
 	}
 
 	/**

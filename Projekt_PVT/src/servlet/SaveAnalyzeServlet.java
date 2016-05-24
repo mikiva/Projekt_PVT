@@ -39,13 +39,13 @@ public class SaveAnalyzeServlet extends HttpServlet {
 
 		
 		String title = request.getParameter("title");
-		String resolution = request.getParameter("resolution");
-		String dateBefore = request.getParameter("dateBefore");
-		String dateAfter = request.getParameter("dateAfter");
-		String databaseOne = request.getParameter("databaseOne");
-		String datasetOne = request.getParameter("datasetOne");
-		String dataBaseTwo = request.getParameter("databaseTwo");
-		String datasetTwo = request.getParameter("datasetTwo");
+		String resolution = request.getParameter("res");
+		String dateBefore = request.getParameter("startDate");
+		String dateAfter = request.getParameter("endDate");
+		String databaseOne = request.getParameter("database1");
+		String datasetOne = request.getParameter("value1");
+		String dataBaseTwo = request.getParameter("database2");
+		String datasetTwo = request.getParameter("value2");
 		
 		if (!check.isAlphaNumeric(title))
 			errorMessage.append("Title can only contains number and alphabet");

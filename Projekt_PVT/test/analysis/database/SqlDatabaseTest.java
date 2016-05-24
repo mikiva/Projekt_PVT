@@ -1,12 +1,15 @@
 package analysis.database;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -14,27 +17,33 @@ import org.junit.Test;
 
 import analysis.Analysis;
 import analysis.Title;
-import analysis.database.SqlDatabase;
-import analysis.database.SqlTable;
 
 public class SqlDatabaseTest {
 
-	private SqlTable mock;
+	private SqlTable table;
 	private SqlDatabase sql;
 
 	@Before
 	public void setUp() throws Exception {
-		mock = mock(SqlTable.class);
-		sql = new SqlDatabase(mock);
-		Connection mockedConnection = mock(Connection.class);
-		Statement mockedStatement = mock(Statement.class);
-		when(mockedConnection.createStatement()).thenReturn(mockedStatement);
-		when(mock.connectToDatabase()).thenReturn(mockedConnection);
+		table = mock(SqlTable.class);
+		sql = new SqlDatabase(table);
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void constructorArgumentCannotBeNull() throws Exception {
 		new SqlDatabase(null);
+	}
+	
+	@Test
+	@Ignore
+	public void getTitlesOfSavedAnalyses() throws Exception {
+		Connection mockedConnection = mock(Connection.class);
+		PreparedStatement mockedStatement = mock(PreparedStatement.class);
+		when(mockedConnection.prepareStatement("SELECT * FROM ?")).thenReturn(mockedStatement);
+		when(table.connectToDatabase()).thenReturn(mockedConnection);
+		when(table.name()).thenReturn("GENERICNAME");
+		when(mockedStatement.executeQuery()).thenReturn(mock(ResultSet.class));
+		assertNotNull(sql.getSavedTitles());
 	}
 	
 	@Test

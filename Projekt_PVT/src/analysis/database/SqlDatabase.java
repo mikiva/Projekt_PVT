@@ -14,12 +14,10 @@ import analysis.Title;
 import compare.Resolution;
 import database.Database;
 import database.DatabaseFactory;
-import database.misc.MiscDatabase;
 
 public class SqlDatabase {
 
 	private final SqlTable table;
-	private final static List<Title> SAVED_LIST = new ArrayList<>();
 
 	public SqlDatabase(SqlTable table) {
 		if (table == null)
@@ -27,43 +25,34 @@ public class SqlDatabase {
 		this.table = table;
 	}
 
-
 	public void saveData(Analysis a) {
-		String query = "INSERT INTO ? \nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-		if(SAVED_LIST.contains(a))
-			throw new RuntimeException("There is already an analysis with that name!");
-		
+		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
 			PreparedStatement statement = conn.prepareStatement(query);
-			
-			statement.setString(1, table.name());
-			statement.setString(2, a.getTitle().toString());
-			statement.setString(3, a.getFirstDatabaseWithSource().getDatabase().link());
-			statement.setString(4, a.getFirstDatabaseWithSource().getSourceId());
-			statement.setString(5, a.getSecondDatabaseAndSource().getDatabase().link());
-			statement.setString(6, a.getSecondDatabaseAndSource().getSourceId());
-			statement.setString(7, a.getResolution().toString());
-			statement.setString(8, a.getDateRange().getStartDate().toString());
-			statement.setString(9, a.getDateRange().getEndDate().toString());
-			
+
+			statement.setString(1, a.getTitle().toString());
+			statement.setString(2, a.getFirstDatabaseWithSource().getDatabase().link());
+			statement.setString(3, a.getFirstDatabaseWithSource().getSourceId());
+			statement.setString(4, a.getSecondDatabaseAndSource().getDatabase().link());
+			statement.setString(5, a.getSecondDatabaseAndSource().getSourceId());
+			statement.setString(6, a.getResolution().toString());
+			statement.setString(7, a.getDateRange().getStartDate().toString());
+			statement.setString(8, a.getDateRange().getEndDate().toString());
+
 			statement.executeQuery();
-			SqlDatabase.SAVED_LIST.add(a.getTitle());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-
 	public Analysis getSavedData(Title title) {
 		Analysis analysis = null;
-		String query = "SELECT * FROM ? WHERE \"TITLE\"=?";
+		String query = "SELECT * FROM \"" + table.name() + "\" WHERE \"TITLE\"='" + title + "'";
 		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
-			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, table.name());
-			statement.setString(2, title.toString());
-			ResultSet rs = statement.executeQuery(query);
+			ResultSet rs = conn.createStatement().executeQuery(query);
 
 			while (rs.next()) {
 				Title aTitle = new Title(rs.getString("TITLE"));
@@ -78,20 +67,29 @@ public class SqlDatabase {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println(e);
 		}
 		return analysis;
 	}
 
-	public static void main(String[] args) {
-		Analysis a = new Analysis(new DatabaseWithSource(new MiscDatabase(), "spectators"),
-				new DatabaseWithSource(new MiscDatabase(), "temperature"), Resolution.DAY,
-				new DateRange("2015-02-14", "2016-03-18"), new Title("PreparedStatement"));
-		SqlTable table = AnalysisTable.getInstance();
-		SqlDatabase db = new SqlDatabase(table);
+	public List<Title> getSavedTitles() {
+		List<Title> titles = new ArrayList<>();
+		
+		try (Connection conn = table.connectToDatabase()) {
+			String query = "SELECT * FROM \"?\")";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, table.name());			
+			ResultSet rs = ps.executeQuery();
+			//ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
+			while (rs.next()) {
+				titles.add(new Title(rs.getString("TITLE")));
+			}
 
-		db.saveData(a);
-		System.out.println("Hämtade analys: " + db.getSavedData(new Title("PreparedStatement")).getTitle());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+			throw new RuntimeException("Something happened");
+		}
+		return titles;
 	}
-
 }
