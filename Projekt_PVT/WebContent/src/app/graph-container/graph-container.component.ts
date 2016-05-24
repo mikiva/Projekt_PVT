@@ -53,7 +53,9 @@ export class GraphContainerComponent {
  }
  getTitle(){
      
-     return document.getElementById("title").innerHTML;
+     
+     
+     return document.getElementById("title").value;
      
  }
 }
