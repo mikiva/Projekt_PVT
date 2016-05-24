@@ -22,7 +22,7 @@ export class DatabaseService {
 
 
         //this.http(this.url);
-        this.http.get(this.url);
+        this.http(this.url);
 
        /*this.http.get(this.url)
             .do(data => console.log('Something works'))
