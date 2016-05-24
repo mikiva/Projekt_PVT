@@ -36,6 +36,7 @@ public class SaveAnalyzeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CheckIfAnalyzeDataIsValid check = new CheckIfAnalyzeDataIsValid();
 		StringBuffer errorMessage = new StringBuffer();
+
 		
 		String title = request.getParameter("title");
 		String resolution = request.getParameter("resolution");
