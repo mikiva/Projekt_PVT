@@ -7,13 +7,16 @@ import {IDatasource} from './datasource';
 
 @Injectable()
 export class DatabaseService{
+
     private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/SaveAnalyzeServlet?';
     //private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/ServletTest?';
+
     private url: string;
     
     constructor(private http: Http){}
-    
-    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title:string): Observable<string>{
+
+    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string): Observable<string>{
+
         this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title);
         console.log(this.url);
      
@@ -22,8 +25,7 @@ export class DatabaseService{
             .do(data => console.log('Something works'))
             .catch(new Error()); 
     }
-    
-    public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title:string){
+    public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string){
         return (this.saveUrl + 'title='+ (title? title: 'NoTitle') + '&res=' + (resolution? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
             (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : "")
             + '&startDate=' + (dateBefore || '0000-01-01') + '&endDate=' + (dateAfter || '9999-12-30'));

@@ -1,10 +1,11 @@
+<div class="mainDiv">
 
 <div class="center">
 	<form method="post">
     	<p>
     		<center>
     			<label for="rubrik">Heading: </label>
-        	<input type="text" size="25" placeholder="Skriv in en valfri rubrik!">
+        	<input id="title" type="text" size="25" placeholder="Skriv in en valfri rubrik!">
         	<br>
         </center>
     </p>
@@ -16,6 +17,7 @@
     	<label for="rubrik">Choose resolution: </label>
     	<choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution>
     </td>
+	<br style="clear:both" /> <button id="save" (click)="saveAnalysis()"> Save Analysis</button>
 </div>
 </div>
 
@@ -49,5 +51,10 @@
    <br style="clear:both" />
    <div style="padding-top:45px;float:left">
 	<graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution"  [dateBefore]="dateBefore" [dateAfter]="dateAfter">corr</graph-correlation>
+   
    </div>
+   <div style="float:left;padding-top:45px">
+	   <textarea style="width: 500px;height: 300px" id="comment" rows="" cols="" placeholder="Write a comment"></textarea>
+	   </div>
+</div>
 </div>

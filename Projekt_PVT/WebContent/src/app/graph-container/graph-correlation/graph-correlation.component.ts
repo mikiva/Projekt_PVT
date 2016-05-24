@@ -25,7 +25,13 @@ export class GraphCorrelationComponent implements OnChanges {
     @Input() dateAfter: string;
 
     constructor(private dataSourceService: DatasourceService) {
-        
+                this.options = {            
+            title: {num: 'No data in range'},
+            series: [{
+                data: [],
+                type: 'scatter',
+            }]
+        };
     }
 
     saveInstance(chart: HighchartsChartObject) {
