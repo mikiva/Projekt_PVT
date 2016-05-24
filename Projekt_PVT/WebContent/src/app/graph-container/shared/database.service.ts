@@ -20,7 +20,11 @@ export class DatabaseService {
         this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title);
         console.log(this.url);
 
-        this.http.get(this.url)
+
+        //this.http(this.url);
+
+
+       return this.http.get(this.url)
             .map((response: Response) => <string> response.toString())
             .do(data => console.log('Something works'))
             .catch(new Error());
