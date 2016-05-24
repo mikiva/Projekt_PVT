@@ -28,6 +28,7 @@ export class DatabaseService {
             .do(data => console.log('Something works'))
             .catch(this.handleError);*/
             
+            console.log("hoppar tamejfan över!!");
             
             
     }
