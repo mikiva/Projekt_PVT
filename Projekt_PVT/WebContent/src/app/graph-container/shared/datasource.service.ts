@@ -21,14 +21,12 @@ export class DatasourceService {
     getData(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo?: Object): Observable<IDatasource[]> {
         return this.http.get(this.getUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter))
             .map((response: Response) => <IDatasource[]> response.json())
-            .do(data => console.log('All: ' + this.url  +  JSON.stringify(data)))
             .catch(this.handleError);
     }
     
     getMenu(): Observable<Menu[]> {
         return this.http.get(this.menuUrl)
             .map((response: Response) => <Menu[]> response.json().data)
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
