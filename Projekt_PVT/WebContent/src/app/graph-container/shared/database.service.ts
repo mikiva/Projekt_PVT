@@ -23,10 +23,10 @@ export class DatabaseService {
 
         this.http.get(this.url)
             .subscribe(
-            response => result = response.text(),
-            err => console.log(err),
-            () => console.log(result));
+            response => result = response.text());
             
+        console.log(result);    
+        
         return result;
      }
     
