@@ -47,8 +47,15 @@ public class SaveAnalyzeServlet extends HttpServlet {
 		String dataBaseTwo = request.getParameter("database2");
 		String datasetTwo = request.getParameter("value2");
 		
+		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
+		
+		
+		
 		if (!check.isAlphaNumeric(title))
 			errorMessage.append("Title can only contains number and alphabet");
+		
+		if(!db.getSavedTitles().contains(new Title(title)))
+			errorMessage.append("Analysis with that title already exists");
 		
 		if (!check.validResulution(resolution))
 			errorMessage.append("Wrong resulution format");
@@ -69,7 +76,6 @@ public class SaveAnalyzeServlet extends HttpServlet {
 			
 			Analysis analysis = new Analysis(dbWithSource1, dbWithSource2, res, dateRange, analysisTitle);
 			
-			SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 			db.saveData(analysis);
 			
 			response.getWriter().append("Analys " + analysis.getTitle() + " sparad i databas!");
