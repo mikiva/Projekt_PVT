@@ -54,7 +54,7 @@ export class GraphContainerComponent {
         this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
     }
     getTitle() {
-        return document.getElementById("title").value;
+        return document.getElementById("heading").value;
     }
     getSavedAnalysis(title: string) {
         var analysis = this.loadService.loadAnalysis(title);
