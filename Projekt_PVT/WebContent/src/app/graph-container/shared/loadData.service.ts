@@ -4,7 +4,7 @@ import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {IDatasource} from './datasource';
 
-@Injectable
+@Injectable()
 export class LoadDataService{
     
     constructor(private http: Http){}
