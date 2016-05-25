@@ -1,28 +1,50 @@
-.left-column, .right-column{
-    float:right;
-}
-.center{
-    float:left;
-}
-.dateLeftDiv{
-    float:left;
-    padding-right:15px;
-}
-.dateDiv{
-    padding-left:0px;
-    
-}
-.graph-style{
+.graph-style {
     width:500px;
     height:300px;    
 }
-.graphWrapper{
-    float:center;
+
+.center {
+	float:center;
 }
-.graphDivS{
+
+.bold {
+	font-weight: bold;
+}
+
+.left30 {
+	margin-left: 30px;
+}
+
+#heading {
+	width: 400px;
+}
+
+#comment {
+	width: 400px;
+	height: 105px;
+}
+
+/*.left-column, .right-column {
+    float:right;
+}
+.center {
     float:left;
 }
-.mainDiv{
-    padding-left: 30px;
+.dateLeftDiv {
+    float:left;
+    padding-right:15px;
 }
+.dateDiv {
+    padding-left:0px;
+    
+}
+.graphWrapper {
+    float:center;
+}
+.graphDivS {
+    float:left;
+}
+.mainDiv {
+    padding-left: 30px;
+}*/
 

@@ -1,43 +1,44 @@
-<div class="mainDiv">
-	<div align="center">
-		<div class="dateLeftDiv">
-			<p align="center">From what date:</p>
-			<p align="center"><sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker></p>
+<div class="container">
+	<!--  row -->
+	<div class="row left30">
+		<div class="four columns">
+			<label>From what date:</label>
+			<sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker>
 		</div>
-		<div style="float:left">
-			<p align="center">To what date:</p>  
-			<p align="center"><sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker></p>
+		<div class="four columns">
+			<label>To what date:</label>  
+			<sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker>
+		</div>
+		<div class="four columns">
+			<label for="rubrik">Choose resolution: </label>
+    		<choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution>
 		</div>
 	</div>
-	<br style="clear:both" />
-	<div class="graphWrapper">
-		<div class="graphDivS">
-			<graph id="1" [sourceInput]="sourceOne" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">1</graph>
-			<choose-source (sourceOutput)="setSourceOne($event)"></choose-source>
+	<!--  row -->
+	<div class="row">
+		<div class="six columns">
+			<graph id="1" class="graph-style" [sourceInput]="sourceOne" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">1</graph>
+			<choose-source class="left30" (sourceOutput)="setSourceOne($event)"></choose-source>
 		</div>	
-	<div class="graphDivS">
-		<graph id="2" [sourceInput]="sourceTwo" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">2</graph>
-		<choose-source (sourceOutput)="setSourceTwo($event)"></choose-source>
-	</div>
-	<br style="clear:both" />
-	<div style="padding-top:45px;float:left">
-		<graph-correlation [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution"  [dateBefore]="dateBefore" [dateAfter]="dateAfter">corr</graph-correlation>
-	</div>
-	<div style="float:left;padding-top:10px">
-		<div style="padding-bottom:10px">
-			<div style="float:right">
-				<label for="rubrik">Choose resolution: </label>
-    			<choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution>
-			</div>
-			<br style="clear:both"/>
-			<div style="padding-top:20px">
-	   			<label for="rubrik">Rubrik: </label>
-	   			<input id="title" type="text" size="25" placeholder="Skriv in en valfri rubrik!">
-			</div>
+		<div class="six columns">
+			<graph id="2" class="graph-style" [sourceInput]="sourceTwo" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">2</graph>
+			<choose-source class="left30" (sourceOutput)="setSourceTwo($event)"></choose-source>
 		</div>
+	</div>
+	<!--  row -->
+	<div class="row">
+		<div class="six columns">
+			<graph-correlation class="graph-style" [sourceOne]="sourceOne" [sourceTwo]="sourceTwo" [resolution]="resolution"  [dateBefore]="dateBefore" [dateAfter]="dateAfter">corr</graph-correlation>
+		</div>
+		<div class="one column">&nbsp;</div>
+		<div class="five columns">
+			<div>
+	   			<label for="rubrik">Header: </label>
+	   			<input id="heading" type="text" placeholder="Write in optional header">
+			</div>
     		<div> 	
-	  			<textarea style="width: 500px;height: 200px" id="comment" rows="" cols="" placeholder="Write a comment"></textarea>
-	   			<br style="clear:both" />
+	  			<textarea id="comment" placeholder="Write a comment"></textarea>
+	   			<br />
 	   			<button id="save" (click)="saveAnalysis()"> Save Analysis</button>
 	   		</div>
 		</div>
