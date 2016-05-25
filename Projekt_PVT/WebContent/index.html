@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!-- Basic Page Needs
+<!-- Basic Page Needs
  	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
- 	<meta charset="utf-8">
- 	<title>PVT Projekt</title>
- 	<meta name="description" content="">
- 	<meta name="author" content="">
- 	
- 	<!-- Mobile Specific Metas
+<meta charset="utf-8">
+<title>PVT Projekt</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Mobile Specific Metas
  	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	
- 	<!-- FONT
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FONT
  	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
- 	<!--<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">  -->
- 	
- 	<!-- CSS
+<!--<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">  -->
+
+<!-- CSS
  	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
- 	<link rel="stylesheet" href="src/app/normalize.css">
- 	<link rel="stylesheet" href="src/app/skeleton.css">
- 	<link rel="stylesheet" href="src/app/styles.css">
- 	
- 	<!-- JAVASCRIPT
+<link rel="stylesheet" href="src/app/normalize.css">
+<link rel="stylesheet" href="src/app/skeleton.css">
+<link rel="stylesheet" href="src/app/styles.css">
+<link rel="shortcut icon" href="favicon.ico" />
+
+<!-- JAVASCRIPT
  	IE required polyfills (from CDN), in this exact order
  	–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"></script>
-    <script src="https://npmcdn.com/zone.js@0.6.12?main=browser"></script>
-    <script src="https://npmcdn.com/reflect-metadata@0.1.3"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.27/system.js"></script>
-    <script src="https://npmcdn.com/typescript@1.8.10/lib/typescript.js"></script>
-	
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"></script>
+<script src="https://npmcdn.com/zone.js@0.6.12?main=browser"></script>
+<script src="https://npmcdn.com/reflect-metadata@0.1.3"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.27/system.js"></script>
+<script src="https://npmcdn.com/typescript@1.8.10/lib/typescript.js"></script>
 
-    <!-- 2. Configure SystemJS -->
-    <script src="systemjs.config.js"></script>
-    <script>
+
+<!-- 2. Configure SystemJS -->
+<script src="systemjs.config.js"></script>
+<script>
     	System.import('src/main').catch(function(err){ console.error(err);  });
     </script>
-  	</head>
+</head>
 
-  	<!-- 3. Display the application -->
-  	<body>
-    	<my-app><h1>Loading<span id="wait">.</span><script src="loading.js"></script></h1></my-app>
-		 <br/>
-  	</body>
+<!-- 3. Display the application -->
+<body>
+	<my-app>
+	<h1>
+		Loading<span id="wait">.</span>
+		<script src="loading.js"></script>
+	</h1>
+	</my-app>
+	<br />
+</body>
 </html>
