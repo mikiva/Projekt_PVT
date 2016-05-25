@@ -15,7 +15,7 @@ public class ListJsonParser<T> implements JsonString {
 	@Override
 	public String toJsonString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("{values:");
+		builder.append("{\"values\":");
 		String[] values = list.stream().map(element -> "\"" + element + "\"").toArray(String[]::new);
 		String valuesWithWhiteSpaceRemoved = Arrays.toString(values).replaceAll("\\s+","");
 		builder.append(valuesWithWhiteSpaceRemoved + "}");

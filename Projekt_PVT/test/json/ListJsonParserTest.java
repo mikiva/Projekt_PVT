@@ -16,7 +16,7 @@ public class ListJsonParserTest {
 		testList.add("second");
 		String json = 
 				"{" + 
-					"values:[\"first\",\"second\"]" +
+					"\"values\":[\"first\",\"second\"]" +
 				"}";
 		assertEquals(json, new ListJsonParser<>(testList).toJsonString());
 	}
