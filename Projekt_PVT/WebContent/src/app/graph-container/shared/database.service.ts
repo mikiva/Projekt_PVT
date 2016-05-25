@@ -12,6 +12,7 @@ export class DatabaseService {
     //private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/ServletTest?';
 
     private url: string;
+    private responseText: string;
 
     constructor(private http: Http) { }
 
@@ -19,15 +20,14 @@ export class DatabaseService {
 
         this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title);
         console.log(this.url);
-        var result: string;
 
         this.http.get(this.url)
             .subscribe(
-            response => result = response.text(),
-            err => result = err.text());
+            response => this.responseText = response.text(),
+            err => this.responseText = err.text());
         
-        console.log(result);
-        return result;
+        
+        return this.responseText || 'returnerar galet';
      }
     
     public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string) {
