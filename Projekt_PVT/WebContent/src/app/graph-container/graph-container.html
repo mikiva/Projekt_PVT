@@ -1,17 +1,26 @@
 <div class="container">
 	<!--  row -->
 	<div class="row left30">
-		<div class="four columns">
+		<div class="three columns">
 			<label>From what date:</label>
 			<sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker>
 		</div>
-		<div class="four columns">
+		<div class="three columns">
 			<label>To what date:</label>  
 			<sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker>
 		</div>
-		<div class="four columns">
+		<div class="three columns">
 			<label for="rubrik">Choose resolution: </label>
     		<choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution>
+		</div>
+		<div class="three columns">
+			<label>Saved Analyze: </label>
+			<select>
+  				<option value="volvo">Volvo</option>
+  				<option value="saab">Saab</option>
+  				<option value="opel">Opel</option>
+				<option value="audi">Audi</option>
+			</select>
 		</div>
 	</div>
 	<!--  row -->

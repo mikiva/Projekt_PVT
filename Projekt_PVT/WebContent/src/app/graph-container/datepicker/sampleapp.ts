@@ -14,7 +14,7 @@ export class SampleDatePicker {
         firstDayOfWeek: 'mo',
         sunHighlight: true,
         height: '34px',
-        width: '260px'
+        width: '200px'
     };
     
     selectedDate: string = '2016-05-13';
