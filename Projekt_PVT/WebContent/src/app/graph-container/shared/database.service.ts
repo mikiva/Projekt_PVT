@@ -24,9 +24,9 @@ export class DatabaseService {
         this.http.get(this.url)
             .subscribe(
             response => result = response.text(),
-            err => result = err.text(),
-            () => console.log(result));
-            
+            err => result = err.text());
+        
+        console.log(result);
         return result;
      }
     
