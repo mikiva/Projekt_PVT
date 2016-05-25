@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import analysis.Title;
 import analysis.database.AnalysisTable;
 import analysis.database.SqlDatabase;
+import json.ListJsonParser;
 
 /**
  * Servlet implementation class GetAvailableAnalyzeServlet
@@ -33,12 +34,7 @@ public class GetAvailableAnalyzeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 		List<Title> titles = db.getSavedTitles();
-		
-		StringBuilder builder = new StringBuilder();
-		for (Title title : titles) {
-			builder.append(title + "\n");
-		}
-		response.getWriter().append(builder.toString());
+		response.getWriter().append(new ListJsonParser<>(titles).toJsonString());
 	}
 
 	/**

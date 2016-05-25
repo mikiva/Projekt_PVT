@@ -8,13 +8,14 @@ import {ChooseResolution} from './choose-resolution/choose-resolution.component'
 import {SampleDatePicker} from './datepicker/sampleapp';
 import {MyDatePicker} from './mydatepicker';
 import {DatabaseService} from './shared/database.service';
+import {LoadDataService} from './shared/loadData.service';
 
 
 @Component({
     selector: 'graph-container',
     directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker],
     templateUrl: 'src/app/graph-container/graph-container.html',
-    providers: [DatabaseService, HTTP_PROVIDERS]
+    providers: [DatabaseService, HTTP_PROVIDERS, LoadDataService]
 })
 export class GraphContainerComponent {
 
@@ -25,7 +26,7 @@ export class GraphContainerComponent {
     dateAfter: string = null;
     selectedData: string[] = null;
     
-    constructor(private databaseService: DatabaseService) {}
+    constructor(private databaseService: DatabaseService, private loadService: LoadDataService) {}
     
     setDateBefore(dateBefore: string) : void {
         this.dateBefore = dateBefore;
@@ -48,6 +49,7 @@ export class GraphContainerComponent {
         this.resolution = resolution;
     }
  
+<<<<<<< HEAD
     saveAnalysis(){
         this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
     }
@@ -55,4 +57,16 @@ export class GraphContainerComponent {
     getTitle(){
         return document.getElementById("title").value;
     }
+=======
+ saveAnalysis(){
+     this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
+ }
+ getTitle(){
+     return document.getElementById("title").value;
+ }
+ getSavedAnalysis(title: string){
+     var analysis = this.loadService.loadAnalysis(title);
+     
+ }
+>>>>>>> origin/develop
 }
