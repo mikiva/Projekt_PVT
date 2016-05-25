@@ -60,5 +60,5 @@ export class GraphContainerComponent {
         var analysis = this.loadService.loadAnalysis(title);
 
     }
->>>>>>> origin/develop
+
 }
