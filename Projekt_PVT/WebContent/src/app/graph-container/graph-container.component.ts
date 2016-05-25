@@ -18,12 +18,12 @@ import {DatabaseService} from './shared/database.service';
 })
 export class GraphContainerComponent {
 
-    sourceOne: Object;
-    sourceTwo: Object;
-    resolution: string;
-    dateBefore: string;
-    dateAfter: string;
-    selectedData: string[];
+    sourceOne: Object = { database: null, dataset: null };
+    sourceTwo: Object = { database: null, dataset: null };
+    resolution: string = null;
+    dateBefore: string = null; 
+    dateAfter: string = null;
+    selectedData: string[] = null;
     
     constructor(private databaseService: DatabaseService) {}
     

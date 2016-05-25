@@ -24,7 +24,7 @@ export class DatabaseService {
         this.http.get(this.url)
             .subscribe(
             text => result = <string> text,
-            err => this.logError('Something went wrong!'),
+            err => console.log(err),
             () => console.log(result));
             
         return result;
