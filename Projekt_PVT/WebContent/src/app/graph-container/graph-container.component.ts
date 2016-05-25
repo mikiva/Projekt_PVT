@@ -25,6 +25,8 @@ export class GraphContainerComponent {
     dateBefore: string = null;
     dateAfter: string = null;
     selectedData: string[] = null;
+    
+    savedDataMessage: string;
 
     constructor(private databaseService: DatabaseService, private loadService: LoadDataService) { }
 
@@ -51,7 +53,7 @@ export class GraphContainerComponent {
 
 
     saveAnalysis() {
-        this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
+        this.savedDataMessage = this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle()); 
     }
     getTitle() {
         return document.getElementById("heading").value;
@@ -59,6 +61,11 @@ export class GraphContainerComponent {
     getSavedAnalysis(title: string) {
         var analysis = this.loadService.loadAnalysis(title);
 
+    }
+    
+    toggleHide() : void {
+        var paragraph = document.getElementById("msg").style;
+        paragraph.visibility = this.savedDataMessage? "visible" : "hidden";
     }
 
 }
