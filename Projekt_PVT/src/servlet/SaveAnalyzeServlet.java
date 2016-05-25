@@ -54,7 +54,7 @@ public class SaveAnalyzeServlet extends HttpServlet {
 		if (!check.isAlphaNumeric(title))
 			errorMessage.append("Title can only contains number and alphabet");
 		
-		if(!db.getSavedTitles().contains(new Title(title)))
+		if(db.getSavedTitles().contains(new Title(title)))
 			errorMessage.append("Analysis with that title already exists");
 		
 		if (!check.validResulution(resolution))
