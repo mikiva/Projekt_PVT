@@ -22,18 +22,18 @@ export class GraphContainerComponent {
     sourceOne: Object = { database: null, dataset: null };
     sourceTwo: Object = { database: null, dataset: null };
     resolution: string = null;
-    dateBefore: string = null; 
+    dateBefore: string = null;
     dateAfter: string = null;
     selectedData: string[] = null;
-    
-    constructor(private databaseService: DatabaseService, private loadService: LoadDataService) {}
-    
-    setDateBefore(dateBefore: string) : void {
+
+    constructor(private databaseService: DatabaseService, private loadService: LoadDataService) { }
+
+    setDateBefore(dateBefore: string): void {
         this.dateBefore = dateBefore;
         console.log(dateBefore);
     }
-    
-    setDateAfter(dateAfter: string) : void {
+
+    setDateAfter(dateAfter: string): void {
         this.dateAfter = dateAfter;
     }
 
@@ -48,25 +48,17 @@ export class GraphContainerComponent {
     setResolution(resolution: string): void {
         this.resolution = resolution;
     }
- 
-<<<<<<< HEAD
-    saveAnalysis(){
+
+
+    saveAnalysis() {
         this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
     }
-    
-    getTitle(){
+    getTitle() {
         return document.getElementById("title").value;
     }
-=======
- saveAnalysis(){
-     this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
- }
- getTitle(){
-     return document.getElementById("title").value;
- }
- getSavedAnalysis(title: string){
-     var analysis = this.loadService.loadAnalysis(title);
-     
- }
+    getSavedAnalysis(title: string) {
+        var analysis = this.loadService.loadAnalysis(title);
+
+    }
 >>>>>>> origin/develop
 }
