@@ -25,9 +25,8 @@ export class DatabaseService {
             .subscribe(
             response => this.responseText = response.text(),
             err => this.responseText = err.text());
-        
-        
-        return this.responseText || 'returnerar galet';
+
+        return this.responseText || '';
      }
     
     public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string) {

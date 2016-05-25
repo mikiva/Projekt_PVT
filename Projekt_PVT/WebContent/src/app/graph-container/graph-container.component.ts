@@ -54,7 +54,6 @@ export class GraphContainerComponent {
 
     saveAnalysis() {
         this.savedDataMessage = this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
-        console.log(this.savedDataMessage);
     }
     getTitle() {
         return document.getElementById("heading").value;
