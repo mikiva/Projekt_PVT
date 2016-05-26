@@ -1,4 +1,4 @@
-import {Component, Output} from '@angular/core';
+import {Component, Output, ViewChild} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
@@ -11,6 +11,7 @@ import {MyDatePicker} from './mydatepicker';
 import {DatabaseService} from './shared/database.service';
 import {LoadDataService} from './shared/loadData.service';
 import {ChooseSaved} from './choose-saved-analysis/choose-saved.component';
+
 
 
 @Component({
@@ -29,6 +30,8 @@ export class GraphContainerComponent {
     selectedData: string[] = null;
     
     savedDataMessage: string = "";
+    
+    @ViewChild(ChooseSaved) savedChild:ChooseSaved;
 
     constructor(private databaseService: DatabaseService, private loadService: LoadDataService) { }
 
@@ -59,7 +62,7 @@ export class GraphContainerComponent {
         observable.subscribe(
             response => this.savedDataMessage = response,
             err => console.error(err) ,
-            () => document.getElementById("savedA").updateList());
+            () => this.savedChild.updateList());
     }
     getTitle() {
         return document.getElementById("heading").value;
