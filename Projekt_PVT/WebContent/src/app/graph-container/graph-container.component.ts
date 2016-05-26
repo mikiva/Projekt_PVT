@@ -28,6 +28,7 @@ export class GraphContainerComponent {
     dateBefore: string = null;
     dateAfter: string = null;
     selectedData: string[] = null;
+    header: string = null;
     
     savedDataMessage: string = "";
     
@@ -54,6 +55,9 @@ export class GraphContainerComponent {
     setResolution(resolution: string): void {
         this.resolution = resolution;
     }
+    setHeader(header: string){
+       document.getElementById("heading").value = header;
+    }
 
 
     saveAnalysis() : void {
@@ -79,6 +83,7 @@ export class GraphContainerComponent {
         this.setDateBefore(analysis.startDate);
         this.setDateAfter(analysis.endDate);
         this.setResolution(analysis.resolution);
+        this.setHeader(analysis.title);
             
         }, err =>console.error("feeeel"));
         
