@@ -18,18 +18,27 @@ export class ChooseSaved implements OnInit{
     
     errorMessage: string;    
     constructor(private loadDataService : LoadDataService){
+     
         
     }
     
-    ngOnInit() :void{
+        ngOnInit() :void{
+          this.updateList();        
+    }
+    
+    
+    public updateList(){
         
-        this.loadDataService.getSaved()
+             this.loadDataService.getSaved()
         .subscribe(
             saved => this.saved = saved,
             error => this.errorMessage = <any>error);
         
+    
         
     }
+    
+
     
     
     
