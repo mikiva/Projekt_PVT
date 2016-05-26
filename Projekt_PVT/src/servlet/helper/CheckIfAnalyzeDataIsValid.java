@@ -60,6 +60,6 @@ public class CheckIfAnalyzeDataIsValid {
 	
 	public boolean isAlphaNumeric(String s){
 	    String pattern= "^[a-zA-Z0-9]*$";
-	    return pattern.matches(s); 
+	    return s != null && s.matches(pattern); 
 	}
 }
