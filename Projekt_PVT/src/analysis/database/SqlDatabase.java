@@ -50,13 +50,13 @@ public class SqlDatabase {
 			// analysis.getDateRange().getEndDate().toString());
 			// statement.executeQuery();
 			conn.createStatement()
-					.executeQuery("INSERT INTO \"" + table.name() + "\"\nVALUES " + "(\"" + analysis.getTitle() + "\""
-							+ "\"" + analysis.getFirstDatabaseWithSource().getDatabase().link() + "\"" + "\""
-							+ analysis.getFirstDatabaseWithSource().getSourceId() + "\"" + "\""
-							+ analysis.getSecondDatabaseAndSource().getDatabase().link() + "\"" + "\""
-							+ analysis.getSecondDatabaseAndSource().getSourceId() + "\"" + "\""
-							+ analysis.getResolution() + "\"" + "\"" + analysis.getDateRange().getStartDate().toString()
-							+ "\"" + "\"" + analysis.getDateRange().getEndDate().toString() + "\")");
+					.executeQuery("INSERT INTO \"" + table.name() + "\"\nVALUES " + "(\"" + analysis.getTitle() + "\","
+							+ "\"" + analysis.getFirstDatabaseWithSource().getDatabase().link() + "\","
+							+ "\"" + analysis.getFirstDatabaseWithSource().getSourceId() + "\","
+							+ "\"" + analysis.getSecondDatabaseAndSource().getDatabase().link() + "\","
+							+ "\"" + analysis.getSecondDatabaseAndSource().getSourceId()  + "\","
+							+ "\"" + analysis.getResolution() + "\"" + "\"" + analysis.getDateRange().getStartDate().toString() + "\","
+							+ "\"" + analysis.getDateRange().getEndDate().toString() + "\")");
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
