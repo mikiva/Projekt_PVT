@@ -21,13 +21,5 @@ public class ListJsonParser<T> implements JsonString {
 		builder.append(valuesWithWhiteSpaceRemoved + "}");
 		return builder.toString();
 	}
-	
-	public static void main(String[] args) {
-		List<Double> list = new ArrayList<>();
-		list.add(54654d);
-		list.add(131242d);
-		JsonString js = new ListJsonParser<>(list);
-		System.out.println(js.toJsonString());
-	}
 
 }

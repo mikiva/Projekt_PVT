@@ -25,31 +25,31 @@ public class SqlDatabase {
 		this.table = table;
 	}
 
-	public void saveData(Analysis a) {
+	public void saveData(Analysis analysis) {
+		if(getSavedTitles().contains(analysis.getTitle())) 
+			throw new RuntimeException("Title " + analysis.getTitle() + " already exists!");
 		
-		if(getSavedTitles().contains(a.getTitle())) {
-			throw new RuntimeException("Title " + a.getTitle() + " already exists!");
-		}
-		
-		String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
-			PreparedStatement statement = conn.prepareStatement(query);
-
-			statement.setString(1, a.getTitle().toString());
-			statement.setString(2, a.getFirstDatabaseWithSource().getDatabase().link());
-			statement.setString(3, a.getFirstDatabaseWithSource().getSourceId());
-			statement.setString(4, a.getSecondDatabaseAndSource().getDatabase().link());
-			statement.setString(5, a.getSecondDatabaseAndSource().getSourceId());
-			statement.setString(6, a.getResolution().toString());
-			statement.setString(7, a.getDateRange().getStartDate().toString());
-			statement.setString(8, a.getDateRange().getEndDate().toString());
-
+			String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement statement = prepareStatement(analysis, query, conn);
 			statement.executeQuery();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new TableException(e);
 		}
+	}
+
+	private PreparedStatement prepareStatement(Analysis a, String query, Connection conn) throws SQLException {
+		PreparedStatement statement = conn.prepareStatement(query);
+
+		statement.setString(1, a.getTitle().toString());
+		statement.setString(2, a.getFirstDatabaseWithSource().getDatabase().link());
+		statement.setString(3, a.getFirstDatabaseWithSource().getSourceId());
+		statement.setString(4, a.getSecondDatabaseAndSource().getDatabase().link());
+		statement.setString(5, a.getSecondDatabaseAndSource().getSourceId());
+		statement.setString(6, a.getResolution().toString());
+		statement.setString(7, a.getDateRange().getStartDate().toString());
+		statement.setString(8, a.getDateRange().getEndDate().toString());
+		return statement;
 	}
 
 	public Analysis getSavedData(Title title) {
@@ -58,21 +58,26 @@ public class SqlDatabase {
 		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
 			ResultSet rs = conn.createStatement().executeQuery(query);
-
-			while (rs.next()) {
-				Title aTitle = new Title(rs.getString("TITLE"));
-				Database db1 = DatabaseFactory.get(rs.getString("DATABASE_1"));
-				DatabaseWithSource dbWithSource1 = new DatabaseWithSource(db1, rs.getString("SOURCE_1"));
-				Database db2 = DatabaseFactory.get(rs.getString("DATABASE_2"));
-				DatabaseWithSource dbWithSource2 = new DatabaseWithSource(db2, rs.getString("SOURCE_2"));
-				Resolution resolution = Resolution.valueOf(rs.getString("RESOLUTION"));
-				DateRange dates = new DateRange(rs.getString("START_DATE"), rs.getString("END_DATE"));
-
-				analysis = new Analysis(dbWithSource1, dbWithSource2, resolution, dates, aTitle);
-			}
+			if (rs.next()) 
+				analysis = createAnalysis(rs);
+			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new TableException(e);
 		}
+		return analysis;
+	}
+
+	private Analysis createAnalysis(ResultSet rs) throws SQLException {
+		Analysis analysis;
+		Title aTitle = new Title(rs.getString("TITLE"));
+		Database db1 = DatabaseFactory.get(rs.getString("DATABASE_1"));
+		DatabaseWithSource dbWithSource1 = new DatabaseWithSource(db1, rs.getString("SOURCE_1"));
+		Database db2 = DatabaseFactory.get(rs.getString("DATABASE_2"));
+		DatabaseWithSource dbWithSource2 = new DatabaseWithSource(db2, rs.getString("SOURCE_2"));
+		Resolution resolution = Resolution.valueOf(rs.getString("RESOLUTION"));
+		DateRange dates = new DateRange(rs.getString("START_DATE"), rs.getString("END_DATE"));
+
+		analysis = new Analysis(dbWithSource1, dbWithSource2, resolution, dates, aTitle);
 		return analysis;
 	}
 
@@ -81,15 +86,10 @@ public class SqlDatabase {
 		
 		try (Connection conn = table.connectToDatabase()) {
 			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
-			while (rs.next()) {
+			while (rs.next()) 
 				titles.add(new Title(rs.getString("TITLE")));
-			}
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println(e);
-			throw new RuntimeException("Something happened");
+			throw new TableException("Error connecting to database");
 		}
 		return titles;
 	}

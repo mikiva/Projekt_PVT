@@ -13,7 +13,7 @@ public final class DateRange {
 		this.end = LocalDate.parse(endDate);
 	}
 
-	public void checkForNull(String startDate, String endDate) {
+	private void checkForNull(String startDate, String endDate) {
 		if(startDate == null || endDate == null) 
 			throw new NullDateException("Dates cannot be null! Actual values are - start: " + startDate + ", end: " + endDate);
 	}

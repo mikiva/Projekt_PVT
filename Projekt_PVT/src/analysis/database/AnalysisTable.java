@@ -25,13 +25,10 @@ public class AnalysisTable implements SqlTable {
 	public Connection connectToDatabase() {
 		Connection conn = null;
 		try {
-			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+			throw new TableException(e);
+		} 
 		return conn;
 	}
 	
