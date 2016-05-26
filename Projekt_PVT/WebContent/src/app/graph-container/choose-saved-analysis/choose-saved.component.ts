@@ -6,7 +6,7 @@ import {LoadDataService} from '../shared/loadData.service';
 @Component({
     
     selector: 'choose-saved',
-    templateUrl: './choose-saved.html',
+    templateUrl: 'src/app/graph-container/choose-saved-analysis/choose-saved.html',
     providers: [LoadDataService, HTTP_PROVIDERS ]
 })
 export class ChooseSaved implements OnInit{

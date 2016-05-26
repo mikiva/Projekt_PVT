@@ -10,11 +10,12 @@ import {SampleDatePicker} from './datepicker/sampleapp';
 import {MyDatePicker} from './mydatepicker';
 import {DatabaseService} from './shared/database.service';
 import {LoadDataService} from './shared/loadData.service';
+import {ChooseSaved} from './choose-saved-analysis/choose-saved.component';
 
 
 @Component({
     selector: 'graph-container',
-    directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker],
+    directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker, ChooseSaved],
     templateUrl: 'src/app/graph-container/graph-container.html',
     providers: [DatabaseService, HTTP_PROVIDERS, LoadDataService]
 })

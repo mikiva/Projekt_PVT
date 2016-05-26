@@ -18,7 +18,7 @@ export class LoadDataService{
     public getSaved(){
         
         return this.http.get(this.availableUrl)
-        .map((response: Response) => <any[]> response.json().values)
+        .map((response: Response) => <string[]> response.json().values)
         .catch(this.handleError);
     }
     
