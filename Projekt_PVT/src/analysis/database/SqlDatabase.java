@@ -26,27 +26,41 @@ public class SqlDatabase {
 	}
 
 	public void saveData(Analysis analysis) {
-		if(getSavedTitles().contains(analysis.getTitle())) 
+		if (getSavedTitles().contains(analysis.getTitle()))
 			throw new RuntimeException("Title " + analysis.getTitle() + " already exists!");
-		
-		try (Connection conn = table.connectToDatabase()) {
-			String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement statement = conn.prepareStatement(query);
 
-			statement.setString(1, analysis.getTitle().toString());
-			statement.setString(2, analysis.getFirstDatabaseWithSource().getDatabase().link());
-			statement.setString(3, analysis.getFirstDatabaseWithSource().getSourceId());
-			statement.setString(4, analysis.getSecondDatabaseAndSource().getDatabase().link());
-			statement.setString(5, analysis.getSecondDatabaseAndSource().getSourceId());
-			statement.setString(6, analysis.getResolution().toString());
-			statement.setString(7, analysis.getDateRange().getStartDate().toString());
-			statement.setString(8, analysis.getDateRange().getEndDate().toString());
-			statement.executeQuery();
+		try (Connection conn = table.connectToDatabase()) {
+			// String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?,
+			// ?, ?, ?, ?, ?, ?, ?)";
+			// PreparedStatement statement = conn.prepareStatement(query);
+			//
+			// statement.setString(1, analysis.getTitle().toString());
+			// statement.setString(2,
+			// analysis.getFirstDatabaseWithSource().getDatabase().link());
+			// statement.setString(3,
+			// analysis.getFirstDatabaseWithSource().getSourceId());
+			// statement.setString(4,
+			// analysis.getSecondDatabaseAndSource().getDatabase().link());
+			// statement.setString(5,
+			// analysis.getSecondDatabaseAndSource().getSourceId());
+			// statement.setString(6, analysis.getResolution().toString());
+			// statement.setString(7,
+			// analysis.getDateRange().getStartDate().toString());
+			// statement.setString(8,
+			// analysis.getDateRange().getEndDate().toString());
+			// statement.executeQuery();
+			conn.createStatement()
+					.executeQuery("INSERT INTO \"" + table.name() + "\"\nVALUES " + "(\"" + analysis.getTitle() + "\""
+							+ "\"" + analysis.getFirstDatabaseWithSource().getDatabase().link() + "\"" + "\""
+							+ analysis.getFirstDatabaseWithSource().getSourceId() + "\"" + "\""
+							+ analysis.getSecondDatabaseAndSource().getDatabase().link() + "\"" + "\""
+							+ analysis.getSecondDatabaseAndSource().getSourceId() + "\"" + "\""
+							+ analysis.getResolution() + "\"" + "\"" + analysis.getDateRange().getStartDate().toString()
+							+ "\"" + "\"" + analysis.getDateRange().getEndDate().toString() + "\")");
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
 	}
-
 
 	public Analysis getSavedData(Title title) {
 		Analysis analysis = null;
@@ -54,9 +68,9 @@ public class SqlDatabase {
 		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
 			ResultSet rs = conn.createStatement().executeQuery(query);
-			if (rs.next()) 
+			if (rs.next())
 				analysis = createAnalysis(rs);
-			
+
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
@@ -79,10 +93,10 @@ public class SqlDatabase {
 
 	public List<Title> getSavedTitles() {
 		List<Title> titles = new ArrayList<>();
-		
+
 		try (Connection conn = table.connectToDatabase()) {
 			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
-			while (rs.next()) 
+			while (rs.next())
 				titles.add(new Title(rs.getString("TITLE")));
 		} catch (SQLException e) {
 			throw new TableException("Error connecting to database");
