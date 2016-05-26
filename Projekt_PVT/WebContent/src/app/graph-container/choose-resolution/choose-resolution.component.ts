@@ -6,7 +6,7 @@ import {Component, Output, EventEmitter} from '@angular/core';
 })
 export class ChooseResolution {
     @Output() output: EventEmitter<string> = new EventEmitter<string>();
-    resolution: string[] = ["day", "week", "month", "quarter", "year"];
+    resolution: string[] = ["Day", "Week", "Month", "Quarter", "Year"];
 
    onClick(value: string) {
         this.output.emit(value);

@@ -1,0 +1,6 @@
+<select (change)="loadSource($event.target.value))">
+    <option disabled="disabled">Load Analysis</option>
+    <option *ngFor="let item of saved">
+        {{item}}
+     </option>
+</select>

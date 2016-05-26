@@ -11,22 +11,23 @@ export class LoadDataService{
     
     private title : string;
     
-    private url = "http://rigel.hig.se:8080/GetAnalyzeServlet?title="
+    private availableUrl = "http://rigel.hig.se:8080/GetAvailableAnalysisServlet"
     
     
+    
+    public getSaved(){
+        
+        return this.http.get(this.availableUrl)
+        .map((response: Response) => <any[]> response.json().values)
+        .catch(this.handleError);
+    }
     
    public loadAnalysis(title:string): Observable<any>{
-        
-        
-       
+    
    return this.http.get(this.getLoadUrl(title))
             .map((response: Response) => <any> response.json())
             .catch(this.handleError);
-  
-  
-  
-        
-        
+      
     }
        private handleError(error: Response) {
         return Observable.throw(error.json().error || 'Server error');
@@ -36,7 +37,7 @@ export class LoadDataService{
     
   private  getLoadUrl(title: string){
         
-        return (this.url + title);
+        return (this.availableUrl + title);
         
         
     }
