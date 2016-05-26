@@ -78,7 +78,7 @@ public class SaveAnalyzeServlet extends HttpServlet {
 			
 			db.saveData(analysis);
 			
-			response.getWriter().append("Analys " + analysis.getTitle() + " sparad i databas!");
+			response.getWriter().append("Analys \"" + analysis.getTitle() + "\" sparad i databas!");
 		} else {
 			response.getWriter().append(errorMessage.toString());
 		}

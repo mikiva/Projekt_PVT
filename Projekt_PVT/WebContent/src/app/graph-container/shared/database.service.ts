@@ -3,6 +3,7 @@ import {Http, Response} from '@angular/http';
 
 import {Observable} from 'rxjs/Observable';
 import {IDatasource} from './datasource';
+import 'rxjs/Rx';
 
 
 @Injectable()
@@ -16,17 +17,13 @@ export class DatabaseService {
 
     constructor(private http: Http) { }
 
-    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string): string {
+    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string): Observable<string> {
 
         this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title);
         console.log(this.url);
 
-        this.http.get(this.url)
-            .subscribe(
-            response => this.responseText = response.text(),
-            err => this.responseText = err.text());
-
-        return this.responseText || '';
+        return this.http.get(this.url)
+            .map(response => response.text());
      }
     
     public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string) {
