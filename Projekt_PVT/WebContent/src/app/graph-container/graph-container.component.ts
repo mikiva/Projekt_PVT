@@ -37,7 +37,6 @@ export class GraphContainerComponent {
 
     setDateBefore(dateBefore: string): void {
         this.dateBefore = dateBefore;
-        console.log(dateBefore);
     }
 
     setDateAfter(dateAfter: string): void {
@@ -72,6 +71,7 @@ export class GraphContainerComponent {
         console.log(title);
         var analysis = this.loadService.loadAnalysis(title);
         
+        console.log(analysis);
         
         var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
         var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
