@@ -17,14 +17,14 @@ import json.ListJsonParser;
 /**
  * Servlet implementation class GetAvailableAnalyzeServlet
  */
-@WebServlet("/GetAvailableAnalyzeServlet")
-public class GetAvailableAnalyzeServlet extends HttpServlet {
+@WebServlet("/GetAvailableAnalysisServlet")
+public class GetAvailableAnalysisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetAvailableAnalyzeServlet() {
+    public GetAvailableAnalysisServlet() {
         super();
     }
 
