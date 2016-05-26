@@ -13,7 +13,7 @@ public class AnalysisJsonParser implements JsonString {
 	@Override
 	public String toJsonString() {
 		return "{"
-				+ "\"title\":" + "\""+ analysis.getTitle() + "\""
+				+ "\"title\":" + "\""+ analysis.getTitle() + "\","
 				+ "\"database1\":" + "\"" + analysis.getFirstDatabaseWithSource().getDatabase().link() + "\","
 				+ "\"datasource1\":" + "\"" + analysis.getFirstDatabaseWithSource().getSourceId() + "\","
 				+ "\"database2\":" + "\"" + analysis.getSecondDatabaseAndSource().getDatabase().link() + "\","

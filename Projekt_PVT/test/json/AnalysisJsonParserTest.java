@@ -17,7 +17,7 @@ public class AnalysisJsonParserTest {
 	
 	private final static String EXPECTED = 
 			"{"
-			+ "\"title\":" + "\"Titel\""
+			+ "\"title\":" + "\"Titel\","
 			+ "\"database1\":" + "\"[database_link]\","
 			+ "\"datasource1\":" + "\"dbId\","
 			+ "\"database2\":" + "\"[database_link]\","
@@ -37,7 +37,6 @@ public class AnalysisJsonParserTest {
 		Analysis a = new Analysis(dbS, dbS, resolution, dates, title);
 		
 		AnalysisJsonParser parser = new AnalysisJsonParser(a);
-		System.out.println(parser.toJsonString());
 		assertEquals(EXPECTED, parser.toJsonString());
 	}
 
