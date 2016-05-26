@@ -31,26 +31,22 @@ public class SqlDatabase {
 		
 		try (Connection conn = table.connectToDatabase()) {
 			String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement statement = prepareStatement(analysis, query, conn);
+			PreparedStatement statement = conn.prepareStatement(query);
+
+			statement.setString(1, analysis.getTitle().toString());
+			statement.setString(2, analysis.getFirstDatabaseWithSource().getDatabase().link());
+			statement.setString(3, analysis.getFirstDatabaseWithSource().getSourceId());
+			statement.setString(4, analysis.getSecondDatabaseAndSource().getDatabase().link());
+			statement.setString(5, analysis.getSecondDatabaseAndSource().getSourceId());
+			statement.setString(6, analysis.getResolution().toString());
+			statement.setString(7, analysis.getDateRange().getStartDate().toString());
+			statement.setString(8, analysis.getDateRange().getEndDate().toString());
 			statement.executeQuery();
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
 	}
 
-	private PreparedStatement prepareStatement(Analysis a, String query, Connection conn) throws SQLException {
-		PreparedStatement statement = conn.prepareStatement(query);
-
-		statement.setString(1, a.getTitle().toString());
-		statement.setString(2, a.getFirstDatabaseWithSource().getDatabase().link());
-		statement.setString(3, a.getFirstDatabaseWithSource().getSourceId());
-		statement.setString(4, a.getSecondDatabaseAndSource().getDatabase().link());
-		statement.setString(5, a.getSecondDatabaseAndSource().getSourceId());
-		statement.setString(6, a.getResolution().toString());
-		statement.setString(7, a.getDateRange().getStartDate().toString());
-		statement.setString(8, a.getDateRange().getEndDate().toString());
-		return statement;
-	}
 
 	public Analysis getSavedData(Title title) {
 		Analysis analysis = null;
