@@ -55,7 +55,7 @@ export class GraphContainerComponent {
 
     saveAnalysis() : void {
         var observable: Observable<string> = this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
-        observable.subscribe(response => this.savedDataMessage,
+        observable.subscribe(response => this.savedDataMessage = response,
                         err => console.error(err), 
                         () => console.log("got response"));
     }
