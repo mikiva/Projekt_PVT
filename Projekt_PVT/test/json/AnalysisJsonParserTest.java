@@ -18,11 +18,11 @@ public class AnalysisJsonParserTest {
 	private final static String EXPECTED = 
 			"{"
 			+ "\"title\":" + "\"Titel\","
-			+ "\"database1\":" + "\"[database_link]\","
+			+ "\"database1\":" + "\"database_link\","
 			+ "\"datasource1\":" + "\"dbId\","
-			+ "\"database2\":" + "\"[database_link]\","
+			+ "\"database2\":" + "\"database_link\","
 			+ "\"datasource2\":" + "\"dbId\","
-			+ "\resolution\":" + "\"DAY\","
+			+ "\"resolution\":" + "\"DAY\","
 			+ "\"startDate\":" + "\"2014-01-01\","
 			+ "\"endDate\":" + "\"2015-01-01\""
 			+ "}";
@@ -37,12 +37,13 @@ public class AnalysisJsonParserTest {
 		Analysis a = new Analysis(dbS, dbS, resolution, dates, title);
 		
 		AnalysisJsonParser parser = new AnalysisJsonParser(a);
+		System.out.println(new JsonFormatter().format(parser.toJsonString()));
 		assertEquals(EXPECTED, parser.toJsonString());
 	}
 
 	private DatabaseWithSource mockDatabaseAndItsSource() {
 		Database dbMock = mock(Database.class);
-		when(dbMock.link()).thenReturn("[database_link]");
+		when(dbMock.link()).thenReturn("database_link");
 		DatabaseWithSource dbS = mock(DatabaseWithSource.class);
 		when(dbS.getSourceId()).thenReturn("dbId");
 		when(dbS.getDatabase()).thenReturn(dbMock);
