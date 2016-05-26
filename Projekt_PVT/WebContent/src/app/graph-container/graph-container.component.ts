@@ -64,7 +64,7 @@ export class GraphContainerComponent {
         var observable: Observable<string> = this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
         observable.subscribe(
             response => this.savedDataMessage = response,
-            err => console.error(err) ,
+            err => console.error(err),
             () => this.savedChild.updateList());
     }
     getTitle() {
@@ -85,7 +85,7 @@ export class GraphContainerComponent {
         this.setResolution(analysis.resolution);
         this.setHeader(analysis.title);
             
-        }, err =>console.error("feeeel"));
+        }, err => console.error("feeeel"));
         
       
 
