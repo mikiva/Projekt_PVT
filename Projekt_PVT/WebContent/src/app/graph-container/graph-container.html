@@ -15,7 +15,7 @@
 		</div>
 		<div class="three columns">
 			<label>Saved Analyze: </label>
-			<choose-saved #saved >saved Analysis</choose-saved>
+			<choose-saved (savedOutput)="getSavedAnalysis($event)">saved Analysis</choose-saved>
 		</div>
 	</div>
 	<!--  row -->

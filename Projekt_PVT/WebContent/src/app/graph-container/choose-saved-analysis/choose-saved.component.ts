@@ -38,18 +38,10 @@ export class ChooseSaved implements OnInit{
         
     }
     
-
-    
-    
-    
-    
-   /* 
-    public loadSaved(index : number): void{
+    public loadSaved(title: string): void{
         
-        this.savedAnalysis = {values: this.saved}
-        this.savedOutput.emit(this.savedAnalysis);
+        this.savedOutput.emit(title);
     }
-    */
     
     
 }

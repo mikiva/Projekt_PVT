@@ -68,7 +68,21 @@ export class GraphContainerComponent {
         return document.getElementById("heading").value;
     }
     getSavedAnalysis(title: string) {
+        
+        console.log(title);
         var analysis = this.loadService.loadAnalysis(title);
+        
+        
+        var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
+        var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
+        this.setSourceOne(source1);
+        this.setSourceTwo(source2);
+        
+        this.setDateBefore(analysis.startDate);
+        this.setDateAfter(analysis.endDate);
+        this.setResolution(analysis.resolution);
+        
+        
 
     }
 
