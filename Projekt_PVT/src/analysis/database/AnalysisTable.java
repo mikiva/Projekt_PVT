@@ -34,6 +34,6 @@ public class AnalysisTable implements SqlTable {
 	
 	@Override
 	public String name() {
-		return "Analysis";
+		return "Analysis2";
 	}
 }
