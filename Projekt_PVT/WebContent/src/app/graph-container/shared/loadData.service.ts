@@ -13,6 +13,8 @@ export class LoadDataService{
     
     private availableUrl = "http://rigel.hig.se:8080/Bulle-dev/GetAvailableAnalysisServlet"
     
+    private savedUrl = "http://rigel.hig.se:8080/Bulle-dev/GetAnalysisServlet?"
+    
     
     
     public getSaved(){
@@ -37,7 +39,7 @@ export class LoadDataService{
     
   private  getLoadUrl(title: string){
         
-        return (this.availableUrl + title);
+        return (this.savedUrl + title);
         
         
     }
