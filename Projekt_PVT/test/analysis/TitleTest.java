@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import analysis.Title.TitleException;
 
-public class AnalysisTitleTest {
+public class TitleTest {
 
 	@Test(expected = TitleException.class)
 	public void titleCannotBeNull() {

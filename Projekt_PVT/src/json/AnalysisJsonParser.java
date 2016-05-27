@@ -20,7 +20,8 @@ public class AnalysisJsonParser implements JsonString {
 				+ "\"datasource2\":" + "\"" + analysis.getSecondDatabaseAndSource().getSourceId() + "\","
 				+ "\"resolution\":" + "\"" + analysis.getResolution() + "\","
 				+ "\"startDate\":" + "\"" + analysis.getDateRange().getStartDate() + "\","
-				+ "\"endDate\":" + "\"" + analysis.getDateRange().getEndDate() + "\""
+				+ "\"endDate\":" + "\"" + analysis.getDateRange().getEndDate() + "\","
+				+ "\"comment\":" + "\"" + analysis.getComment() + "\""
 				+ "}";
 	}
 	

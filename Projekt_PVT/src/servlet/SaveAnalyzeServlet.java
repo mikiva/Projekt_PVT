@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import analysis.Analysis;
+import analysis.Comment;
 import analysis.DatabaseWithSource;
 import analysis.DateRange;
 import analysis.Title;
@@ -46,6 +47,7 @@ public class SaveAnalyzeServlet extends HttpServlet {
 		String datasetOne = request.getParameter("value1");
 		String dataBaseTwo = request.getParameter("database2");
 		String datasetTwo = request.getParameter("value2");
+		String comment = request.getParameter("comment");
 		
 		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 		
@@ -73,8 +75,9 @@ public class SaveAnalyzeServlet extends HttpServlet {
 			DateRange dateRange = new DateRange(dateBefore, dateAfter);
 			DatabaseWithSource dbWithSource1 = new DatabaseWithSource(DatabaseFactory.get(databaseOne), datasetOne);
 			DatabaseWithSource dbWithSource2 = new DatabaseWithSource(DatabaseFactory.get(dataBaseTwo), datasetTwo);
+			Comment analysisComment = new Comment(comment);
 			
-			Analysis analysis = new Analysis(dbWithSource1, dbWithSource2, res, dateRange, analysisTitle);
+			Analysis analysis = new Analysis(dbWithSource1, dbWithSource2, res, dateRange, analysisTitle, analysisComment);
 			
 			db.saveData(analysis);
 			

@@ -20,6 +20,7 @@ public class AnalysisTest {
 	private Resolution resolution;
 	private DateRange dates;
 	private Title title;
+	private Comment comment;
 
 	@Before
 	public void setUp() {
@@ -32,7 +33,9 @@ public class AnalysisTest {
 		resolution = Resolution.DAY;
 		dates = new DateRange("2015-01-01", "2016-01-01");
 		title = new Title("Title");
-		analysis =  new Analysis(dbAndSource1, dbAndSource2, resolution, dates, title);
+		comment = new Comment("Testkommentar i analysen.");
+		
+		analysis =  new Analysis(dbAndSource1, dbAndSource2, resolution, dates, title, comment);
 	}
 	
 	@Test
@@ -42,11 +45,12 @@ public class AnalysisTest {
 		assertEquals("resolution", resolution, analysis.getResolution());
 		assertEquals("the two dates", dates, analysis.getDateRange());
 		assertEquals("title", title, analysis.getTitle());
+		assertEquals("comment",  comment, analysis.getComment());
 	}
 	
 	@Test(expected = NullPointerException.class)
 	public void throwExceptionIfAnyArgumentIsNull() throws Exception {
-		new Analysis(null, null, null, null, null);
+		new Analysis(null, null, null, null, null, null);
 	}
 
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import analysis.Analysis;
+import analysis.Comment;
 import analysis.DatabaseWithSource;
 import analysis.DateRange;
 import analysis.Title;
@@ -24,7 +25,8 @@ public class AnalysisJsonParserTest {
 			+ "\"datasource2\":" + "\"dbId\","
 			+ "\"resolution\":" + "\"DAY\","
 			+ "\"startDate\":" + "\"2014-01-01\","
-			+ "\"endDate\":" + "\"2015-01-01\""
+			+ "\"endDate\":" + "\"2015-01-01\","
+			+ "\"comment\":" + "\"comment or something\""
 			+ "}";
 
 	@Test
@@ -33,11 +35,11 @@ public class AnalysisJsonParserTest {
 		Resolution resolution = Resolution.DAY;
 		DateRange dates = new DateRange("2014-01-01", "2015-01-01");
 		Title title = new Title("Titel");
+		Comment comment = new Comment("comment or something");
 		
-		Analysis a = new Analysis(dbS, dbS, resolution, dates, title);
+		Analysis a = new Analysis(dbS, dbS, resolution, dates, title, comment);
 		
 		AnalysisJsonParser parser = new AnalysisJsonParser(a);
-		System.out.println(new JsonFormatter().format(parser.toJsonString()));
 		assertEquals(EXPECTED, parser.toJsonString());
 	}
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import analysis.Analysis;
+import analysis.Comment;
 import analysis.DatabaseWithSource;
 import analysis.DateRange;
 import analysis.Title;
@@ -72,15 +73,16 @@ public class SqlDatabase {
 
 	private Analysis createAnalysis(ResultSet rs) throws SQLException {
 		Analysis analysis;
-		Title aTitle = new Title(rs.getString("TITLE"));
+		Title title = new Title(rs.getString("TITLE"));
 		Database db1 = DatabaseFactory.get(rs.getString("DATABASE_1"));
 		DatabaseWithSource dbWithSource1 = new DatabaseWithSource(db1, rs.getString("SOURCE_1"));
 		Database db2 = DatabaseFactory.get(rs.getString("DATABASE_2"));
 		DatabaseWithSource dbWithSource2 = new DatabaseWithSource(db2, rs.getString("SOURCE_2"));
 		Resolution resolution = Resolution.valueOf(rs.getString("RESOLUTION"));
 		DateRange dates = new DateRange(rs.getString("START_DATE"), rs.getString("END_DATE"));
+		Comment comment = new Comment(rs.getString("COMMENT"));
 
-		analysis = new Analysis(dbWithSource1, dbWithSource2, resolution, dates, aTitle);
+		analysis = new Analysis(dbWithSource1, dbWithSource2, resolution, dates, title, comment);
 		return analysis;
 	}
 

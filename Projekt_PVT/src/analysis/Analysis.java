@@ -11,15 +11,17 @@ public class Analysis {
 	private final Resolution resolution;
 	private final DateRange dates;
 	private final Title title;
+	private final Comment comment;
 
 	public Analysis(DatabaseWithSource dbAndSource1, DatabaseWithSource dbAndSource2, Resolution resolution,
-			DateRange dates, Title title) {
+			DateRange dates, Title title, Comment comment) {
 		checkForNull(dbAndSource1, dbAndSource2, resolution, dates, title);
 		this.dbAndSource1 = dbAndSource1;
 		this.dbAndSource2 = dbAndSource2;
 		this.resolution = resolution;
 		this.dates = dates;
 		this.title = title;
+		this.comment = comment;
 	}
 
 	private void checkForNull(Object... objects) {
@@ -53,6 +55,10 @@ public class Analysis {
 		return title;
 	}
 
+	public Comment getComment() {
+		return comment;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -98,6 +104,7 @@ public class Analysis {
 			return false;
 		return true;
 	}
+
 	
 	
 
