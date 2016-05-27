@@ -12,13 +12,13 @@ export class LoadDataService {
     
     constructor(private http: Http){}
        
-    public getSaved(){
+    getSaved(){
         return this.http.get(this.availableUrl)
             .map((response: Response) => <string[]> response.json().values)
             .catch(this.handleError);
     }
     
-   public loadAnalysis(title:string): Observable<any>{
+    loadAnalysis(title:string): Observable<any>{
         return this.http.get(this.getLoadUrl(title))
             .map((response: Response) => <any> response.json())
             .catch(this.handleError);  
