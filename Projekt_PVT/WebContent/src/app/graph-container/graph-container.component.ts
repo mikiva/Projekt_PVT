@@ -94,7 +94,7 @@ export class GraphContainerComponent {
         this.setResolution(analysis.resolution);
         this.setHeader(analysis.title);
         this.setComment(analysis.comment);
-        }, err => console.error("feeeel"));
+        }, err => console.error(err));
         
       
 
