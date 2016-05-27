@@ -44,14 +44,6 @@ public class SqlDatabase {
 			 statement.setString(8, analysis.getDateRange().getEndDate().toString());
 			 statement.setString(9, analysis.getComment().toString());
 			 statement.executeUpdate();
-//			conn.createStatement()
-//					.executeQuery("INSERT INTO \"" + table.name() + "\"\nVALUES " + "(\"" + analysis.getTitle() + "\","
-//							+ "\"" + analysis.getFirstDatabaseWithSource().getDatabase().link() + "\","
-//							+ "\"" + analysis.getFirstDatabaseWithSource().getSourceId() + "\","
-//							+ "\"" + analysis.getSecondDatabaseAndSource().getDatabase().link() + "\","
-//							+ "\"" + analysis.getSecondDatabaseAndSource().getSourceId()  + "\","
-//							+ "\"" + analysis.getResolution() + "\"" + "\"" + analysis.getDateRange().getStartDate().toString() + "\","
-//							+ "\"" + analysis.getDateRange().getEndDate().toString() + "\")");
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
