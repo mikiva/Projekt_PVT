@@ -33,6 +33,8 @@ export class GraphContainerComponent {
     savedDataMessage: string = "";
     
     @ViewChild(ChooseSaved) savedChild:ChooseSaved;
+    @ViewChild (ChooseResolution) resChild:ChooseResolution;
+    @ViewChild(ChooseSource) sourceChild:ChooseSource;
 
     constructor(private databaseService: DatabaseService, private loadService: LoadDataService) { }
 
@@ -92,7 +94,6 @@ export class GraphContainerComponent {
         this.setResolution(analysis.resolution);
         this.setHeader(analysis.title);
         this.setComment(analysis.comment);
-            
         }, err => console.error("feeeel"));
         
       

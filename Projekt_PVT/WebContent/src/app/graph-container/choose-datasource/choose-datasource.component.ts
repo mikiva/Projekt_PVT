@@ -42,4 +42,7 @@ export class ChooseSource implements OnInit {
     private fillUnderMenu(index: number): void {
         this.underMenu = this.menu[index].values;
     }
+    update(source1:Object, source2:Object){
+        
+    }
 }
