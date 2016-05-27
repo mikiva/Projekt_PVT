@@ -1,4 +1,4 @@
-<select (change)="loadSaved($event.target.value)">
+<select id="saved-analyze-option" (change)="loadSaved($event.target.value)">
     <option disabled="disabled">Load Analysis</option>
     <option *ngFor="let item of saved">
         {{item}}
