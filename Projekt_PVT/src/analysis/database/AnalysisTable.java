@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class AnalysisTable implements SqlTable {
 
-	private final static String URL = "jdbc:postgresql://localhost:5433/Bulle-dev";
+	private final static String URL = "jdbc:postgresql://localhost:5433/Bulle";
 	private final static String USERNAME = "webbulle";
 	private final static String PASSWORD = "bulle4bulle";
 
