@@ -85,6 +85,7 @@ export class GraphContainerComponent {
         var analysis = this.loadService.loadAnalysis(title)
         .subscribe(analysis => {
             
+            console.log(analysis.comment);
         var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
         var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
         this.setSourceOne(source1);
