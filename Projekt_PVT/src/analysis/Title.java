@@ -1,6 +1,6 @@
 package analysis;
 
-public final class Title {
+public final class Title implements Comparable<Title> {
 
 	private final String text;
 
@@ -41,6 +41,11 @@ public final class Title {
 		} else if (!text.equals(other.text))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Title o) {
+		return o.toString().compareTo(this.text);
 	}
 
 	
