@@ -9,7 +9,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class DatabaseService {
         
-    private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/SaveAnalyzeServlet?';
+    private saveUrl = 'http://rigel.hig.se:8080/Bulle/SaveAnalyzeServlet?';
     //private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/ServletTest?';
     private url: string;
     private responseText: string;

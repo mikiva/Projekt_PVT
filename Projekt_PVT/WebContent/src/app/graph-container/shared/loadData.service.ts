@@ -7,8 +7,8 @@ import {IDatasource} from './datasource';
 @Injectable()
 export class LoadDataService { 
     private title : string;
-    private availableUrl = "http://rigel.hig.se:8080/Bulle-dev/GetAvailableAnalysisServlet"
-    private savedUrl = "http://rigel.hig.se:8080/Bulle-dev/GetAnalysisServlet?title="
+    private availableUrl = "http://rigel.hig.se:8080/Bulle/GetAvailableAnalysisServlet"
+    private savedUrl = "http://rigel.hig.se:8080/Bulle/GetAnalysisServlet?title="
     
     constructor(private http: Http){}
        
