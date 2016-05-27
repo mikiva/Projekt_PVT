@@ -24,6 +24,10 @@
 	height: 105px;
 }
 
+#saved-analyze {
+	min-width: 300px;
+}
+
 /*.left-column, .right-column {
     float:right;
 }
