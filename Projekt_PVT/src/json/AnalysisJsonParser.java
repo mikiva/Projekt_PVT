@@ -22,7 +22,7 @@ public class AnalysisJsonParser implements JsonString {
 				+ "\"startDate\":" + "\"" + analysis.getDateRange().getStartDate() + "\","
 				+ "\"endDate\":" + "\"" + analysis.getDateRange().getEndDate() + "\","
 				+ "\"comment\":" + "\"" + analysis.getComment() + "\""
-				+ "}".replaceAll("\"","\\\"").replace("'", "\\'");
+				+ "}";
 	}
 	
 	

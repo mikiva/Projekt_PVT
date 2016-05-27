@@ -5,7 +5,7 @@ public class Comment {
 	private final String text;
 
 	public Comment(String text) {
-		this.text = text != null? text : "";
+		this.text = text.replaceAll("\"","\\\"")!= null? text : "";
 	}
 	
 	@Override
