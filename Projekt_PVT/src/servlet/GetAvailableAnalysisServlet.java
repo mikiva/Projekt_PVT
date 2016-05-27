@@ -32,6 +32,7 @@ public class GetAvailableAnalysisServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		response.setContentType("application/json;charset=UTF-8");
 		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 		List<Title> titles = db.getSavedTitles();
 		response.getWriter().append(new ListJsonParser<>(titles).toJsonString());

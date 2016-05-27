@@ -42,6 +42,7 @@ public class GetAnalysisServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
 		String responseMessage = "";
 		String titleParam = request.getParameter("title");
 
