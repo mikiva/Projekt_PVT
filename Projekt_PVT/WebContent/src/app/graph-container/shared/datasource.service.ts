@@ -12,9 +12,6 @@ export class DatasourceService {
     private url = 'http://rigel.hig.se:8080/Bulle-dev/ServletTest?';
     //private url = 'http://rigel.se:8080/Bulle/ServletTest?';
     private menuUrl = 'http://rigel.hig.se:8080/Bulle-dev/GraphChoiceJsonServlet?';
-    
-    
-
 
     constructor(private http: Http) { }
     
@@ -31,13 +28,12 @@ export class DatasourceService {
     }
 
     private handleError(error: Response) {
-        
         return Observable.throw(error.json().error || 'Server error');
     }
 
-    getUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string) {
+    private getUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string) {
         return (this.url + 'res=' + (resolution? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
-        (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : "")
-        + '&startDate=' + (dateBefore || '0000-01-01') + '&endDate=' + (dateAfter || '9999-12-30'));
+            (sourceTwo? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : "")
+            + '&startDate=' + (dateBefore || '0000-01-01') + '&endDate=' + (dateAfter || '9999-12-30'));
     } 
 }
