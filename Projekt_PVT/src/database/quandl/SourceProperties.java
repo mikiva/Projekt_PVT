@@ -17,5 +17,5 @@ public class SourceProperties {
 	public String unit() {
 		return unit;
 	}
-
+	
 }

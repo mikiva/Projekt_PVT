@@ -3,8 +3,6 @@ package json;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -34,7 +32,6 @@ public class SingleDataSourceJson implements JsonString {
 		this.finalResult = new TreeMap<>();
 		this.resultData = new TreeMap<>();
 		this.sameDateValues = new ArrayList<>();
-
 	}
 
 	@Override
@@ -65,15 +62,9 @@ public class SingleDataSourceJson implements JsonString {
 			if(previousDate == ""|| res.getLocalDate(size.getKey()).equals(previousDate)) {
 				previousDate = res.getLocalDate(size.getKey());
 				System.out.println(res.getLocalDate(size.getKey()));
-
 				sameDateValues.add(size.getValue());
-
-
 			}
 			else{
-
-
-
 				resultData.put(previousDate, sameDateValues);
 				System.out.println(resultData);
 				this.sameDateValues = new ArrayList<>();
@@ -91,11 +82,9 @@ public class SingleDataSourceJson implements JsonString {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void addToMatchDates(Double value){
-
-
 		sameDateValues.add(value);
-
 	}
 
 	private void createFinalFromResult() {
@@ -104,23 +93,20 @@ public class SingleDataSourceJson implements JsonString {
 
 			Double sum = 0.0;
 
-
 			for (int i = 0; i < map.getValue().size(); i++) {
 				sum += map.getValue().get(i);
-
 			}
+			
 			Double averageX = sum / map.getValue().size();
 
 			finalResult.put(map.getKey(), roundTwoDecimals(averageX));
 
 		}
 	}
+	
 	private double roundTwoDecimals(double d){
 		return ((double) Math.round(d * 100) / 100);
 	}
-
-
-
 
 	private String turnToJavaScriptObject(Map.Entry<String, Double> entry) {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -134,5 +120,5 @@ public class SingleDataSourceJson implements JsonString {
 		stringBuilder.append("}");
 		return stringBuilder.toString();
 	}
-
+	
 }

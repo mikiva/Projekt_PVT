@@ -62,4 +62,5 @@ public class CheckIfAnalyzeDataIsValid {
 	    String pattern= "^[a-zA-Z0-9]*$";
 	    return s != null && s.matches(pattern); 
 	}
+	
 }

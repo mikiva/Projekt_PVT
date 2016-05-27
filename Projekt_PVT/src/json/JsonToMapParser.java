@@ -26,4 +26,5 @@ public class JsonToMapParser {
     public String getString() {
     	return new Genson().deserialize(json, String.class);
     }
+    
 }

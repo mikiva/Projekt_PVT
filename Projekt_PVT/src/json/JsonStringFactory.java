@@ -7,8 +7,7 @@ import compare.Resolution;
 
 public final class JsonStringFactory {
 
-	private JsonStringFactory() {
-	}
+	private JsonStringFactory() {}
 
 	public static JsonString get(Resolution res, final DataSource... dataSources) {
 		DataSource[] sources = filterNonNull(dataSources);

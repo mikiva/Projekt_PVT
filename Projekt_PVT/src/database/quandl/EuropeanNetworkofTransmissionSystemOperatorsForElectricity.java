@@ -36,5 +36,4 @@ public class EuropeanNetworkofTransmissionSystemOperatorsForElectricity extends 
 		return "EuropeanNetworkofTransmissionSystemOperatorsForElectricity";
 	}
 	
-
 }

@@ -65,6 +65,4 @@ class QuandlDatabase implements Database {
 		return true;
 	}
 	
-	
-
 }

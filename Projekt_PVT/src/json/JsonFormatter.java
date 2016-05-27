@@ -58,4 +58,5 @@ public class JsonFormatter {
 	protected boolean isComma(char c) {
 		return c == ',';
 	}
+	
 }

@@ -20,9 +20,5 @@ public class WorldBankWorldDevelopmentIndicators extends QuandlDatabase {
 	public String toString() {
 		return "WorldBankWorldDevelopmentIndicators";
 	}
-
-
-
-
-
+	
 }

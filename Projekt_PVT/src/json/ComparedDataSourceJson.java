@@ -57,6 +57,4 @@ public class ComparedDataSourceJson implements JsonString {
 	private String getSourceName(DataSource source, String name) {
 		return "\"" + name + "\":\"" + source.getName() + "\",";
 	}
-	
-	
 }

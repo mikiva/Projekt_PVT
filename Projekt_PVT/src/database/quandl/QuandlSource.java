@@ -54,7 +54,5 @@ class QuandlSource implements DataSource {
 				list -> LocalDate.parse(list.get(0).toString()), 
 				list -> Double.parseDouble(list.get(1).toString())));
 	}
-
-
-
+	
 }

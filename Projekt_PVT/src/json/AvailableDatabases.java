@@ -5,7 +5,6 @@ import database.DatabaseFactory;
 
 public class AvailableDatabases implements JsonString {
 	
-
 	@Override
 	public String toJsonString() {
 		StringBuilder result = new StringBuilder();
@@ -27,4 +26,5 @@ public class AvailableDatabases implements JsonString {
 		result.append("]}");			
 		return result.toString();
 	}
+	
 }

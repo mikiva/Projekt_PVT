@@ -9,7 +9,6 @@ import analysis.Comment;
 import analysis.DatabaseWithSource;
 import analysis.DateRange;
 import analysis.Title;
-import compare.DataSource;
 import compare.Resolution;
 import database.Database;
 

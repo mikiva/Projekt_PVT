@@ -21,5 +21,5 @@ public class IMFCrossCountryMacroeconomicStatistics extends QuandlDatabase {
 	public String toString() {
 		return "IMFCrossCountryMacroeconomicStatistics";
 	}
-
+	
 }
