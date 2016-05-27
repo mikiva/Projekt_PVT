@@ -55,21 +55,28 @@ export class GraphContainerComponent {
     setResolution(resolution: string): void {
         this.resolution = resolution;
     }
-    setHeader(header: string){
-       document.getElementById("heading").value = header;
+    setHeader(title: string){
+       document.getElementById("title").value = title;
+    }
+    setComment(comment: string){
+        document.getElementById("comment").value = comment;
     }
 
 
     saveAnalysis() : void {
-        var observable: Observable<string> = this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle());
+        var observable: Observable<string> = this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle(), this.getComment());
         observable.subscribe(
             response => this.savedDataMessage = response,
             err => console.error(err),
             () => this.savedChild.updateList());
     }
     getTitle() {
-        return document.getElementById("heading").value;
+        return document.getElementById("title").value;
     }
+    private getComment(){
+        return document.getElementById("comment").value;
+    }
+    
     getSavedAnalysis(title: string) {
         
         console.log(title);
@@ -84,6 +91,7 @@ export class GraphContainerComponent {
         this.setDateAfter(analysis.endDate);
         this.setResolution(analysis.resolution);
         this.setHeader(analysis.title);
+        this.setComment(analysis.comment);
             
         }, err => console.error("feeeel"));
         

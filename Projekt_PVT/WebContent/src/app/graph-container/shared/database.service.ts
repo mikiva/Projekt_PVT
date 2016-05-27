@@ -17,16 +17,16 @@ export class DatabaseService {
 
     constructor(private http: Http) { }
 
-    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string): Observable<string> {
+    public saveAnalysis(dateBefore: string, dateAfter: string, resolution: string, sourceOne: Object, sourceTwo: Object, title: string, comment: string): Observable<string> {
 
-        this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title);
+        this.url = this.getSaveUrl(sourceOne, sourceTwo, resolution, dateBefore, dateAfter, title, comment);
         console.log(this.url);
 
         return this.http.get(this.url)
             .map(response => response.text());
      }
     
-    public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string) {
+    public getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string, comment:string) {
         return (this.saveUrl + 'title=' + (title ? title : 'NoTitle') + '&res=' + (resolution ? resolution : 'day') + '&database1=' + sourceOne["database"] + '&value1=' + sourceOne["dataset"] +
             (sourceTwo ? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : "")
             + '&startDate=' + (dateBefore || '0001-01-01') + '&endDate=' + (dateAfter || '9998-12-30'));
