@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -34,7 +31,7 @@ public class SqlDatabase {
 			throw new RuntimeException("Title " + analysis.getTitle() + " already exists!");
 
 		try (Connection conn = table.connectToDatabase()) {
-			 String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)" + "ON DUPLICATE KEY UPDATE \"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			 String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
 			 PreparedStatement statement = conn.prepareStatement(query);
 			
 			 statement.setString(1, analysis.getTitle().toString());
