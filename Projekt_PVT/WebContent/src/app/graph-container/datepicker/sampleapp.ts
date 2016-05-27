@@ -17,7 +17,7 @@ export class SampleDatePicker {
         width: '200px'
     };
     
-    selectedDate: string = '2016-05-13';
+    selectedDate: string = '';
     @Output() date: EventEmitter<string> = new EventEmitter<string>();
 
 
