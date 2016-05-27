@@ -1,7 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import analysis.Title;
 import analysis.database.AnalysisTable;
 import analysis.database.SqlDatabase;
-import json.ListJsonParser;
+import json.CollectionJsonParser;
 
 /**
  * Servlet implementation class GetAvailableAnalyzeServlet
@@ -34,8 +34,8 @@ public class GetAvailableAnalysisServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		response.setContentType("application/json;charset=UTF-8");
 		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
-		List<Title> titles = db.getSavedTitles();
-		response.getWriter().append(new ListJsonParser<>(titles).toJsonString());
+		Set<Title> titles = db.getSavedTitles();
+		response.getWriter().append(new CollectionJsonParser<>(titles).toJsonString());
 	}
 
 	/**

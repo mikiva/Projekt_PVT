@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import analysis.Analysis;
 import analysis.Comment;
@@ -79,8 +82,8 @@ public class SqlDatabase {
 		return analysis;
 	}
 
-	public List<Title> getSavedTitles() {
-		List<Title> titles = new ArrayList<>();
+	public Set<Title> getSavedTitles() {
+		Set<Title> titles = new TreeSet<>();
 
 		try (Connection conn = table.connectToDatabase()) {
 			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");

@@ -2,13 +2,14 @@ package json;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
-public class ListJsonParser<T> implements JsonString {
+public class CollectionJsonParser<T> implements JsonString {
 
-	private final List<T> list;
+	private final Collection<T> list;
 
-	public ListJsonParser(List<T> list) {
+	public CollectionJsonParser(Collection<T> list) {
 		this.list = list;
 	}
 
