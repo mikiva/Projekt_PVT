@@ -42,6 +42,7 @@ public class SqlDatabase {
 			 statement.setString(6, analysis.getResolution().toString());
 			 statement.setString(7, analysis.getDateRange().getStartDate().toString());
 			 statement.setString(8, analysis.getDateRange().getEndDate().toString());
+			 statement.setString(9, analysis.getComment().toString());
 			 statement.executeUpdate();
 //			conn.createStatement()
 //					.executeQuery("INSERT INTO \"" + table.name() + "\"\nVALUES " + "(\"" + analysis.getTitle() + "\","
