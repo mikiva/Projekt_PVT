@@ -11,9 +11,9 @@ export class LoadDataService{
     
     private title : string;
     
-    private availableUrl = "http://rigel.hig.se:8080/Bulle/GetAvailableAnalysisServlet"
+    private availableUrl = "http://rigel.hig.se:8080/Bulle-dev/GetAvailableAnalysisServlet"
     
-    private savedUrl = "http://rigel.hig.se:8080/Bulle/GetAnalysisServlet?title="
+    private savedUrl = "http://rigel.hig.se:8080/Bulle-dev/GetAnalysisServlet?title="
     
     
     
