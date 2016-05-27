@@ -2,20 +2,20 @@
 	<!--  row -->
 	<div class="row left30">
 		<div class="three columns">
-			<label>From what date:</label>
+			<label>From what date</label>
 			<sample-date-picker id="datepickerbefore" (date)="setDateBefore($event)"></sample-date-picker>
 		</div>
 		<div class="three columns">
-			<label>To what date:</label>  
+			<label>To what date</label>  
 			<sample-date-picker id="datepickerafter" (date)="setDateAfter($event)"></sample-date-picker>
 		</div>
-		<div class="three columns">
-			<label for="rubrik">Choose resolution: </label>
+		<div class="two columns">
+			<label for="rubrik">Resolution</label>
     		<choose-resolution (output)="setResolution($event)">ChooseResolution</choose-resolution>
 		</div>
-		<div class="three columns">
-			<label>Saved Analyze: </label>
-			<choose-saved (savedOutput)="getSavedAnalysis($event)">saved Analysis</choose-saved>
+		<div class="four columns">
+			<label>Saved Analyze</label>
+			<choose-saved id="saved-analyze" (savedOutput)="getSavedAnalysis($event)">saved Analysis</choose-saved>
 		</div>
 	</div>
 	<!--  row -->
