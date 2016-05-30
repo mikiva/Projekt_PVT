@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.*;
 import javax.servlet.http.*;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -10,6 +12,11 @@ import servlet.ServletTest;
 public class MyServletTest extends Mockito {
 	
 	// bara test kod, för att se hur det fungerar
+	
+	@Before
+    public void setUp() {
+		
+	}
 
     @Test
     public void testServlet() throws Exception {
