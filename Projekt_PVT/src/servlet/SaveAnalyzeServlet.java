@@ -23,13 +23,13 @@ import servlet.helper.CheckIfAnalyzeDataIsValid;
 @WebServlet("/SaveAnalyzeServlet")
 public class SaveAnalyzeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SaveAnalyzeServlet() {
-        super();
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public SaveAnalyzeServlet() {
+		super();
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,8 +38,8 @@ public class SaveAnalyzeServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		CheckIfAnalyzeDataIsValid check = new CheckIfAnalyzeDataIsValid();
 		StringBuffer errorMessage = new StringBuffer();
+		boolean exists = false;
 
-		
 		String title = request.getParameter("title");
 		String resolution = request.getParameter("res");
 		String dateBefore = request.getParameter("startDate");
@@ -49,17 +49,19 @@ public class SaveAnalyzeServlet extends HttpServlet {
 		String dataBaseTwo = request.getParameter("database2");
 		String datasetTwo = request.getParameter("value2");
 		String comment = request.getParameter("comment");
-		
+
 		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
-		
-		
-		
+
+
+
 		if (!check.isAlphaNumeric(title))
 			errorMessage.append("Title can only contains number and alphabet");
-		
-		if(db.getSavedTitles().contains(new Title(title)))
+
+		if(db.getSavedTitles().contains(new Title(title))){
 			errorMessage.append("Analysis with that title already exists");
-		
+	
+		}
+
 		if (!check.validResulution(resolution))
 			errorMessage.append("Wrong resulution format");
 		if (!check.validDate(dateBefore) || !check.validDate(dateAfter))
@@ -68,20 +70,21 @@ public class SaveAnalyzeServlet extends HttpServlet {
 			errorMessage.append("Wrong database format");
 		if (!check.dataSetExist(databaseOne, datasetOne) || !check.dataSetExist(dataBaseTwo, datasetTwo))
 			errorMessage.append("Wrong dateset format");
-		
+
 		if (errorMessage.length() == 0)	{
-			
+
 			Title analysisTitle = new Title(title);
 			Resolution res = Resolution.valueOf(resolution.toUpperCase());
 			DateRange dateRange = new DateRange(dateBefore, dateAfter);
 			DatabaseWithSource dbWithSource1 = new DatabaseWithSource(DatabaseFactory.get(databaseOne), datasetOne);
 			DatabaseWithSource dbWithSource2 = new DatabaseWithSource(DatabaseFactory.get(dataBaseTwo), datasetTwo);
 			Comment analysisComment = new Comment(comment);
-			
+
 			Analysis analysis = new Analysis(dbWithSource1, dbWithSource2, res, dateRange, analysisTitle, analysisComment);
-			
+
+	
 			db.saveData(analysis);
-			
+
 			response.getWriter().append("Analys \"" + analysis.getTitle() + "\" sparad i databas!");
 		} else {
 			response.getWriter().append(errorMessage.toString());
