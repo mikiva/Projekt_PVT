@@ -31,7 +31,8 @@ public class SqlDatabase {
 			throw new RuntimeException("Title " + analysis.getTitle() + " already exists!");
 
 		try (Connection conn = table.connectToDatabase()) {
-			 String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+			 String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+					 +" ON DUPLICATE KEY UPDATE 	(1=?, 2=?, 3=?, 4=?, 5??, 6=?, 7=?, 8=?, 9=?)"; 
 			 PreparedStatement statement = conn.prepareStatement(query);
 			
 			 statement.setString(1, analysis.getTitle().toString());
