@@ -53,7 +53,7 @@ public class SqlDatabase {
 
 		try(Connection conn = table.connectToDatabase()){
 
-			String query = "UPDATE \"" + table.name() + " \nSET COMMENT = ? "
+			String query = "UPDATE \"" + table.name() + "\" \nSET COMMENT = ? "
 					+  " WHERE TITLE = ?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
