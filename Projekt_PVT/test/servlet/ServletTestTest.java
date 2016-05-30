@@ -9,13 +9,14 @@ import org.mockito.Mockito;
 
 import servlet.ServletTest;
 
-public class MyServletTest extends Mockito {
+public class ServletTestTest extends Mockito {
 	
 	// bara test kod, för att se hur det fungerar
+	ServletTest servlet;
 	
 	@Before
     public void setUp() {
-		
+		servlet = new ServletTest();
 	}
 
     @Test
@@ -31,7 +32,11 @@ public class MyServletTest extends Mockito {
         new ServletTest().doGet(request, response);
 
         verify(request, atLeast(1)).getParameter("username"); // only if you want to verify username was called...
-        writer.flush(); // it may not have been flushed yet...
- 
+        writer.flush(); // it may not have been flushed yet...   
+    }
+    
+    @Test
+    public void testDatabaseParameter() {
+    	
     }
 }

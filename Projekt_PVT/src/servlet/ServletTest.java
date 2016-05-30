@@ -28,8 +28,7 @@ public class ServletTest extends HttpServlet implements Servlet {
     /**
      * Default constructor. 
      */
-    public ServletTest() {
-    }
+    public ServletTest() {}
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,16 +38,16 @@ public class ServletTest extends HttpServlet implements Servlet {
         JsonFormatter format = new JsonFormatter();
     	Resolution resolution = null;        
         
-        try{
-        resolution = Resolution.valueOf(request.getParameter("res").toUpperCase());}
-        catch(Exception e){}
-        Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
-        String database1 = request.getParameter("database1");
-        String database2 = request.getParameter("database2");
-        String value1 = request.getParameter("value1");
-        String value2 = request.getParameter("value2");
-        
-        try{   	
+        try {
+        	resolution = Resolution.valueOf(request.getParameter("res").toUpperCase());
+        }
+        catch (Exception e) {}
+        	Boolean pretty = Boolean.valueOf(request.getParameter("pretty"));
+        	String database1 = request.getParameter("database1");
+        	String database2 = request.getParameter("database2");
+        	String value1 = request.getParameter("value1");
+        	String value2 = request.getParameter("value2");
+        try {   	
         	DataSource source1 = DatabaseFactory.get(database1).getSource(value1);
         	DataSource source2 = DatabaseFactory.get(database2).getSource(value2);
         	
@@ -68,7 +67,7 @@ public class ServletTest extends HttpServlet implements Servlet {
         catch(RuntimeException e){
         	response.getWriter().append(e.getMessage());
         }    
-}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -76,5 +75,4 @@ public class ServletTest extends HttpServlet implements Servlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
 }
