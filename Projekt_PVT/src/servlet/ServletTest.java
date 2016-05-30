@@ -34,7 +34,7 @@ public class ServletTest extends HttpServlet implements Servlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		response.setContentType("application/json;charset=UTF-8");
         JsonFormatter format = new JsonFormatter();
     	Resolution resolution = null;        
