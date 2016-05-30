@@ -31,21 +31,40 @@ public class SqlDatabase {
 			throw new RuntimeException("Title " + analysis.getTitle() + " already exists!");
 
 		try (Connection conn = table.connectToDatabase()) {
-			 String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-					 +" ON DUPLICATE KEY UPDATE 	(1=?, 2=?, 3=?, 4=?, 5??, 6=?, 7=?, 8=?, 9=?)"; 
-			 PreparedStatement statement = conn.prepareStatement(query);
-			
-			 statement.setString(1, analysis.getTitle().toString());
-			 statement.setString(2, analysis.getFirstDatabaseWithSource().getDatabase().link());
-			 statement.setString(3, analysis.getFirstDatabaseWithSource().getSourceId());
-			 statement.setString(4, analysis.getSecondDatabaseAndSource().getDatabase().link());
-			 statement.setString(5, analysis.getSecondDatabaseAndSource().getSourceId());
-			 statement.setString(6, analysis.getResolution().toString());
-			 statement.setString(7, analysis.getDateRange().getStartDate().toString());
-			 statement.setString(8, analysis.getDateRange().getEndDate().toString());
-			 statement.setString(9, analysis.getComment().toString());
-			 statement.executeUpdate();
+			String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+			PreparedStatement statement = conn.prepareStatement(query);
+
+			statement.setString(1, analysis.getTitle().toString());
+			statement.setString(2, analysis.getFirstDatabaseWithSource().getDatabase().link());
+			statement.setString(3, analysis.getFirstDatabaseWithSource().getSourceId());
+			statement.setString(4, analysis.getSecondDatabaseAndSource().getDatabase().link());
+			statement.setString(5, analysis.getSecondDatabaseAndSource().getSourceId());
+			statement.setString(6, analysis.getResolution().toString());
+			statement.setString(7, analysis.getDateRange().getStartDate().toString());
+			statement.setString(8, analysis.getDateRange().getEndDate().toString());
+			statement.setString(9, analysis.getComment().toString());
+			statement.executeUpdate();
 		} catch (SQLException e) {
+			throw new TableException(e);
+		}
+	}
+
+	public void updateData(Analysis analysis){
+
+		try(Connection conn = table.connectToDatabase()){
+
+			String query = "UPDATE \"" + table.name() + " \nSET COMMENT = ? "
+					+  " WHERE TITLE = ?";
+
+			PreparedStatement statement = conn.prepareStatement(query);
+			
+			statement.setString(1,  analysis.getComment().toString());
+			statement.setString(2,  analysis.getTitle().toString());
+			
+			statement.executeUpdate();
+
+		}
+		catch(SQLException e){
 			throw new TableException(e);
 		}
 	}

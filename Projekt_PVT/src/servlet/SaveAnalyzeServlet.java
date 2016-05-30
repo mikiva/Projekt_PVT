@@ -58,8 +58,8 @@ public class SaveAnalyzeServlet extends HttpServlet {
 			errorMessage.append("Title can only contains number and alphabet");
 
 		if(db.getSavedTitles().contains(new Title(title))){
-			errorMessage.append("Analysis with that title already exists");
-	
+			//errorMessage.append("Analysis with that title already exists");
+			exists = true;
 		}
 
 		if (!check.validResulution(resolution))
@@ -82,8 +82,10 @@ public class SaveAnalyzeServlet extends HttpServlet {
 
 			Analysis analysis = new Analysis(dbWithSource1, dbWithSource2, res, dateRange, analysisTitle, analysisComment);
 
-	
-			db.saveData(analysis);
+			if(exists)
+				db.updateData(analysis);
+			else
+				db.saveData(analysis);
 
 			response.getWriter().append("Analys \"" + analysis.getTitle() + "\" sparad i databas!");
 		} else {
