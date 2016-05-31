@@ -68,6 +68,21 @@ public class SqlDatabase {
 			throw new TableException(e);
 		}
 	}
+	
+	public void deleteData(Title title){
+		
+		try(Connection conn = table.connectToDatabase()){
+			String query = "DELETE FROM \""+ table.name() + "\"\nWHERE \"TITLE\" = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			
+			statement.setString(1, title.toString());
+		}
+		catch (SQLException e){
+			throw new TableException(e);
+		}
+		
+	}
 
 	public Analysis getSavedData(Title title) {
 		Analysis analysis = null;
