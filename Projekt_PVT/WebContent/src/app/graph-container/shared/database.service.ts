@@ -11,7 +11,7 @@ export class DatabaseService {
         
     private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/SaveAnalyzeServlet?';
     //private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/ServletTest?';
-    private deleteUrl = "";
+    private deleteUrl = 'http://rigel.hig.se:8080/Bulle-dev/DeleteAnalyzeServlet?';
     private url: string;
     private responseText: string;
 
@@ -25,8 +25,8 @@ export class DatabaseService {
             .map(response => response.text());
      }
     
-    deleteAnalysis(string: title) {
-        return this.http.get(this.deleteUrl)
+    deleteAnalysis(title : string) {
+        return this.http.get(this.getDeleteUrl(title))
             .map(response => response.text);
     }
     
@@ -35,5 +35,8 @@ export class DatabaseService {
             (sourceTwo ? '&database2=' + sourceTwo["database"] + '&value2=' + sourceTwo["dataset"] : "")
             + '&startDate=' + (dateBefore || '0001-01-01') + '&endDate=' + (dateAfter || '9998-12-30') + '&comment='+comment);
 
+    }
+    getDeleteUrl(title: string){
+        return this.deleteUrl +"title="+ title;
     }
 }
