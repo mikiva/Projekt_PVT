@@ -45,8 +45,7 @@ export class GraphCorrelationComponent implements OnChanges {
                 error => this.errorMessage = <any>error,
                 () => this.plotGraph());
     }
-
-    private plotGraph(): void {
+plotGraph(): void {
         var xName = this.datasource.xName;
         var yName = this.datasource.yName;
 
@@ -81,6 +80,15 @@ export class GraphCorrelationComponent implements OnChanges {
                 type: 'scatter',
             }]
         };
+    }
+    
+    clear(){
+        
+        this.options = {
+            
+            series : [{}]
+        };
+        
     }
     ngOnChanges(changes: { [source: string]: SimpleChange }) {
         if (this.sourceOne != null && this.sourceTwo != null)

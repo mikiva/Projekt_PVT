@@ -109,8 +109,8 @@ export class GraphContainerComponent {
             err => console.error(err),
             () => this.savedChild.updateList(),
             () => this.clear(),
-            () => this.graphChild.plot(),
-            () => this.graphCorrChild.plot());
+            () => this.graphChild.clear(),
+            () => this.graphCorrChild.clear());
             
     }
         

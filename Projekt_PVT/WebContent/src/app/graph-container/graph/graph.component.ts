@@ -60,7 +60,7 @@ export class Graph implements OnChanges, OnInit {
         }
     }
     
-    private plotGraph(): void {
+    plotGraph(): void {
         var hasData : boolean = this.datasource.data.length != 0;
 
         this.options = {
@@ -80,5 +80,14 @@ export class Graph implements OnChanges, OnInit {
                 turboThreshold: 0
             }]
         };
+    }
+    
+    clear(){
+        this.options = {
+            
+            series: [{}]
+        };
+        
+        
     }
 }
