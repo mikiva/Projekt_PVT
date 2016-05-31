@@ -113,14 +113,14 @@ export class GraphContainerComponent {
         
        clear(){
            
-          this.setComment(null);
-          this.setDateAfter(null);
-          this.setDateBefore(null);
-          this.setResolution(null);
-          this.setResolution(null);
+          this.setComment("");
+          this.setDateAfter("");
+          this.setDateBefore("");
+          this.setResolution("");
+          this.setResolution("");
           this.setSourceOne({database: null, dataset: null});
           this.setSourceTwo({database: null, dataset: null});
-          this.setHeader(null);
+          this.setHeader("");
            
        } 
        /* var deleteAnalysis = this.databaseService.deleteAnalysis(title)
