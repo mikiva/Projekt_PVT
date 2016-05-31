@@ -27,7 +27,7 @@ export class ChooseSaved implements OnInit{
                 error => this.errorMessage = <any>error);
     }
     
-    loadSaved(title: string): void{
+   public loadSaved(title: string): void{
         this.savedOutput.emit(title);
     }
 }

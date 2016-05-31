@@ -105,11 +105,24 @@ export class GraphContainerComponent {
          var deleteAnalysis = this.databaseService.deleteAnalysis(this.getTitle())
             .subscribe(response => this.savedDataMessage = response,
             err => console.error(err),
-            () => this.savedChild.updateList());
+            () => this.savedChild.updateList(),
+            () => this.clear());
+            
     }
         
         
-        
+       clear(){
+           
+          this.setComment(null);
+          this.setDateAfter(null);
+          this.setDateBefore(null);
+          this.setResolution(null);
+          this.setResolution(null);
+          this.setSourceOne({database: null, dataset: null});
+          this.setSourceTwo({database: null, dataset: null});
+          this.setHeader(null);
+           
+       } 
        /* var deleteAnalysis = this.databaseService.deleteAnalysis(title)
             .subscribe(deleteAnalysis => {
                 console.log(deleteAnalysis);
