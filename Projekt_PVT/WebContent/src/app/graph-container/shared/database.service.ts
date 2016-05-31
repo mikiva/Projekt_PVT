@@ -26,7 +26,10 @@ export class DatabaseService {
      }
     
     deleteAnalysis(title : string) {
-        return this.http.get(this.getDeleteUrl(title))
+        this.deleteUrl = this.getDeleteUrl(title);    
+        console.log(this.deleteUrl);    
+        
+        return this.http.get(this.deleteUrl)
             .map(response => response.text);
     }
     
