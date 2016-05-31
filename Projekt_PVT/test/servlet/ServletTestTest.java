@@ -4,6 +4,7 @@ import java.io.*;
 import javax.servlet.http.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -20,6 +21,7 @@ public class ServletTestTest extends Mockito {
 	}
 
     @Test
+    @Ignore
     public void testServlet() throws Exception {
         HttpServletRequest request = mock(HttpServletRequest.class);       
         HttpServletResponse response = mock(HttpServletResponse.class);    
