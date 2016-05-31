@@ -103,9 +103,16 @@ export class GraphContainerComponent {
         var title = this.getTitle();
         //console.log(title);
         
-        var deleteAnalysis = this.databaseService.deleteAnalysis(title)
+         var deleteAnalysis = this.databaseService.deleteAnalysis(title)
+            .subscribe(response => this.savedDataMessage = response,
+            err => console.log(err));
+    }
+        
+        
+        
+       /* var deleteAnalysis = this.databaseService.deleteAnalysis(title)
             .subscribe(deleteAnalysis => {
                 console.log(deleteAnalysis);
-            }, err => console.log(err));
+            }, err => console.log(err));*/
     }
 }
