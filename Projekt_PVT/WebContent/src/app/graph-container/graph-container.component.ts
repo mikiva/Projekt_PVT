@@ -99,12 +99,13 @@ export class GraphContainerComponent {
         }, err => console.error(err));
     }
     
-    deleteAnalysis(title: string) {
-        console.log(title);
+    deleteAnalysis() {
+        var title = this.getTitle();
+        //console.log(title);
         
         var deleteAnalysis = this.databaseService.deleteAnalysis(title)
             .subscribe(deleteAnalysis => {
                 console.log(deleteAnalysis);
-            }, err => console.log(err);
+            }, err => console.log(err));
     }
 }
