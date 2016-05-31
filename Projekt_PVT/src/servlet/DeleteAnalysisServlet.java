@@ -29,7 +29,7 @@ public class DeleteAnalysisServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/json;charset=UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 
 		Title title = new Title(request.getParameter("title"));
 

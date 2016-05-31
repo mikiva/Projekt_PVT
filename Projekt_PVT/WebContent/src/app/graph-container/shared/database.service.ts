@@ -11,7 +11,7 @@ export class DatabaseService {
         
     private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/SaveAnalyzeServlet?';
     //private saveUrl = 'http://rigel.hig.se:8080/Bulle-dev/ServletTest?';
-    private deleteUrl = 'http://rigel.hig.se:8080/Bulle-dev/DeleteAnalyzeServlet?';
+    private deleteUrl = 'http://rigel.hig.se:8080/Bulle-dev/DeleteAnalysisServlet?';
     private url: string;
     private responseText: string;
 

@@ -25,6 +25,7 @@ public class AnalysisTable implements SqlTable {
 	public Connection connectToDatabase() {
 		Connection conn = null;
 		try {
+	
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		} catch (SQLException e) {
 			throw new TableException(e);
