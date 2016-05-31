@@ -82,12 +82,17 @@ public class SaveAnalyzeServlet extends HttpServlet {
 
 			Analysis analysis = new Analysis(dbWithSource1, dbWithSource2, res, dateRange, analysisTitle, analysisComment);
 
-			if(exists)
+			String responseMessage = "";
+			if(exists) {
 				db.updateData(analysis);
-			else
+				responseMessage = "Existing analysis \"" + analysis.getTitle() + "\" updated!";
+			}
+			else {
 				db.saveData(analysis);
+				responseMessage = "Analys \"" + analysis.getTitle() + "\" sparad i databas!";
+			}
 
-			response.getWriter().append("Analys \"" + analysis.getTitle() + "\" sparad i databas!");
+			response.getWriter().append(responseMessage);
 		} else {
 			response.getWriter().append(errorMessage.toString());
 		}
