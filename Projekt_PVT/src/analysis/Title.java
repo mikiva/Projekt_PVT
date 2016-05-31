@@ -44,8 +44,8 @@ public final class Title implements Comparable<Title> {
 	}
 
 	@Override
-	public int compareTo(Title o) {
-		return o.toString().compareTo(this.text);
+	public int compareTo(Title t) {
+		return this.text.toString().compareTo(t.text);
 	}
 
 	
