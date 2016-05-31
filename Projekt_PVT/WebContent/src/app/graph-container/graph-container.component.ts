@@ -105,7 +105,8 @@ export class GraphContainerComponent {
         
          var deleteAnalysis = this.databaseService.deleteAnalysis(title)
             .subscribe(response => this.savedDataMessage = response,
-            err => console.error(err));
+            err => console.error(err),
+            () => this.savedChild.updateList());
     }
         
         
