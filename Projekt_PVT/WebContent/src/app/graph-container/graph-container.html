@@ -43,8 +43,11 @@
     		<div> 	
 	  			<textarea id="comment" placeholder="Write a comment"></textarea>
 	   			<br />
-	   			<button id="save" (click)="saveAnalysis()"> Save Analysis</button>
-				   <p id="msg">{{savedDataMessage}}</p>
+	   			<button id="save" (click)="saveAnalysis()">Save Analysis</button>
+	   			&nbsp;
+	   			&nbsp;
+	   			<button (click)="deleteAnalysis()">Delete Analysis</button>
+				<p id="msg">{{savedDataMessage}}</p>
 	   		</div>
 		</div>
 	</div>

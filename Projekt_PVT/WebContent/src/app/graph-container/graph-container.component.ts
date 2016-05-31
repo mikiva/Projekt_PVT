@@ -32,9 +32,9 @@ export class GraphContainerComponent {
     
     savedDataMessage: string = "";
     
-    @ViewChild(ChooseSaved) savedChild:ChooseSaved;
+    @ViewChild (ChooseSaved) savedChild:ChooseSaved;
     @ViewChild (ChooseResolution) resChild:ChooseResolution;
-    @ViewChild(ChooseSource) sourceChild:ChooseSource;
+    @ViewChild (ChooseSource) sourceChild:ChooseSource;
 
     constructor(private databaseService: DatabaseService, private loadService: LoadDataService) { }
 
@@ -57,13 +57,14 @@ export class GraphContainerComponent {
     setResolution(resolution: string): void {
         this.resolution = resolution;
     }
+    
     setHeader(title: string){
        document.getElementById("title").value = title;
     }
+    
     setComment(comment: string){
         document.getElementById("comment").value = comment;
     }
-
 
     saveAnalysis() : void {
         var observable: Observable<string> = this.databaseService.saveAnalysis(this.dateBefore, this.dateAfter, this.resolution, this.sourceOne, this.sourceTwo, this.getTitle(), this.getComment());
@@ -72,35 +73,38 @@ export class GraphContainerComponent {
             err => console.error(err),
             () => this.savedChild.updateList());
     }
+    
     getTitle() {
         return document.getElementById("title").value;
     }
+    
     private getComment(){
         return document.getElementById("comment").value;
     }
     
     getSavedAnalysis(title: string) {
-        
         console.log(title);
         var analysis = this.loadService.loadAnalysis(title)
-        .subscribe(analysis => {
-            
-            console.log(analysis.comment);
-        var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
-        var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
-        this.setSourceOne(source1);
-        this.setSourceTwo(source2);
-        this.setDateBefore(analysis.startDate);
-        this.setDateAfter(analysis.endDate);
-        this.setResolution(analysis.resolution);
-        this.setHeader(analysis.title);
-        this.setComment(analysis.comment);
+            .subscribe(analysis => {
+                console.log(analysis.comment);
+                var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
+                var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
+                this.setSourceOne(source1);
+                this.setSourceTwo(source2);
+                this.setDateBefore(analysis.startDate);
+                this.setDateAfter(analysis.endDate);
+                this.setResolution(analysis.resolution);
+                this.setHeader(analysis.title);
+                this.setComment(analysis.comment);
         }, err => console.error(err));
-        
-      
-
-        
-
     }
-
+    
+    deleteAnalysis(title: string) {
+        console.log(title);
+        
+        var deleteAnalysis = this.databaseService.deleteAnalysis(title)
+            .subscribe(deleteAnalysis => {
+                console.log(deleteAnalysis);
+            }, err => console.log(err);
+    }
 }
