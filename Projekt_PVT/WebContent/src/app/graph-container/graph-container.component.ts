@@ -35,6 +35,8 @@ export class GraphContainerComponent {
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
     @ViewChild (ChooseResolution) resChild:ChooseResolution;
     @ViewChild (ChooseSource) sourceChild:ChooseSource;
+    @ViewChild (Graph) graphChild:Graph;
+    @ViewChild (GraphCorrelationComponent) graphCorrChild:GraphCorrelationComponent;
 
     constructor(private databaseService: DatabaseService, private loadService: LoadDataService) { }
 
@@ -106,7 +108,9 @@ export class GraphContainerComponent {
             .subscribe(response => this.savedDataMessage = response,
             err => console.error(err),
             () => this.savedChild.updateList(),
-            () => this.clear());
+            () => this.clear(),
+            () => this.graphChild.plot(),
+            () => this.graphCorrChild.plot());
             
     }
         
