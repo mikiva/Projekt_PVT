@@ -40,6 +40,6 @@ export class DatabaseService {
 
     }
     getDeleteUrl(title: string){
-        return this.deleteUrl +"title="+ title;
+        return (this.deleteUrl +"title="+ title);
     }
 }
