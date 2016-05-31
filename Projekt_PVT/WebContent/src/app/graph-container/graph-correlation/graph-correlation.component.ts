@@ -83,7 +83,7 @@ plotGraph(): void {
     }
     
     clear(){
-        
+        console.log("Clear graphCorr");
         this.options = {
             
             series : [{}]

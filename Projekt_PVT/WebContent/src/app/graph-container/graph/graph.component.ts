@@ -83,6 +83,8 @@ export class Graph implements OnChanges, OnInit {
     }
     
     clear(){
+        
+         console.log("Clear graph");
         this.options = {
             
             series: [{}]
