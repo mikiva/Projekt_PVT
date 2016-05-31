@@ -30,7 +30,7 @@ export class DatabaseService {
         console.log(this.deleteUrl);    
         
         return this.http.get(this.deleteUrl)
-            .map(response => response.text);
+            .map(response => response.text());
     }
     
     getSaveUrl(sourceOne: Object, sourceTwo: Object, resolution: string, dateBefore: string, dateAfter: string, title: string, comment:string) {
