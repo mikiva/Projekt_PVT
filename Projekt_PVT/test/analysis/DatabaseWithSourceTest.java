@@ -1,12 +1,13 @@
 package analysis;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import analysis.DatabaseWithSource.DataSourceException;
+
+import analysis.DatabaseWithSource.NullDataSourceException;
 import analysis.DatabaseWithSource.NullDatabaseException;
 import compare.DataSource;
 import database.Database;
@@ -31,7 +32,7 @@ public class DatabaseWithSourceTest {
 		new DatabaseWithSource(null, ID);
 	}
 
-	@Test(expected = DataSourceException.class)
+	@Test(expected = NullDataSourceException.class)
 	public void dataSourceShouldNotEverBeNull() throws Exception {
 		new DatabaseWithSource(mock(Database.class), null);
 	}
