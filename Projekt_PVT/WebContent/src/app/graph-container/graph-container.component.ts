@@ -96,11 +96,11 @@ export class GraphContainerComponent {
         
        
         
-        var sM1 = this.analysis.database1.toString();
-        var sUm1 = this.analysis.datasource1.toString();
+        var sM1 = this.analysis.database1;
+        var sUm1 = this.analysis.datasource1;
         
-        var sM2 = this.analysis.database2.toString();
-        var sUm2 = this.analysis.datasource2.toString();
+        var sM2 = this.analysis.database2;
+        var sUm2 = this.analysis.datasource2;
         
         
         console.log(sM1);
@@ -117,18 +117,19 @@ export class GraphContainerComponent {
     getSavedAnalysis(title: string) {
         console.log(title);
         this.analysis = this.loadService.loadAnalysis(title)
-            .subscribe(analysis => {
-                console.log(analysis.comment);
-                var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
-                var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
+            .subscribe(analys => {
+                console.log(this.analysis.comment);
+                var source1 : Object = {database: this.analysis.database1, dataset: this.analysis.datasource1};
+                var source2 : Object = {database: this.analysis.database2, dataset: this.analysis.datasource2};
                 this.setSourceOne(source1);
                 this.setSourceTwo(source2);
-                this.setDateBefore(analysis.startDate);
-                this.setDateAfter(analysis.endDate);
-                this.setResolution(analysis.resolution);
-                this.setHeader(analysis.title);
-                this.setComment(analysis.comment);
+                this.setDateBefore(this.analysis.startDate);
+                this.setDateAfter(this.analysis.endDate);
+                this.setResolution(this.analysis.resolution);
+                this.setHeader(this.analysis.title);
+                this.setComment(this.analysis.comment);
         }, err => console.error(err),
+        console.log(this.analysis.database1),
         () => this.updateDropdowns());
     }
     
