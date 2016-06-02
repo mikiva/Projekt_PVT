@@ -68,7 +68,5 @@ public class MiscDatabase implements Database {
 			return false;
 		return true;
 	}
-	
-	
 
 }

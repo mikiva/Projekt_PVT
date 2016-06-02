@@ -6,7 +6,6 @@ import org.junit.Test;
 
 public class SourcePropertiesTest {
 
-	
 	private SourceProperties createSourceProperties() {
 		return new SourceProperties("namn", "enhet");
 	}

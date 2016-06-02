@@ -12,7 +12,6 @@ import compare.Resolution;
 
 import java.util.Map.Entry;
 
-
 public class SingleDataSourceJson implements JsonString {
 
 	private DataSource src;

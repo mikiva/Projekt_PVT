@@ -23,6 +23,7 @@ import json.JsonStringFactory;
  */
 @WebServlet("/ServletTest")
 public class ServletTest extends HttpServlet implements Servlet {
+	
 	private static final long serialVersionUID = 1L;
 	
     /**
@@ -75,4 +76,5 @@ public class ServletTest extends HttpServlet implements Servlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+	
 }

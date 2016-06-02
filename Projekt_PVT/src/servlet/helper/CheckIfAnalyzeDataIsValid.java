@@ -10,6 +10,7 @@ import database.DatabaseFactory;
 import database.NullDatabase;
 
 public class CheckIfAnalyzeDataIsValid {
+	
 	private DatabaseFactory df;
 
 	public boolean validDate(String date) {

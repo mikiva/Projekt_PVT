@@ -59,4 +59,5 @@ class GoldPriceSource implements DataSource {
 			result.put(dates.get(i), values.get(i));
 		}
 	}
+	
 }

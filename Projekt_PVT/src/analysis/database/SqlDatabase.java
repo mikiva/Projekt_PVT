@@ -82,7 +82,6 @@ public class SqlDatabase {
 		catch (SQLException e){
 			throw new TableException(e);
 		}
-		
 	}
 
 	public Analysis getSavedData(Title title) {
@@ -127,4 +126,5 @@ public class SqlDatabase {
 		}
 		return titles;
 	}
+	
 }

@@ -51,6 +51,4 @@ public class DatabaseWithSourceTest {
 		assertEquals(ID, dbAndSource.getSourceId());
 	}
 	
-	
-
 }

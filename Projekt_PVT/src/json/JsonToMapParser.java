@@ -1,10 +1,8 @@
 package json;
 
-
 import java.util.Map;
 
 import com.owlike.genson.Genson;
-
 
 /**
  *

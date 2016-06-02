@@ -43,4 +43,5 @@ public class EuropeanNetworkofTransmissionSystemOperatorsForElectricityTest {
 	public void throwsExceptionWhenDataSourceDoesNotExistInDataBase() throws Exception {
 		new EuropeanNetworkofTransmissionSystemOperatorsForElectricity().getSource("NEJ");
 	}
+	
 }

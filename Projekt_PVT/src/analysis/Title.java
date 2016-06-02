@@ -48,6 +48,4 @@ public final class Title implements Comparable<Title> {
 		return this.text.toString().compareTo(t.text);
 	}
 
-	
-	
 }

@@ -39,6 +39,7 @@ export class DatabaseService {
             + '&startDate=' + (dateBefore || '0001-01-01') + '&endDate=' + (dateAfter || '9998-12-30') + '&comment='+comment);
 
     }
+    
     getDeleteUrl(title: string){
         return (this.deleteUrl +"title="+ title);
     }

@@ -10,15 +10,15 @@ export class LoadDataService {
     private availableUrl = "http://rigel.hig.se:8080/Bulle-dev/GetAvailableAnalysisServlet"
     private savedUrl = "http://rigel.hig.se:8080/Bulle-dev/GetAnalysisServlet?title="
     
-    constructor(private http: Http){}
+    constructor(private http: Http) {}
        
-    getSaved(){
+    getSaved() {
         return this.http.get(this.availableUrl)
             .map((response: Response) => <string[]> response.json().values)
             .catch(this.handleError);
     }
     
-    loadAnalysis(title:string): Observable<any>{
+    loadAnalysis(title:string): Observable<any> {
         return this.http.get(this.getLoadUrl(title))
             .map((response: Response) => <any> response.json())
             .catch(this.handleError);  
@@ -28,7 +28,7 @@ export class LoadDataService {
         return Observable.throw(error.json().error || 'Server error');
     }
     
-    private  getLoadUrl(title: string){
+    private  getLoadUrl(title: string) {
         return (this.savedUrl + title);    
     }
 }

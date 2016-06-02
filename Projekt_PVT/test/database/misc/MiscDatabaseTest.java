@@ -45,6 +45,5 @@ public class MiscDatabaseTest {
 		assertNull(createDatabase().getSource("INVALID"));
 		assertNull(createDatabase().getSource(null));
 	}
-
 	
 }

@@ -11,6 +11,7 @@ import org.junit.Test;
 public class DataCollectionTest {
 
 	private static final Map<String, MatchedDataPair> data = new HashMap<>();
+	
 	static {
 		data.put("2005-05-12", new MatchedDataPair(5.0, 51.0));
 		data.put("2012-02-09", new MatchedDataPair(5.0, 1.123));
@@ -46,4 +47,5 @@ public class DataCollectionTest {
 		DataCollection coll = createDataCollection();
 		assertEquals(data, coll.getData());
 	}
+	
 }

@@ -16,6 +16,7 @@ import analysis.database.SqlDatabase;
  */
 @WebServlet("/DeleteAnalysisServlet")
 public class DeleteAnalysisServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
 	/**

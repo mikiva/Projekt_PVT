@@ -10,6 +10,7 @@ import database.UrlFetcher;
 import json.JsonToMapParser;
 
 class QuandlSource implements DataSource {
+	
 	private final Map<String, Object> dataset;
 	private final SourceProperties properties;
 

@@ -14,7 +14,6 @@ public class WorldBankWorldDevelopmentIndicatorsTest {
 		{"SWE_NY_GDP_MKTP_KD_ZG", "GDP growth Sweden"}
 	};
 	
-	
 	@Test
 	public void getLinkToDatabaseCode() throws Exception {
 		assertEquals("WWDI", new WorldBankWorldDevelopmentIndicators().link());

@@ -14,7 +14,6 @@ import database.Database;
 public class AnalysisTest {
 
 	private Analysis analysis;
-	
 	private DatabaseWithSource dbAndSource1;
 	private DatabaseWithSource dbAndSource2;
 	private Resolution resolution;

@@ -22,6 +22,7 @@ import servlet.helper.CheckIfAnalyzeDataIsValid;
  */
 @WebServlet("/SaveAnalyzeServlet")
 public class SaveAnalyzeServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
 	/**

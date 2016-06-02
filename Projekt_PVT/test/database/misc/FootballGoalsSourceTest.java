@@ -43,4 +43,5 @@ public class FootballGoalsSourceTest {
 	public void testIncorrectValue() {
 		assertEquals(null, csvMap.get(LocalDate.parse("2666-01-01")));
 	}
+	
 }
