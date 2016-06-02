@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import analysis.Analysis;
 import analysis.Comment;
@@ -19,19 +21,41 @@ import database.DatabaseFactory;
 public class SqlDatabase {
 
 	private final SqlTable table;
+	private final Map<Title, Analysis> analyses;
 
 	public SqlDatabase(SqlTable table) {
 		if (table == null)
 			throw new NullPointerException();
 		this.table = table;
+
+		this.analyses = initializeValues(this.table);
 	}
 
-	public void saveData(Analysis analysis) {
-		if (getSavedTitles().contains(analysis.getTitle()))
-			throw new RuntimeException("Title " + analysis.getTitle() + " already exists!");
+	SqlDatabase(SqlTable table, Map<Title, Analysis> analyses) {
+		this.table = table;
+		this.analyses = analyses;
+	}
+
+	private Map<Title, Analysis> initializeValues(SqlTable table) {
+		Map<Title, Analysis> analyses = new TreeMap<>();
 
 		try (Connection conn = table.connectToDatabase()) {
-			String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
+
+			while (rs.next()) {
+				Analysis analysis = createAnalysis(rs);
+				analyses.put(analysis.getTitle(), analysis);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return analyses;
+	}
+
+	public SqlDatabase saveData(Analysis analysis) {
+		try (Connection conn = table.connectToDatabase()) {
+			String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = conn.prepareStatement(query);
 
 			statement.setString(1, analysis.getTitle().toString());
@@ -47,56 +71,36 @@ public class SqlDatabase {
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
+		return new SqlDatabase(this.table);
 	}
 
-	public void updateData(Analysis analysis){
+	public void updateData(Analysis analysis) {
 
-		try(Connection conn = table.connectToDatabase()){
-
-			String query = "UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? "
-					+  " \nWHERE \"TITLE\" = ?";
-
-			PreparedStatement statement = conn.prepareStatement(query);
-			
-			statement.setString(1,  analysis.getComment().toString());
-			statement.setString(2,  analysis.getTitle().toString());
-			
-			statement.executeUpdate();
-
-		}
-		catch(SQLException e){
-			throw new TableException(e);
-		}
-	}
-	
-	public void deleteData(Title title){
-		
-		try(Connection conn = table.connectToDatabase()){
-			String query = "DELETE FROM \""+ table.name() + "\"\nWHERE \"TITLE\" = ?";
-			
-			PreparedStatement statement = conn.prepareStatement(query);
-			
-			statement.setString(1, title.toString());
-		}
-		catch (SQLException e){
-			throw new TableException(e);
-		}
-		
-	}
-
-	public Analysis getSavedData(Title title) {
-		Analysis analysis = null;
-		String query = "SELECT * FROM \"" + table.name() + "\" WHERE \"TITLE\"='" + title + "'";
-		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
-			ResultSet rs = conn.createStatement().executeQuery(query);
-			if (rs.next())
-				analysis = createAnalysis(rs);
+
+			String query = "UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? " + " \nWHERE \"TITLE\" = ?";
+
+			PreparedStatement statement = conn.prepareStatement(query);
+
+			statement.setString(1, analysis.getComment().toString());
+			statement.setString(2, analysis.getTitle().toString());
+
+			statement.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
-		return analysis;
+	}
+
+	public SqlDatabase deleteData(Title title) {
+		try (Connection conn = table.connectToDatabase()) {
+			String query = "DELETE FROM \"" + table.name() + "\"\nWHERE \"TITLE\" = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, title.toString());
+		} catch (SQLException e) {
+			throw new TableException(e);
+		}
+		return new SqlDatabase(this.table);
 	}
 
 	private Analysis createAnalysis(ResultSet rs) throws SQLException {
@@ -114,16 +118,11 @@ public class SqlDatabase {
 		return analysis;
 	}
 
+	public Analysis getSavedData(Title title) {
+		return analyses.get(title);
+	}
+	
 	public Set<Title> getSavedTitles() {
-		Set<Title> titles = new TreeSet<>();
-
-		try (Connection conn = table.connectToDatabase()) {
-			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
-			while (rs.next())
-				titles.add(new Title(rs.getString("TITLE")));
-		} catch (SQLException e) {
-			throw new TableException("Error connecting to database");
-		}
-		return titles;
+		return analyses.keySet().stream().collect(Collectors.toSet());
 	}
 }

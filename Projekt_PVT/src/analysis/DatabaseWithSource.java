@@ -19,8 +19,8 @@ public class DatabaseWithSource {
 	private void legalCheck(Database database, String sourceId) {
 		if (database == null)
 			throw new NullDatabaseException();
-		if (database.getSource(sourceId) == null)
-			throw new DataSourceException("ID returned null value!");
+		if (sourceId == null)
+			throw new NullDataSourceException();
 	}
 	
 	public DataSource getSource() {
@@ -35,7 +35,7 @@ public class DatabaseWithSource {
 		return sourceId;
 	}
 	
-	class NullDatabaseException extends RuntimeException {
+	class NullDatabaseException extends NullPointerException {
 		private static final long serialVersionUID = 3217394004683768549L;
 		
 		public NullDatabaseException() {
@@ -43,15 +43,11 @@ public class DatabaseWithSource {
 		}
 	}
 
-	class DataSourceException extends RuntimeException {
+	class NullDataSourceException extends NullPointerException {
 		private static final long serialVersionUID = 4510766211481132340L;
 
-		public DataSourceException() {
+		public NullDataSourceException() {
 			super();
-		}
-
-		public DataSourceException(String msg) {
-			super(msg);
 		}
 	}
 

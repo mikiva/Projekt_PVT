@@ -11,6 +11,7 @@ import database.quandl.WorldBankWorldDevelopmentIndicators;
 public class DatabaseFactory {
 
 	private final static Map<String, Database> DATABASES = new HashMap<>();
+	private final static Database EMPTY_DATABASE = new NullDatabase();
 
 	static {
 		DATABASES.put("ENTSOE", new EuropeanNetworkofTransmissionSystemOperatorsForElectricity());
@@ -20,7 +21,7 @@ public class DatabaseFactory {
 	}
 
 	public static Database get(String id) {
-		return DATABASES.getOrDefault(id, Database.EMPTY_DATABASE);
+		return DATABASES.getOrDefault(id, EMPTY_DATABASE);
 	}
 
 	public static Database[] all() {
