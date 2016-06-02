@@ -71,5 +71,9 @@ export class ChooseSource implements OnInit, OnChanges {
 
 
     }
+    
+    onClick(){
+        this.updateDropdown();
+    }
 
 }
