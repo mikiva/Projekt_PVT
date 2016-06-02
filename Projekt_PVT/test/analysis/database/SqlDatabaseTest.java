@@ -89,6 +89,18 @@ public class SqlDatabaseTest {
 		assertFalse(deleted.getSavedTitles().contains(new Title("hej")));
 	}
 	
+	@Test
+	public void canUpdateACommentOnASavedAnalysis() throws Exception {
+		when(conn.prepareStatement("UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? " + " \nWHERE \"TITLE\" = ?")).thenReturn(mock(PreparedStatement.class));
+		when(rs.next()).thenReturn(true, true, false);
+		when(rs.getString("TITLE")).thenReturn("hej", "hallå");
+		when(rs.getString("COMMENT")).thenReturn("new");
+		Title savedAnalyisTitle = new Title("hej");
+		SqlDatabase updated = sql.updateData(createAnalysisWithComment(savedAnalyisTitle, new Comment("new")));
+		assertEquals("No comment", sql.getSavedData(savedAnalyisTitle).getComment().toString());
+		assertNotEquals("No comment", updated.getSavedData(savedAnalyisTitle).getComment().toString());
+	}
+	
 	private void insertMockAnalysesByTitle(String title, String... titles) throws SQLException {
 		when(rs.getString("TITLE")).thenReturn(title, titles);
 		when(rs.getString("DATABASE_1")).thenReturn("DATABASE");
@@ -103,6 +115,10 @@ public class SqlDatabaseTest {
 	
 	
 	private Analysis createAnalysis(Title title) {
+		return createAnalysisWithComment(title, new Comment("No comment"));
+	}
+	
+	private Analysis createAnalysisWithComment(Title title, Comment comment) {
 		DatabaseWithSource dbws = mock(DatabaseWithSource.class);
 		Database db = mock(Database.class);
 		when(dbws.getDatabase()).thenReturn(db);
@@ -115,6 +131,6 @@ public class SqlDatabaseTest {
 				Resolution.DAY, 
 				new DateRange("2015-01-10", "2015-02-10"), 
 				title, 
-				new Comment(""));
+				comment);
 	}
 }
