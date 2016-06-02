@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange, ElementRef} from '@angular/core';
 import {NgIf, NgFor, NgClass, NgStyle, NgModel} from '@angular/common';
+
 import {MyDate, MyMonth} from './interfaces';
 
 const styles: string = 'src/app/graph-container/datepicker/my-datepicker.css';

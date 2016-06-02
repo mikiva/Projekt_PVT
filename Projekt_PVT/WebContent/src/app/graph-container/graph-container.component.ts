@@ -6,7 +6,7 @@ import {Graph} from './graph/graph.component';
 import {GraphCorrelationComponent} from './graph-correlation/graph-correlation.component';
 import {ChooseSource} from './choose-datasource/choose-datasource.component';
 import {ChooseResolution} from './choose-resolution/choose-resolution.component';
-import {SampleDatePicker} from './datepicker/sampleapp';
+import {MainDatePicker} from './datepicker/maindatepicker';
 import {MyDatePicker} from './mydatepicker';
 import {DatabaseService} from './shared/database.service';
 import {LoadDataService} from './shared/loadData.service';
@@ -14,7 +14,7 @@ import {ChooseSaved} from './choose-saved-analysis/choose-saved.component';
 
 @Component({
     selector: 'graph-container',
-    directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker, ChooseSaved],
+    directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, MainDatePicker, ChooseSaved],
     templateUrl: 'src/app/graph-container/graph-container.html',
     providers: [DatabaseService, HTTP_PROVIDERS, LoadDataService]
 })
