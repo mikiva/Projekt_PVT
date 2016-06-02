@@ -103,7 +103,8 @@ export class GraphContainerComponent {
         console.log(sUm2);
         
 
-     
+     s1.click();
+     s2.click();
      
         
         
