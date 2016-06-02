@@ -117,20 +117,21 @@ export class GraphContainerComponent {
     getSavedAnalysis(title: string) {
         console.log(title);
         this.analysis = this.loadService.loadAnalysis(title)
-            .subscribe(analys => {
+            .subscribe(analysis => {
                 console.log(this.analysis.comment);
-                var source1 : Object = {database: this.analysis.database1, dataset: this.analysis.datasource1};
-                var source2 : Object = {database: this.analysis.database2, dataset: this.analysis.datasource2};
+                var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
+                var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
                 this.setSourceOne(source1);
                 this.setSourceTwo(source2);
-                this.setDateBefore(this.analysis.startDate);
-                this.setDateAfter(this.analysis.endDate);
-                this.setResolution(this.analysis.resolution);
-                this.setHeader(this.analysis.title);
-                this.setComment(this.analysis.comment);
+                this.setDateBefore(analysis.startDate);
+                this.setDateAfter(analysis.endDate);
+                this.setResolution(analysis.resolution);
+                this.setHeader(analysis.title);
+                this.setComment(analysis.comment);
         }, err => console.error(err),
-        console.log(this.analysis.database1),
         () => this.updateDropdowns());
+        
+        console.log(this.analysis);
     }
     
     deleteAnalysis() {
