@@ -97,6 +97,9 @@ export class GraphContainerComponent {
         var sUm2 = this.sourceTwo.dataset;
         
         
+        console.log(sM2);
+        console.log(sUm2);
+        
 
      
      
