@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -32,6 +33,7 @@ public class GetGraphDataServletTest extends Mockito {
 	}
 
 	@Test
+	@Ignore
 	public void testEmptyParameters() {
 
 		when(emptyRequest.getParameter("title")).thenReturn("");
