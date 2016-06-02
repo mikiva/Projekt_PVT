@@ -16,7 +16,6 @@ public class DatabaseFactory {
 	static {
 		DATABASES.put("ENTSOE", new EuropeanNetworkofTransmissionSystemOperatorsForElectricity());
 		DATABASES.put("ODA", new IMFCrossCountryMacroeconomicStatistics());
-		DATABASES.put("WWDI", new WorldBankWorldDevelopmentIndicators());
 		DATABASES.put("misc", new MiscDatabase());
 	}
 
