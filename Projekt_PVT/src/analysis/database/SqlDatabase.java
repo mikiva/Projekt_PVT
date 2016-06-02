@@ -101,6 +101,7 @@ public class SqlDatabase {
 			String query = "DELETE FROM \"" + table.name() + "\"\nWHERE \"TITLE\" = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, title.toString());
+			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
