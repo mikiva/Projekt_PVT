@@ -37,6 +37,11 @@ public class SaveAnalyzeServlet extends HttpServlet {
 	public SaveAnalyzeServlet(SqlDatabase db) {
 		this.db = db;
 	}
+	
+	@Override
+	public void init() throws ServletException {
+		db = new SqlDatabase(AnalysisTable.getInstance());
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
