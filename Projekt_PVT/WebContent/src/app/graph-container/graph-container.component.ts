@@ -128,8 +128,9 @@ export class GraphContainerComponent {
                 this.setResolution(analysis.resolution);
                 this.setHeader(analysis.title);
                 this.setComment(analysis.comment);
-        }, err => console.error(err),
-        () => this.updateDropdowns());
+        }, err => console.error(err));
+        
+        
         
         console.log(this.analysis);
     }
