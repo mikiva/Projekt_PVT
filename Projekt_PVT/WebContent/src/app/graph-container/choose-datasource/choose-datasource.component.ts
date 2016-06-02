@@ -12,6 +12,7 @@ import {Menu} from './menu';
 export class ChooseSource implements OnInit, OnChanges {
     @Output() sourceOutput: EventEmitter = new EventEmitter();
     @Input() sourceInput: Object;
+    @Input() clicked: boolean = false;
     source: Object = null;
     database: string;
 
@@ -68,11 +69,11 @@ export class ChooseSource implements OnInit, OnChanges {
                 this.uM.options[i].selected = true;
         }
 
-
+this.clicked = false;
 
     }
     
-    onClick(){
+    ngOnClick(){
         this.updateDropdown();
     }
 
