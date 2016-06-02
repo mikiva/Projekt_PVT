@@ -1,7 +1,6 @@
 package servlet;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 
@@ -9,35 +8,32 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import analysis.database.SqlDatabase;
-import analysis.database.SqlTable;
+public class GetGraphDataServletTest extends Mockito {
 
-public class SaveAnalyzeServletTest extends Mockito {
-	
-	private SaveAnalyzeServlet servlet;
+	private GetGraphDataServlet servlet;
 	private HttpServletRequest emptyRequest;
 	private HttpServletResponse emptyResponse;
-	private SqlTable table;
-	private SqlDatabase sql;
-	
+
 	@Before
-    public void setUp() {
+	public void setUp() throws Exception {
+		servlet = new GetGraphDataServlet();
 		emptyRequest = mock(HttpServletRequest.class);       
-        emptyResponse = mock(HttpServletResponse.class);
-        table = mock(SqlTable.class);
-		sql = new SqlDatabase(table);
-		
-		servlet = new SaveAnalyzeServlet(sql);
+		emptyResponse = mock(HttpServletResponse.class);
 	}
-	
-	@Ignore
+
+	@After
+	public void tearDown() throws Exception {
+		servlet = null;
+	}
+
 	@Test
-	public void testEmpty () {
+	public void testEmptyParameters() {
+
 		when(emptyRequest.getParameter("title")).thenReturn("");
 		when(emptyRequest.getParameter("res")).thenReturn("");
 		when(emptyRequest.getParameter("startDate")).thenReturn("");
@@ -46,8 +42,7 @@ public class SaveAnalyzeServletTest extends Mockito {
 		when(emptyRequest.getParameter("value1")).thenReturn("");
 		when(emptyRequest.getParameter("database2")).thenReturn("");
 		when(emptyRequest.getParameter("value2")).thenReturn("");
-		when(emptyRequest.getParameter("comment")).thenReturn("");
-		 
+
 		try {
 			servlet.doGet(emptyRequest, emptyResponse);
 		} catch (ServletException e) {
@@ -56,7 +51,6 @@ public class SaveAnalyzeServletTest extends Mockito {
 			e.printStackTrace();
 		}
 
-		assertTrue(emptyResponse.toString() != "");
 	}
-	
+
 }

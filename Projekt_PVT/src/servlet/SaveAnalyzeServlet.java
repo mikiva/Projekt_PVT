@@ -24,12 +24,18 @@ import servlet.helper.CheckIfAnalyzeDataIsValid;
 public class SaveAnalyzeServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	private SqlDatabase db;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public SaveAnalyzeServlet() {
 		super();
+		db = new SqlDatabase(AnalysisTable.getInstance());
+	}
+	
+	public SaveAnalyzeServlet(SqlDatabase db) {
+		this.db = db;
 	}
 
 	/**
@@ -50,10 +56,6 @@ public class SaveAnalyzeServlet extends HttpServlet {
 		String dataBaseTwo = request.getParameter("database2");
 		String datasetTwo = request.getParameter("value2");
 		String comment = request.getParameter("comment");
-
-		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
-
-
 
 		if (!check.isAlphaNumeric(title))
 			errorMessage.append("Title can only contains number and alphabet");

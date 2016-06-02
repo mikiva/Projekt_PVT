@@ -21,15 +21,15 @@ import json.JsonStringFactory;
 /**
  * Servlet implementation class ServletTest
  */
-@WebServlet("/ServletTest")
-public class ServletTest extends HttpServlet implements Servlet {
+@WebServlet("/GetGraphDataServlet")
+public class GetGraphDataServlet extends HttpServlet implements Servlet {
 	
 	private static final long serialVersionUID = 1L;
 	
     /**
      * Default constructor. 
      */
-    public ServletTest() {}
+    public GetGraphDataServlet() {}
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
