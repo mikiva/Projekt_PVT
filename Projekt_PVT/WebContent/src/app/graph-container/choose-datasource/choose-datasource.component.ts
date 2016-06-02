@@ -49,6 +49,8 @@ export class ChooseSource implements OnInit, OnChanges {
     
     ngOnChanges() {
 
+console.log("choose Source on change");
+
         var m: HTMLSelectElement = (<HTMLSelectElement> document.getElementById("menu"));
         var uM = (<HTMLSelectElement>document.getElementById("underMenu"));
 
