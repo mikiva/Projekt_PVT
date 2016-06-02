@@ -33,7 +33,7 @@ export class GraphContainerComponent {
     
     savedDataMessage: string = "";
     
-    analysis: any;
+    analysis: Observable;
     
     
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
@@ -96,11 +96,11 @@ export class GraphContainerComponent {
         
        
         
-        var sM1 = this.analysis.database1;
-        var sUm1 = this.analysis.datasource1;
+        var sM1 = this.analysis.database1.toString();
+        var sUm1 = this.analysis.datasource1.toString();
         
-        var sM2 = this.analysis.database2;
-        var sUm2 = this.analysis.datasource2;
+        var sM2 = this.analysis.database2.toString();
+        var sUm2 = this.analysis.datasource2.toString();
         
         
         console.log(sM2);
