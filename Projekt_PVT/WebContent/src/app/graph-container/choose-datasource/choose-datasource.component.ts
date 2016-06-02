@@ -39,7 +39,7 @@ export class ChooseSource implements OnInit, OnChanges {
     }
 
     onMenuClick(value, index: number): void {
-        this.database = this.menu[index].database;
+        this.database = this.menu[index].database_link;
         this.fillUnderMenu(index);
     }
 
@@ -49,7 +49,7 @@ export class ChooseSource implements OnInit, OnChanges {
     
     ngOnChanges() {
 
-console.log("choose Source on change");
+        console.log("choose Source on change");
 
         var m: HTMLSelectElement = (<HTMLSelectElement> document.getElementById("menu"));
         var uM = (<HTMLSelectElement>document.getElementById("underMenu"));
