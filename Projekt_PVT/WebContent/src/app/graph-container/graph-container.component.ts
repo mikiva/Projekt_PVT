@@ -33,6 +33,9 @@ export class GraphContainerComponent {
     
     savedDataMessage: string = "";
     
+    analysis: any;
+    
+    
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
     @ViewChild (ChooseResolution) resChild:ChooseResolution;
     @ViewChild (ChooseSource) sourceChild:ChooseSource;
@@ -87,16 +90,17 @@ export class GraphContainerComponent {
     
     updateDropdowns(){
         
+        
         var s1 = document.getElementById("sOne");
         var s2 = document.getElementById("sTwo");
         
        
         
-        var sM1 = this.sourceOne.database;
-        var sUm1 = this.sourceOne.dataset;
+        var sM1 = this.analysis.database1;
+        var sUm1 = this.analysis.datasource1;
         
-        var sM2 = this.sourceTwo.database;
-        var sUm2 = this.sourceTwo.dataset;
+        var sM2 = this.analysis.database2;
+        var sUm2 = this.analysis.datasource2;
         
         
         console.log(sM2);
@@ -112,7 +116,7 @@ export class GraphContainerComponent {
     
     getSavedAnalysis(title: string) {
         console.log(title);
-        var analysis = this.loadService.loadAnalysis(title)
+        this.analysis = this.loadService.loadAnalysis(title)
             .subscribe(analysis => {
                 console.log(analysis.comment);
                 var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};

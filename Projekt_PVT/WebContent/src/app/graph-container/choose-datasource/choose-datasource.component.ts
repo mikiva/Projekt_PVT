@@ -36,6 +36,8 @@ export class ChooseSource implements OnInit, OnChanges {
             .subscribe(
                 menu => this.menu = menu,
                 error => this.errorMessage = <any>error);
+                
+                
 
     }
 
