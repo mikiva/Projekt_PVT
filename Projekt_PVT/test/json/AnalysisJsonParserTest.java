@@ -39,7 +39,6 @@ public class AnalysisJsonParserTest {
 		Analysis a = new Analysis(dbS, dbS, resolution, dates, title, comment);
 		
 		AnalysisJsonParser parser = new AnalysisJsonParser(a);
-		System.out.println(new JsonFormatter().format(parser.toJsonString()));
 		assertEquals(EXPECTED, parser.toJsonString());
 	}
 
