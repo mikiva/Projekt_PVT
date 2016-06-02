@@ -52,7 +52,7 @@ export class ChooseSource implements OnInit, OnChanges {
         this.underMenu = this.menu[index].values;
     }
     
-    ngOnChanges() {
+    updateDropdown() {
 
         console.log("choose Source on change");
         var n : number = 0;
