@@ -2,12 +2,12 @@ import {Component, Output, EventEmitter} from '@angular/core';
 import {MyDatePicker} from './mydatepicker';
 
 @Component({
-    selector: 'sample-date-picker',
+    selector: 'main-date-picker',
     template: `<my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [selDate]="selectedDate"></my-date-picker>`,
     directives: [MyDatePicker]
 })
 
-export class SampleDatePicker {
+export class MainDatePicker {
     private myDatePickerOptions = {
         todayBtnTxt: 'Today',
         dateFormat: 'yyyy-mm-dd',
