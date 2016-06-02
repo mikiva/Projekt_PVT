@@ -22,11 +22,11 @@
 	<div class="row">
 		<div class="six columns">
 			<graph id="1" class="graph-style" [sourceInput]="sourceOne" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">1</graph>
-			<choose-source class="left30" (sourceOutput)="setSourceOne($event)"></choose-source>
+			<choose-source id="sOne" class="left30" (sourceOutput)="setSourceOne($event)" [menuInput]="sM1" [underMenuInput]="sUm1"></choose-source>
 		</div>	
 		<div class="six columns">
 			<graph id="2" class="graph-style" [sourceInput]="sourceTwo" [resolution]="resolution" [dateBefore]="dateBefore" [dateAfter]="dateAfter">2</graph>
-			<choose-source class="left30" (sourceOutput)="setSourceTwo($event)"></choose-source>
+			<choose-source id="sTwo" class="left30" (sourceOutput)="setSourceTwo($event)" [menuInput]="sM2" [munderMenuInput]="sUm2"></choose-source>
 		</div>
 	</div>
 	<!--  row -->

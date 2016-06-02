@@ -30,6 +30,9 @@ export class GraphContainerComponent {
     selectedData: string[] = null;
     header: string = null;
     
+    sM : string;
+    sUm :string;
+    
     savedDataMessage: string = "";
     
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
@@ -82,6 +85,25 @@ export class GraphContainerComponent {
     
     private getComment(){
         return document.getElementById("comment").value;
+    }
+    
+    updateDropdowns(){
+        
+        var s1 = document.getElementById("sOne");
+        var s2 = document.getElementById("sTwo");
+        
+        var sM1 = this.sourceOne.database;
+        var sUm1 = this.sourceOne.dataset;
+        
+        var sM2 = this.sourceTwo.database;
+        var sUm2 = this.sourceTwo.dataset;
+        
+        
+
+     
+     
+        
+        
     }
     
     getSavedAnalysis(title: string) {

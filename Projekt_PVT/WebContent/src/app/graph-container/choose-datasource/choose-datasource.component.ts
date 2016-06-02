@@ -11,8 +11,12 @@ import {Menu} from './menu';
 })
 export class ChooseSource implements OnInit {
     @Output() sourceOutput: EventEmitter = new EventEmitter();
+    @Input() sourceInput: Object;
     source: Object = null;
     database: string;
+    
+    @Input() sM: string;
+    @Input() sUm: string;
 
     menu: Menu[];
     underMenu: String[][];
@@ -42,7 +46,23 @@ export class ChooseSource implements OnInit {
     private fillUnderMenu(index: number): void {
         this.underMenu = this.menu[index].values;
     }
-    update(source1:Object, source2:Object){
+    update(){
+        
+      var m : HTMLSelectElement = (<HTMLSelectElement> document.getElementById("menu"));
+      var uM = (<HTMLSelectElement>document.getElementById("underMenu"));
+      
+      for(var i = 0; i < m.options.length; i++){
+          if(m.options[i].text == this.sM)
+          m.options[i].selected = true;
+      }
+      
+      for (var i = 0; i< uM.options.length; i++){
+          if(uM.options[i].text == this.sUm)
+          uM.options[i].selected = true;
+      }
+      
+      
         
     }
+
 }

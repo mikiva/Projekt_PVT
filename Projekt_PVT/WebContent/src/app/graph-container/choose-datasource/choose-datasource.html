@@ -1,11 +1,11 @@
-<select (change)="onMenuClick($event.target.value, $event.target.selectedIndex-1)">
+<select id="menu" (change)="onMenuClick($event.target.value, $event.target.selectedIndex-1)">
 	<option disabled="disabled">Choose</option>
 	<option *ngFor="let item of menu">
 		{{item.database}}
 	</option>
 </select>
 <br/>
-<select class="left30" (change)="onUnderMenuClick($event.target.selectedIndex-1)">
+<select id="underMenu" class="left30" (change)="onUnderMenuClick($event.target.selectedIndex-1)">
 	<option disabled="disabled">Choose data source</option>
 	<option *ngFor="let item of underMenu">
 		{{item[1]}}
