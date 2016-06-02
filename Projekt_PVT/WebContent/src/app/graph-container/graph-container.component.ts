@@ -33,7 +33,7 @@ export class GraphContainerComponent {
     
     savedDataMessage: string = "";
     
-    analysis: Observable;
+    analysis: any;
     
     
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
@@ -118,7 +118,7 @@ export class GraphContainerComponent {
         console.log(title);
         this.analysis = this.loadService.loadAnalysis(title)
             .subscribe(analysis => {
-                console.log(this.analysis.comment);
+                console.log(analysis.comment);
                 var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
                 var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
                 this.setSourceOne(source1);
