@@ -1,4 +1,4 @@
-import {Component, Output, Input, EventEmitter, OnInit, OnChanges, selectedDate} from '@angular/core';
+import {Component, Output, Input, EventEmitter, OnInit, OnChanges, selectedDate, SimpleChange} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
 
 import {DatasourceService} from '../shared/datasource.service';
@@ -47,7 +47,7 @@ export class ChooseSource implements OnInit, OnChanges {
         this.underMenu = this.menu[index].values;
     }
     
-    ngOnChanges() {
+    ngOnChanges(changes: {[anythingName: string]: SimpleChange}) {
 
 console.log("choose Source on change");
 
