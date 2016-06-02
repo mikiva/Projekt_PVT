@@ -26,7 +26,7 @@ export class GraphCorrelationComponent implements OnChanges {
 
     constructor(private dataSourceService: DatasourceService) {
                 this.options = {            
-            title: {num: 'No data in range'},
+            title: {text: 'No data in range'},
             series: [{
                 data: [],
                 type: 'scatter',
@@ -84,11 +84,14 @@ export class GraphCorrelationComponent implements OnChanges {
     }
     
     clear() {
-        console.log("Clear graphCorr");
-        this.options = {
-            
-            series : [{}]
+ this.options = {            
+            title: {text: 'No data in range'},
+            series: [{
+                data: [],
+                type: 'scatter',
+            }]
         };
+    
         
     }
     

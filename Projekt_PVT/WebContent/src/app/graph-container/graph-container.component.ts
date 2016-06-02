@@ -132,7 +132,7 @@ export class GraphContainerComponent {
         
         
         
-        console.log(this.analysis.database1.text);
+        console.log(this.analysis.database1);
     }
     
     deleteAnalysis() {
@@ -165,4 +165,3 @@ export class GraphContainerComponent {
                 console.log(deleteAnalysis);
             }, err => console.log(err));*/
     }
-}
