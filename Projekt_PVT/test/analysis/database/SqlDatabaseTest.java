@@ -55,13 +55,11 @@ public class SqlDatabaseTest {
 	}
 	
 	@Test
-	@Ignore
 	public void getTitlesOfSavedAnalyses() throws Exception {
 		assertEquals("number of analyses should be 2", 2, sql.getSavedTitles().size());
 	}
 
 	@Test
-	@Ignore
 	public void canStoreValues() throws Exception {
 		PreparedStatement ps = mock(PreparedStatement.class);
 		when(conn.prepareStatement("INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")).thenReturn(ps);
@@ -74,13 +72,11 @@ public class SqlDatabaseTest {
 	}
 	
 	@Test
-	@Ignore
 	public void canRetrieveAnalyses() throws Exception {
 		assertEquals(Analysis.class, sql.getSavedData(new Title("hej")).getClass());
 	}
 	
 	@Test
-	@Ignore
 	public void deletingValuesReturnsNewInstanceWithValueDeleted() throws Exception {
 		when(conn.prepareStatement("DELETE FROM \"" + table.name() + "\"\nWHERE \"TITLE\" = ?")).thenReturn(mock(PreparedStatement.class));
 		when(rs.getString("TITLE")).thenReturn("hallå");
@@ -94,7 +90,6 @@ public class SqlDatabaseTest {
 	}
 	
 	@Test
-	@Ignore
 	public void canUpdateACommentOnASavedAnalysis() throws Exception {
 		when(conn.prepareStatement("UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? " + " \nWHERE \"TITLE\" = ?")).thenReturn(mock(PreparedStatement.class));
 		when(rs.next()).thenReturn(true, true, false);
