@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import analysis.Analysis;
 import analysis.Comment;
@@ -20,22 +21,41 @@ import database.DatabaseFactory;
 public class SqlDatabase {
 
 	private final SqlTable table;
+	private final Map<Title, Analysis> analyses;
 
 	public SqlDatabase(SqlTable table) {
 		if (table == null)
 			throw new NullPointerException();
 		this.table = table;
+		this.analyses = initializeValues(this.table);
 	}
 
 	SqlDatabase(SqlTable table, Map<Title, Analysis> analyses) {
 		this.table = table;
+		this.analyses = analyses;
+	}
+
+	private Map<Title, Analysis> initializeValues(SqlTable table) {
+		Map<Title, Analysis> analyses = new TreeMap<>();
+
+		try (Connection conn = table.connectToDatabase()) {
+			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
+
+			while (rs.next()) {
+				Analysis analysis = createAnalysis(rs);
+				analyses.put(analysis.getTitle(), analysis);
+			}
+		} catch (SQLException e) {
+			throw new TableException(e);
+		}
+
+		return analyses;
 	}
 
 	public SqlDatabase saveData(Analysis analysis) {
-		if (getSavedTitles().contains(analysis.getTitle())) {
+		if(this.analyses.containsKey(analysis.getTitle())) {
 			throw new RuntimeException("Title with that name already exsits!");
 		}
-
 		try (Connection conn = table.connectToDatabase()) {
 			String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -57,18 +77,20 @@ public class SqlDatabase {
 	}
 
 	public SqlDatabase updateData(Analysis analysis) {
-		try (Connection conn = table.connectToDatabase()) {
+		try(Connection conn = table.connectToDatabase()){
 
-			String query = "UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? " + " \nWHERE \"TITLE\" = ?";
+			String query = "UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? "
+					+  " \nWHERE \"TITLE\" = ?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
-
-			statement.setString(1, analysis.getComment().toString());
-			statement.setString(2, analysis.getTitle().toString());
-
+			
+			statement.setString(1,  analysis.getComment().toString());
+			statement.setString(2,  analysis.getTitle().toString());
+			
 			statement.executeUpdate();
 
-		} catch (SQLException e) {
+		}
+		catch(SQLException e){
 			throw new TableException(e);
 		}
 		return new SqlDatabase(this.table);
@@ -79,7 +101,6 @@ public class SqlDatabase {
 			String query = "DELETE FROM \"" + table.name() + "\"\nWHERE \"TITLE\" = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, title.toString());
-			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
@@ -102,30 +123,11 @@ public class SqlDatabase {
 	}
 
 	public Analysis getSavedData(Title title) {
-		Analysis analysis = null;
-		String query = "SELECT * FROM \"" + table.name() + "\" WHERE \"TITLE\"='" + title + "'";
-		try (Connection conn = table.connectToDatabase()) {
-			ResultSet rs = conn.createStatement().executeQuery(query);
-			if (rs.next())
-				analysis = createAnalysis(rs);
-
-		} catch (SQLException e) {
-			throw new TableException(e);
-		}
-		return analysis;
+		return analyses.get(title);
 	}
-
+	
 	public Set<Title> getSavedTitles() {
-		Set<Title> titles = new TreeSet<>();
-
-		try (Connection conn = table.connectToDatabase()) {
-			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
-			while (rs.next())
-				titles.add(new Title(rs.getString("TITLE")));
-		} catch (SQLException e) {
-			throw new TableException("Error connecting to database");
-		}
-		return titles;
+		return analyses.keySet().stream().collect(Collectors.toSet());
 	}
-
+	
 }
