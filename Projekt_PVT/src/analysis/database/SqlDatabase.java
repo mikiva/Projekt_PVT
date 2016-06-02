@@ -70,7 +70,7 @@ public class SqlDatabase {
 		return statement;
 	}
 
-	public void updateData(Analysis analysis) {
+	public SqlDatabase updateData(Analysis analysis) {
 		try (Connection conn = table.connectToDatabase()) {
 			String query = "UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? " + " \nWHERE \"TITLE\" = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -80,6 +80,7 @@ public class SqlDatabase {
 		} catch (SQLException e) {
 			throw new TableException(e);
 		}
+		return new SqlDatabase(this.table);
 	}
 
 	public SqlDatabase deleteData(Title title) {

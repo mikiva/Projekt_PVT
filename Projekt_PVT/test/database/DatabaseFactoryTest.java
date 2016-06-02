@@ -25,12 +25,6 @@ public class DatabaseFactoryTest {
 	}
 	
 	@Test
-	public void getWorldBankWorldDevelopmentIndicators() throws Exception {
-		assertEquals(WorldBankWorldDevelopmentIndicators.class, 
-				DatabaseFactory.get("WWDI").getClass());
-	}
-	
-	@Test
 	public void returnsNullFactoryWhenIllegalParameterIsUsed() throws Exception {
 		assertEquals(NullDatabase.class, DatabaseFactory.get("ILLEGAL").getClass());
 		assertEquals(NullDatabase.class, DatabaseFactory.get(null).getClass());
@@ -40,7 +34,6 @@ public class DatabaseFactoryTest {
 	public void getAvailableDatabasesAsArray() throws Exception {
 		Database[] expectedResult = new Database[] {
 				new IMFCrossCountryMacroeconomicStatistics(),
-				new WorldBankWorldDevelopmentIndicators(),
 				new EuropeanNetworkofTransmissionSystemOperatorsForElectricity(),
 				new MiscDatabase()
 		};
