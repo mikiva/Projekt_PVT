@@ -85,11 +85,20 @@ export class Graph implements OnChanges, OnInit {
     }
     
     clear(){
-        
-         console.log("Clear graph");
-        this.options = {
-            
-            series: [{}]
+          this.options = {
+            title: {
+                text: 'No data'
+
+            },
+
+            series: [{}],
+            noData: {
+                style: {
+                    fontSize: '20px'
+                }
+            }
+
+
         };
         
         

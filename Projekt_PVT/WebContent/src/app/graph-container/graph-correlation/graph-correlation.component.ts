@@ -84,11 +84,14 @@ export class GraphCorrelationComponent implements OnChanges {
     }
     
     clear() {
-        console.log("Clear graphCorr");
-        this.options = {
-            
-            series : [{}]
+ this.options = {            
+            title: {num: 'No data in range'},
+            series: [{
+                data: [],
+                type: 'scatter',
+            }]
         };
+    
         
     }
     
