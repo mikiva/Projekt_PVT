@@ -129,8 +129,9 @@ export class GraphContainerComponent {
                 this.setHeader(analysis.title);
                 this.setComment(analysis.comment);
         }, err => console.error(err),
-        console.log(this.analysis.database1),
         () => this.updateDropdowns());
+        
+        console.log(this.analysis);
     }
     
     deleteAnalysis() {
