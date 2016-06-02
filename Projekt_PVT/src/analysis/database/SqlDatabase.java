@@ -29,26 +29,19 @@ public class SqlDatabase {
 		this.table = table;
 		this.analyses = initializeValues(this.table);
 	}
-
-	SqlDatabase(SqlTable table, Map<Title, Analysis> analyses) {
-		this.table = table;
-		this.analyses = analyses;
-	}
-
+	
 	private Map<Title, Analysis> initializeValues(SqlTable table) {
 		Map<Title, Analysis> analyses = new TreeMap<>();
 
 		try (Connection conn = table.connectToDatabase()) {
 			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
-
 			while (rs.next()) {
 				Analysis analysis = createAnalysis(rs);
 				analyses.put(analysis.getTitle(), analysis);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new TableException(e);
 		}
-
 		return analyses;
 	}
 
@@ -56,16 +49,7 @@ public class SqlDatabase {
 		try (Connection conn = table.connectToDatabase()) {
 			String query = "INSERT INTO \"" + table.name() + "\"\nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = conn.prepareStatement(query);
-
-			statement.setString(1, analysis.getTitle().toString());
-			statement.setString(2, analysis.getFirstDatabaseWithSource().getDatabase().link());
-			statement.setString(3, analysis.getFirstDatabaseWithSource().getSourceId());
-			statement.setString(4, analysis.getSecondDatabaseAndSource().getDatabase().link());
-			statement.setString(5, analysis.getSecondDatabaseAndSource().getSourceId());
-			statement.setString(6, analysis.getResolution().toString());
-			statement.setString(7, analysis.getDateRange().getStartDate().toString());
-			statement.setString(8, analysis.getDateRange().getEndDate().toString());
-			statement.setString(9, analysis.getComment().toString());
+			statement = prepareParameters(analysis, statement);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new TableException(e);
@@ -73,21 +57,27 @@ public class SqlDatabase {
 		return new SqlDatabase(this.table);
 	}
 
+	private PreparedStatement prepareParameters(Analysis analysis, PreparedStatement statement) throws SQLException {
+		statement.setString(1, analysis.getTitle().toString());
+		statement.setString(2, analysis.getFirstDatabaseWithSource().getDatabase().link());
+		statement.setString(3, analysis.getFirstDatabaseWithSource().getSourceId());
+		statement.setString(4, analysis.getSecondDatabaseAndSource().getDatabase().link());
+		statement.setString(5, analysis.getSecondDatabaseAndSource().getSourceId());
+		statement.setString(6, analysis.getResolution().toString());
+		statement.setString(7, analysis.getDateRange().getStartDate().toString());
+		statement.setString(8, analysis.getDateRange().getEndDate().toString());
+		statement.setString(9, analysis.getComment().toString());
+		return statement;
+	}
+
 	public void updateData(Analysis analysis) {
-		try(Connection conn = table.connectToDatabase()){
-
-			String query = "UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? "
-					+  " \nWHERE \"TITLE\" = ?";
-
+		try (Connection conn = table.connectToDatabase()) {
+			String query = "UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? " + " \nWHERE \"TITLE\" = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
-			
-			statement.setString(1,  analysis.getComment().toString());
-			statement.setString(2,  analysis.getTitle().toString());
-			
+			statement.setString(1, analysis.getComment().toString());
+			statement.setString(2, analysis.getTitle().toString());
 			statement.executeUpdate();
-
-		}
-		catch(SQLException e){
+		} catch (SQLException e) {
 			throw new TableException(e);
 		}
 	}
@@ -121,9 +111,9 @@ public class SqlDatabase {
 	public Analysis getSavedData(Title title) {
 		return analyses.get(title);
 	}
-	
+
 	public Set<Title> getSavedTitles() {
 		return analyses.keySet().stream().collect(Collectors.toSet());
 	}
-	
+
 }
