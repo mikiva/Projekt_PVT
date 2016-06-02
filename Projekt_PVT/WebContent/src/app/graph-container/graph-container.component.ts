@@ -1,4 +1,4 @@
-import {Component, Output, ViewChild} from '@angular/core';
+import {Component, Output, ViewChild, ViewChildren } from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
@@ -35,8 +35,8 @@ export class GraphContainerComponent {
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
     @ViewChild (ChooseResolution) resChild:ChooseResolution;
     @ViewChild (ChooseSource) sourceChild:ChooseSource;
-    @ViewChild (Graph) graphChild:Graph;
-    @ViewChild (GraphCorrelationComponent) graphCorrChild:GraphCorrelationComponent;
+    @ViewChildren (Graph) graphChildren:Graph;
+    @ViewChild(GraphCorrelationComponent) graphCorrChild:GraphCorrelationComponent;
 
     constructor(private databaseService: DatabaseService, private loadService: LoadDataService) { }
 
@@ -108,8 +108,7 @@ export class GraphContainerComponent {
             .subscribe(response => this.savedDataMessage = response,
             err => console.error(err),
             () => this.savedChild.updateList(),
-            () => this.clear(),
-            () => this.graphChild.clear(),
+            () => this.graphChildren.clear(),
             () => this.graphCorrChild.clear());
             
     }
