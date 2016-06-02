@@ -60,6 +60,16 @@ public class Analysis {
 	}
 	
 	@Override
+	public String toString() {
+		return "Title: " + title +
+				"\nFirst database and datasource pair: " + dbAndSource1 + 
+				"\nSecond database and datasource pair: " + dbAndSource2 + 
+				"\nResolution: " + resolution +
+				"\nDates: " + dates + 
+				"\nComment: " + comment;
+	}
+	
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
