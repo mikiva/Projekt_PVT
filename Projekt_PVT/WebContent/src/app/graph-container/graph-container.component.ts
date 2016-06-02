@@ -90,6 +90,8 @@ export class GraphContainerComponent {
         var s1 = document.getElementById("sOne");
         var s2 = document.getElementById("sTwo");
         
+       
+        
         var sM1 = this.sourceOne.database;
         var sUm1 = this.sourceOne.dataset;
         

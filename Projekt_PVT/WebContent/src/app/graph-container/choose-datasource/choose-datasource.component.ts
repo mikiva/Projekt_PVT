@@ -21,6 +21,11 @@ export class ChooseSource implements OnInit, OnChanges {
     menu: Menu[];
     underMenu: String[][];
     errorMessage: string;
+    
+    m: HTMLSelectElement = (<HTMLSelectElement> document.getElementById("menu"));
+    uM: HTMLSelectElement = (<HTMLSelectElement>document.getElementById("underMenu"));
+
+    
 
     constructor(private datasourceService: DatasourceService) {
     }
@@ -39,7 +44,7 @@ export class ChooseSource implements OnInit, OnChanges {
     }
 
     onMenuClick(value, index: number): void {
-        this.database = this.menu[index].database;
+        this.database = this.menu[index].database_link;
         this.fillUnderMenu(index);
     }
 
@@ -49,19 +54,18 @@ export class ChooseSource implements OnInit, OnChanges {
     
     ngOnChanges() {
 
-console.log("choose Source on change");
-
-        var m: HTMLSelectElement = (<HTMLSelectElement> document.getElementById("menu"));
-        var uM = (<HTMLSelectElement>document.getElementById("underMenu"));
-
-        for (var i = 0; i < m.options.length; i++) {
-            if (m.options[i].text == this.sM)
-                m.options[i].selected = true;
+        console.log("choose Source on change");
+        var n : number = 0;
+       
+        for (var i = 0; i < this.m.options.length; i++) {
+            if (this.m.options[i].text == this.sM){
+                this.m.options[i].selected = true;   
+        }
         }
 
-        for (var i = 0; i < uM.options.length; i++) {
-            if (uM.options[i].text == this.sUm)
-                uM.options[i].selected = true;
+        for (var i = 0; i < this.uM.options.length; i++) {
+            if (this.uM.options[i].text == this.sUm)
+                this.uM.options[i].selected = true;
         }
 
 
