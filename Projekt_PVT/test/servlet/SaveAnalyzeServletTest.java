@@ -55,8 +55,8 @@ public class SaveAnalyzeServletTest extends Mockito {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		assertTrue(emptyResponse.toString() != "");
+		
+		assertEquals(emptyResponse, null);
 	}
 	
 }
