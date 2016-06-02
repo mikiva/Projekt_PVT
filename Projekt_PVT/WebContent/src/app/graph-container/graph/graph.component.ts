@@ -58,6 +58,8 @@ export class Graph implements OnChanges, OnInit {
         if (this.sourceInput != null) {
             this.plot();
         }
+        if(this.sourceInput == null)
+        this.clear();
     }
     
     plotGraph(): void {

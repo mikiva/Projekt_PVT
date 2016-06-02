@@ -132,7 +132,7 @@ export class GraphContainerComponent {
         
         
         
-        console.log(this.analysis);
+        console.log(this.analysis.database1.text);
     }
     
     deleteAnalysis() {
@@ -155,8 +155,8 @@ export class GraphContainerComponent {
           this.setDateBefore("");
           this.setResolution("");
           this.setResolution("");
-          this.setSourceOne({database: null, dataset: null});
-          this.setSourceTwo({database: null, dataset: null});
+          this.setSourceOne(null);
+          this.setSourceTwo(null);
           this.setHeader("");
            
        } 
