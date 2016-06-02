@@ -19,6 +19,7 @@ import json.CollectionJsonParser;
  */
 @WebServlet("/GetAvailableAnalysisServlet")
 public class GetAvailableAnalysisServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     /**

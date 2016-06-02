@@ -20,6 +20,7 @@ import servlet.helper.CheckIfAnalyzeDataIsValid;
  */
 @WebServlet("/GetAnalysisServlet")
 public class GetAnalysisServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	private CheckIfAnalyzeDataIsValid checker;
 

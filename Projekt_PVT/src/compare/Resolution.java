@@ -31,4 +31,5 @@ public enum Resolution {
 
 		dtf = DateTimeFormatter.ofPattern(pattern);
 	}
+	
 }

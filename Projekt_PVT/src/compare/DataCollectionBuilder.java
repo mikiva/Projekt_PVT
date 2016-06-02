@@ -1,13 +1,11 @@
 package compare;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 
 public class DataCollectionBuilder {
 
@@ -81,9 +79,9 @@ public class DataCollectionBuilder {
 			
 		});
 	}
+	
 	private double roundTwoDecimals(double d){
 		return ((double) Math.round(d * 100) / 100);
 	}
-
 
 }

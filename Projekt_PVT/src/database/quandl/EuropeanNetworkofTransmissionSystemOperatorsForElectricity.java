@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EuropeanNetworkofTransmissionSystemOperatorsForElectricity extends QuandlDatabase {
+	
 	private final static String DATABASE_CODE = "ENTSOE";
 	private final static Map<String, SourceProperties> DATA_SET = new HashMap<>();
 	private final static String UNIT = "Gigawatt Hours (GWh)";

@@ -1,6 +1,5 @@
 package compare;
 
-
 public class MatchedDataPair {
 
 	private Double xValue;
@@ -23,6 +22,7 @@ public class MatchedDataPair {
 	public String toString() {
 		return xValue + ", " + yValue;
 	}
+	
 	@Override
 	public boolean equals(Object m){
 		return(xValue.equals(((MatchedDataPair) m).getXValue()) && yValue.equals(((MatchedDataPair) m).getYValue()));

@@ -42,4 +42,5 @@ public class TemperatureSourceTest {
 	public void testIncorrectValue() {
 		assertEquals(null, csvMap.get("Finns inte"));
 	}
+	
 }

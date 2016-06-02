@@ -12,8 +12,7 @@ public class AnalysisTable implements SqlTable {
 
 	private static SqlTable singel = null;
 
-	private AnalysisTable() {
-	}
+	private AnalysisTable() {}
 
 	public static SqlTable getInstance() {
 		if (singel == null)

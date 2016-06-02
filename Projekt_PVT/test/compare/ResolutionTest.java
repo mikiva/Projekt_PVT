@@ -33,5 +33,4 @@ public class ResolutionTest {
 		assertEquals("1995", Resolution.YEAR.getLocalDate(LocalDate.parse("1995-03-28")));
 	}
 	
-
 }

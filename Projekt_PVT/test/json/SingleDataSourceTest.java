@@ -1,6 +1,5 @@
 package json;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -14,6 +13,7 @@ import org.junit.Test;
 
 import compare.DataSource;
 import compare.Resolution;
+
 public class SingleDataSourceTest {
 	
 	private SingleDataSourceJson src;
@@ -24,8 +24,6 @@ public class SingleDataSourceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
-		
 		data = mock(DataSource.class);
 		src = new SingleDataSourceJson(data, res);
 		map = new TreeMap<>();
@@ -37,8 +35,6 @@ public class SingleDataSourceTest {
 		map.put(LocalDate.parse("2014-02-02"), 75.5);
 		map.put(LocalDate.parse("2014-03-29"), 435.4);
 		map.put(LocalDate.parse("2014-12-23"), 105.5);
-		
-		
 	}
 
 	@Test

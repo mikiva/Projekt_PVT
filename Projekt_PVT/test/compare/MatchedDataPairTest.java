@@ -22,5 +22,4 @@ public class MatchedDataPairTest {
 		assertEquals(2.0, mdp.getYValue(), 0.01);
 	}
 
-
 }

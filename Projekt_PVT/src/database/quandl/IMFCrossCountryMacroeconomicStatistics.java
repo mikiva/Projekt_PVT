@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class IMFCrossCountryMacroeconomicStatistics extends QuandlDatabase {
+	
 	private static final String DATABASE_CODE = "ODA";
 	private final static Map<String, SourceProperties> DATASET = new HashMap<>();
 

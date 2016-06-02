@@ -50,4 +50,5 @@ public class JsonStringFactoryTest {
 	public void completelyIgnoresNullDataSources() throws Exception {
 		JsonStringFactory.get(res, null, null);
 	}
+	
 }

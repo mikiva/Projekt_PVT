@@ -7,6 +7,7 @@ import org.junit.Test;
 
 
 public class CheckIfAnalyzeDataIsValidTest {
+	
 	private CheckIfAnalyzeDataIsValid ciadv;
 	
 	@Before
@@ -45,4 +46,5 @@ public class CheckIfAnalyzeDataIsValidTest {
 		assertFalse(ciadv.isAlphaNumeric("123AD--"));
 		assertFalse(ciadv.isAlphaNumeric("+++"));
 	}
+	
 }

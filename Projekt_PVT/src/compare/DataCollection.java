@@ -1,6 +1,5 @@
 package compare;
 
-
 import java.util.Map;
 
 public class DataCollection {
@@ -44,5 +43,4 @@ public class DataCollection {
 				&& yUnit.equals(other.getYUnit()) && data.equals(other.getData()));
 	}
 	
-
 }
