@@ -9,7 +9,7 @@ import {Menu} from './menu';
     templateUrl: 'src/app/graph-container/choose-datasource/choose-datasource.html',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
-export class ChooseSource implements OnInit {
+export class ChooseSource implements OnInit, OnChanges {
     @Output() sourceOutput: EventEmitter = new EventEmitter();
     @Input() sourceInput: Object;
     source: Object = null;
@@ -46,7 +46,8 @@ export class ChooseSource implements OnInit {
     private fillUnderMenu(index: number): void {
         this.underMenu = this.menu[index].values;
     }
-    update() {
+    
+    ngOnChanges() {
 
         var m: HTMLSelectElement = (<HTMLSelectElement> document.getElementById("menu"));
         var uM = (<HTMLSelectElement>document.getElementById("underMenu"));
