@@ -45,7 +45,8 @@ export class GraphCorrelationComponent implements OnChanges {
                 error => this.errorMessage = <any>error,
                 () => this.plotGraph());
     }
-plotGraph(): void {
+    
+    plotGraph(): void {
         var xName = this.datasource.xName;
         var yName = this.datasource.yName;
 
@@ -82,7 +83,7 @@ plotGraph(): void {
         };
     }
     
-    clear(){
+    clear() {
         console.log("Clear graphCorr");
         this.options = {
             
@@ -90,6 +91,7 @@ plotGraph(): void {
         };
         
     }
+    
     ngOnChanges(changes: { [source: string]: SimpleChange }) {
         if (this.sourceOne != null && this.sourceTwo != null)
             this.plot();

@@ -6,7 +6,7 @@ describe('ChooseResolution', () => {
         this.chooseResolution = new ChooseResolution();
     });
 
-    it('should have hello property', function() {
+    it('sould get day, week etc', function() {
         expect(this.chooseResolution.resolution[0]).toBe('day');
         expect(this.chooseResolution.resolution[1]).toBe('week');
         expect(this.chooseResolution.resolution[2]).toBe('month');

@@ -8,7 +8,7 @@ export class ChooseResolution {
     @Output() output: EventEmitter<string> = new EventEmitter<string>();
     resolution: string[] = ["Day", "Week", "Month", "Quarter", "Year"];
 
-   onClick(value: string) {
+    onClick(value: string) {
         this.output.emit(value);
     }
 }

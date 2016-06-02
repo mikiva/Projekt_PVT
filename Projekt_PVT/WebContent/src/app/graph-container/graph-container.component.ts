@@ -12,8 +12,6 @@ import {DatabaseService} from './shared/database.service';
 import {LoadDataService} from './shared/loadData.service';
 import {ChooseSaved} from './choose-saved-analysis/choose-saved.component';
 
-
-
 @Component({
     selector: 'graph-container',
     directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, SampleDatePicker, ChooseSaved],

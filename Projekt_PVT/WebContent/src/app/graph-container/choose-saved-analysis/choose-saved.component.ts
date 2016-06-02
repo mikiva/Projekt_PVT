@@ -1,4 +1,4 @@
-import {Component, Output, Input, EventEmitter , OnInit, OnChanges} from '@angular/core';
+import {Component, Output, EventEmitter , OnInit} from '@angular/core';
 import {HTTP_PROVIDERS } from '@angular/http';
 
 import {LoadDataService} from '../shared/loadData.service';
@@ -27,7 +27,7 @@ export class ChooseSaved implements OnInit{
                 error => this.errorMessage = <any>error);
     }
     
-   public loadSaved(title: string): void{
+    loadSaved(title: string): void{
         this.savedOutput.emit(title);
     }
 }

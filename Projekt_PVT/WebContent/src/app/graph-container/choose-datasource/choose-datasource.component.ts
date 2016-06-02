@@ -38,11 +38,12 @@ export class ChooseSource implements OnInit {
         this.database = this.menu[index].database_link;
         this.fillUnderMenu(index);
     }
-
-    private fillUnderMenu(index: number): void {
-        this.underMenu = this.menu[index].values;
-    }
+    
     update(source1:Object, source2:Object){
         
+    }
+    
+    private fillUnderMenu(index: number): void {
+        this.underMenu = this.menu[index].values;
     }
 }
