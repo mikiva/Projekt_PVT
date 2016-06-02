@@ -32,16 +32,20 @@ public class DeleteAnalysisServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
-		Title title = new Title(request.getParameter("title"));
+		Title title = null;
+		
+		try {
+			title = new Title(request.getParameter("title"));			
+			SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 
-		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
-
-		if(!db.getSavedTitles().contains(title)){
-			response.getWriter().append("Analysis with that title does not exists");
-		}
-		else{
-			db.deleteData(title);
-			response.getWriter().append("Analysis "+ title.toString() + " deleted");
+			if (!db.getSavedTitles().contains(title)) {
+				response.getWriter().append("Analysis with that title does not exists");
+			} else {
+				db.deleteData(title);
+				response.getWriter().append("Analysis " + title.toString() + " deleted");
+			}
+		} catch(NullPointerException e) {
+			response.getWriter().append("Title cannot be empty!");
 		}
 	}
 
