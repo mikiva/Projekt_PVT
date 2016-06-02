@@ -103,8 +103,8 @@ export class GraphContainerComponent {
         var sUm2 = this.analysis.datasource2.toString();
         
         
-        console.log(sM2);
-        console.log(sUm2);
+        console.log(sM1);
+        console.log(sUm1);
         
 
      s1.click();
