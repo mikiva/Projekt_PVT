@@ -104,7 +104,6 @@ public class SqlDatabase {
 	public Analysis getSavedData(Title title) {
 		Analysis analysis = null;
 		String query = "SELECT * FROM \"" + table.name() + "\" WHERE \"TITLE\"='" + title + "'";
-		System.out.println(query);
 		try (Connection conn = table.connectToDatabase()) {
 			ResultSet rs = conn.createStatement().executeQuery(query);
 			if (rs.next())
