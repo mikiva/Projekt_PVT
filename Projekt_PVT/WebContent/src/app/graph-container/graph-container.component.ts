@@ -132,6 +132,7 @@ export class GraphContainerComponent {
                 this.setComment(analysis.comment);
         }, err => console.error(err));
         
+        console.log(this.analysis.database1);
         
        
     }
