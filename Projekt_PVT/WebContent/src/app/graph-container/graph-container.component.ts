@@ -135,6 +135,7 @@ export class GraphContainerComponent {
         }, err => console.error(err));
         
         console.log(source1.database);
+        console.log(this.sourceOne.database);
         
        
     }
