@@ -20,8 +20,8 @@ import {ChooseSaved} from './choose-saved-analysis/choose-saved.component';
 })
 export class GraphContainerComponent {
 
-    sourceOne: Object = { database: null, dataset: null };
-    sourceTwo: Object = { database: null, dataset: null };
+    sourceOne: Object = null;
+    sourceTwo: Object = null;
     resolution: string = null;
     dateBefore: string = null;
     dateAfter: string = null;
