@@ -20,15 +20,21 @@ import servlet.helper.CheckIfAnalyzeDataIsValid;
  */
 @WebServlet("/GetAnalysisServlet")
 public class GetAnalysisServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 	private CheckIfAnalyzeDataIsValid checker;
+	private final SqlDatabase db;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public GetAnalysisServlet() {
+		this(new SqlDatabase(AnalysisTable.getInstance()));
+	}
+	
+	GetAnalysisServlet(SqlDatabase db) {
 		super();
+		this.db = db;
 	}
 
 	@Override
@@ -51,12 +57,9 @@ public class GetAnalysisServlet extends HttpServlet {
 			responseMessage = "Title format is incorrect";
 		} else {
 			try {
-				SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 				Title title = new Title(titleParam);
 				Analysis retrievedAnalysis = db.getSavedData(title);
 				responseMessage = new AnalysisJsonParser(retrievedAnalysis).toJsonString();
-			} catch (TableException e) {
-				responseMessage = e.getLocalizedMessage();
 			} catch (NullPointerException e) {
 				responseMessage = "Illegal parameter(s) from database table";
 			}
