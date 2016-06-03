@@ -19,7 +19,6 @@ public class SpectatorsSourceTest {
 	}
 	
 	@Test
-	@Ignore
 	public void dataIsNotNull() throws Exception {
 		assertNotNull(new SpectatorsSource().getData());
 	}

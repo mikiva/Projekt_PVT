@@ -21,7 +21,6 @@ public class FootballGoalsSourceTest {
 	}
 
 	@Test
-	@Ignore
 	public void testGetResultKeysAndValues() {
 		LocalDate firstDate = LocalDate.parse("2014-04-06");
 		Double firstResult = 3.0;
@@ -36,14 +35,12 @@ public class FootballGoalsSourceTest {
 	} 
 	
 	@Test
-	@Ignore
 	public void testSizeOfCsvData() {
 		int csvDataSize = 14;
 		assertEquals(csvDataSize, csvMap.size());
 	}
 	
 	@Test
-	@Ignore
 	public void testIncorrectValue() {
 		assertEquals(null, csvMap.get(LocalDate.parse("2666-01-01")));
 	}
