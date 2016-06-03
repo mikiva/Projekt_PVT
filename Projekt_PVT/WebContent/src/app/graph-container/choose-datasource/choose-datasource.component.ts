@@ -16,8 +16,8 @@ export class ChooseSource implements OnInit, OnChanges {
     source: Object = null;
     database: string;
 
-  //  @Input() sM: string;
-   // @Input() sUm: string;
+    //@Input() sM: string;
+    //@Input() sUm: string;
 
     menu: Menu[];
     underMenu: String[][];
@@ -25,8 +25,6 @@ export class ChooseSource implements OnInit, OnChanges {
     
     m: HTMLSelectElement = (<HTMLSelectElement> document.getElementById("menu"));
     uM: HTMLSelectElement = (<HTMLSelectElement>document.getElementById("underMenu"));
-
-    
 
     constructor(private datasourceService: DatasourceService) {
     }
@@ -36,9 +34,6 @@ export class ChooseSource implements OnInit, OnChanges {
             .subscribe(
                 menu => this.menu = menu,
                 error => this.errorMessage = <any>error);
-                
-                
-
     }
 
     onUnderMenuClick(index: number): void {
@@ -56,25 +51,20 @@ export class ChooseSource implements OnInit, OnChanges {
     }
     
     updateDropdown() {
-
         console.log("choose Source on change");
         var n : number = 0;
        
         for (var i = 0; i < this.m.options.length; i++) {
             if (this.m.options[i].text == this.sM){
                 this.m.options[i].selected = true;   
-        }
+            }
         }
 
         for (var i = 0; i < this.uM.options.length; i++) {
             if (this.uM.options[i].text == this.sUm)
                 this.uM.options[i].selected = true;
         }
-
-this.clicked = false;
-
+        this.clicked = false;
     }
     
-
-
 }

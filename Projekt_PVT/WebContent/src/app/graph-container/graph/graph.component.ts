@@ -25,9 +25,9 @@ export class Graph implements OnChanges, OnInit {
     @Input() dateBefore: string;
     @Input() dateAfter: string;
     
-
     constructor(private dataSourceService: DatasourceService) {
     }
+    
     ngOnInit() {
         this.options = {
             title: {
