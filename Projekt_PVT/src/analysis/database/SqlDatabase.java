@@ -77,6 +77,8 @@ public class SqlDatabase {
 			PreparedStatement statement = conn.prepareStatement(query);
 			
 			statement.setString(1, title.toString());
+			
+			statement.executeUpdate();
 		}
 		catch (SQLException e){
 			throw new TableException(e);
