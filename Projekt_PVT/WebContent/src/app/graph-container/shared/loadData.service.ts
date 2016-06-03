@@ -3,6 +3,7 @@ import {Http, Response} from '@angular/http';
 
 import {Observable} from 'rxjs/Observable';
 import {IDatasource} from './datasource';
+import {LoadDataID} from './load';
 
 @Injectable()
 export class LoadDataService { 
@@ -18,9 +19,9 @@ export class LoadDataService {
             .catch(this.handleError);
     }
     
-    loadAnalysis(title:string): Observable<any> {
+    loadAnalysis(title:string): Observable<LoadDataID> {
         return this.http.get(this.getLoadUrl(title))
-            .map((response: Response) => <any> response.json())
+            .map((response: Response) => <LoadDataID> response.json())
             .catch(this.handleError);  
     }
     
