@@ -99,11 +99,9 @@ export class GraphCorrelationComponent implements OnChanges {
         if (this.sourceOne != null && this.sourceTwo != null)
             this.plot();
             
-        else if (this.sourceOne == null && this.sourceTwo == null)
+        else if ((this.sourceOne == null && this.sourceTwo == null) || (this.sourceOne == null || this.sourceTwo == null))
             this.clear();
-            
-        else
-            this.clear();
+
     }
 }
 
