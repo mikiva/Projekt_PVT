@@ -11,13 +11,13 @@ import {MyDatePicker} from './mydatepicker';
 import {DatabaseService} from './shared/database.service';
 import {LoadDataService} from './shared/loadData.service';
 import {ChooseSaved} from './choose-saved-analysis/choose-saved.component';
-import {LoadDataID} from './shared/load';
+import {LoadDataI} from './shared/load';
 
 @Component({
     selector: 'graph-container',
     directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, MainDatePicker, ChooseSaved],
     templateUrl: 'src/app/graph-container/graph-container.html',
-    providers: [DatabaseService, HTTP_PROVIDERS, LoadDataService]
+    providers: [DatabaseService, HTTP_PROVIDERS, LoadDataService ]
 })
 export class GraphContainerComponent {
 
@@ -34,7 +34,7 @@ export class GraphContainerComponent {
     
     savedDataMessage: string = "";
     
-    analysis: LoadDataID;
+    analysis: LoadDataI;
     
     
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
