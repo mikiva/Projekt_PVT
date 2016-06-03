@@ -32,7 +32,7 @@ public class SaveAnalyzeServletTest extends Mockito {
         table = mock(SqlTable.class);
 		sql = new SqlDatabase(table);
 		
-		servlet = new SaveAnalyzeServlet(sql);
+		servlet = new SaveAnalyzeServlet();
 	}
 	
 	@Ignore
