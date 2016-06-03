@@ -21,13 +21,13 @@ import json.CollectionJsonParser;
 public class GetAvailableAnalysisServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private final SqlDatabase db;
+	private SqlDatabase db;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public GetAvailableAnalysisServlet() {
-        this(new SqlDatabase(AnalysisTable.getInstance()));
+        //this(new SqlDatabase(AnalysisTable.getInstance()));
     }
     
     GetAvailableAnalysisServlet(SqlDatabase db) {
@@ -38,8 +38,9 @@ public class GetAvailableAnalysisServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=UTF-8");
+		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 		Set<Title> titles = db.getSavedTitles();
 		response.getWriter().append(new CollectionJsonParser<>(titles).toJsonString());
 	}
