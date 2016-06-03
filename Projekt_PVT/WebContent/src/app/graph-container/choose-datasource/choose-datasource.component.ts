@@ -64,13 +64,7 @@ export class ChooseSource implements OnInit, OnChanges {
             if (this.uM.options[i].text == this.sUm)
                 this.uM.options[i].selected = true;
         }
-<<<<<<< HEAD
         this.clicked = false;
-=======
-
-        this.clicked = false;
-
->>>>>>> origin/develop
     }
     
 }
