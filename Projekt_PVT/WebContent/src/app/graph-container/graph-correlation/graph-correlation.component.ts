@@ -103,12 +103,14 @@ export class GraphCorrelationComponent implements OnChanges, OnInit {
         
     }
     
-    ngOnChanges() {
-        if (this.sourceOne != null && this.sourceTwo != null)
+    ngOnChanges() : void{
+        if (this.sourceOne != null && this.sourceTwo != null){
             this.plot();
+        }
             
-        else if ((this.sourceOne == null && this.sourceTwo == null) || (this.sourceOne == null || this.sourceTwo == null))
+        else if ((this.sourceOne == null && this.sourceTwo == null)){
             this.clear();
+        }
 
     }
 }
