@@ -92,11 +92,11 @@ export class GraphCorrelationComponent implements OnChanges, OnInit {
     }
     
     clear() {
- this.options = {            
-            title: {text: 'No data in range'},
-            series: [{
-                data: [],
-                type: 'scatter',
+                this.options = {            
+                         title: {text: 'No data in range'},
+                         series: [{
+                            data: [],
+                            type: 'scatter',
             }]
         };
     

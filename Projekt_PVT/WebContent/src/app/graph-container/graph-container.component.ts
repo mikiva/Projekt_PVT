@@ -113,7 +113,7 @@ export class GraphContainerComponent {
          var source2 : Object = {database: null, datasource: null};
         this.analysis = this.loadService.loadAnalysis(title)
             .subscribe(analysis => {
-                this.analysis = analysis;
+                this.analysis = analysis,
                 console.log(analysis.comment);
                 source1 = {database: analysis.database1, dataset: analysis.datasource1};
                 source2 = {database: analysis.database2, dataset: analysis.datasource2};
