@@ -54,6 +54,7 @@ export class GraphContainerComponent {
 
     setSourceOne(sourceOne: Object): void {
         this.sourceOne = sourceOne;
+        console.log(this.setSourceOne.toString());
     }
 
     setSourceTwo(sourceTwo: Object): void {
@@ -127,9 +128,7 @@ export class GraphContainerComponent {
         }, err => console.error(err));
         
         console.log(source1.database);
-
-        console.log(this.sourceOne.database);
-        
+       
        
 
     }
