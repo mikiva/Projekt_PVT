@@ -32,6 +32,8 @@ export class GraphCorrelationComponent implements OnChanges {
                 type: 'scatter',
             }]
         };
+        
+        this.clear();
     }
 
     saveInstance(chart: HighchartsChartObject) {
