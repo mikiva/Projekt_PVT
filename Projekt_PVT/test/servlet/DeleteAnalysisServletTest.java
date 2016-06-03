@@ -37,7 +37,6 @@ public class DeleteAnalysisServletTest {
 		when(mockDB.getSavedTitles()).thenReturn(savedTitles);
 		request = mock(HttpServletRequest.class);
 		response = mock(HttpServletResponse.class);
-		when(request.getParameter("title")).thenReturn(TITLE_NAME);
 
 		stringWriter = new StringWriter();
 		PrintWriter writer = new PrintWriter(stringWriter);
@@ -47,8 +46,8 @@ public class DeleteAnalysisServletTest {
 
 	@Test
 	public void deleteAnalysisSuccessfully() throws Exception {
+		when(request.getParameter("title")).thenReturn(TITLE_NAME);
 		savedTitles.add(new Title(TITLE_NAME));
-
 		servlet.doGet(request, response);
 
 		assertEquals("Analysis " + TITLE_NAME + " deleted", stringWriter.toString());
@@ -56,7 +55,15 @@ public class DeleteAnalysisServletTest {
 
 	@Test
 	public void tryToDeleteAnalysisThatDoesNotExist() throws Exception {
-
+		when(request.getParameter("title")).thenReturn(TITLE_NAME);
+		servlet.doGet(request, response);
+		assertEquals("Analysis with that title does not exists", stringWriter.toString());
+	}
+	
+	@Test
+	public void errorWhenNotUsingParameterWithRequest() throws Exception {
+		servlet.doGet(request, response);
+		assertEquals("Title cannot be empty!", stringWriter.toString());
 	}
 
 }
