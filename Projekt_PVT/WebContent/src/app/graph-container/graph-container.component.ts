@@ -123,7 +123,7 @@ export class GraphContainerComponent {
             .subscribe(analysis => {
                 this.analysis = analysis;
                 console.log(analysis.comment);
-                source1 = {database: analysis.database1.text, dataset: analysis.datasource1};
+                source1 = {database: analysis.database1, dataset: analysis.datasource1};
                 source2 = {database: analysis.database2, dataset: analysis.datasource2};
                 this.setSourceOne(source1);
                 this.setSourceTwo(source2);
