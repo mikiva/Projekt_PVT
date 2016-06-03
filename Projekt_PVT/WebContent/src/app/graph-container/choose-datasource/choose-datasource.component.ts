@@ -16,8 +16,8 @@ export class ChooseSource implements OnInit, OnChanges {
     source: Object = null;
     database: string;
 
-    @Input() sM: string;
-    @Input() sUm: string;
+  //  @Input() sM: string;
+   // @Input() sUm: string;
 
     menu: Menu[];
     underMenu: String[][];
@@ -75,8 +75,6 @@ this.clicked = false;
 
     }
     
-    ngOnClick(){
-        this.updateDropdown();
-    }
+
 
 }
