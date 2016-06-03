@@ -36,7 +36,6 @@ export class GraphContainerComponent {
     
     analysis: LoadDataI;
     
-    
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
     @ViewChild (ChooseResolution) resChild:ChooseResolution;
     @ViewChild (ChooseSource) sourceChild:ChooseSource;
@@ -65,11 +64,11 @@ export class GraphContainerComponent {
         this.resolution = resolution;
     }
     
-    setHeader(title: string){
+    setHeader(title: string) {
        document.getElementById("title").value = title;
     }
     
-    setComment(comment: string){
+    setComment(comment: string) {
         document.getElementById("comment").value = comment;
     }
 
@@ -85,18 +84,14 @@ export class GraphContainerComponent {
         return document.getElementById("title").value;
     }
     
-    private getComment(){
+    private getComment() {
         return document.getElementById("comment").value;
     }
     
-    updateDropdowns(){
-        
-        
+    updateDropdowns() {
         var s1 = document.getElementById("sOne");
         var s2 = document.getElementById("sTwo");
-        
        
-        
         var sM1 = this.analysis.database1;
         var sUm1 = this.analysis.datasource1;
         
@@ -108,11 +103,8 @@ export class GraphContainerComponent {
         console.log(sUm1);
         
 
-     s1.click();
-     s2.click();
-     
-        
-        
+        s1.click();
+        s2.click();
     }
     
     getSavedAnalysis(title: string) {
@@ -122,50 +114,39 @@ export class GraphContainerComponent {
         this.analysis = this.loadService.loadAnalysis(title)
             .subscribe(analysis => {
                 this.analysis = analysis,
-                () => console.log(analysis.comment),
-                () => source1 = {database: analysis.database1, dataset: analysis.datasource1},
-                () => source2 = {database: analysis.database2, dataset: analysis.datasource2},
-                () => this.setSourceOne(source1),
-                () => this.setSourceTwo(source2),
-                () => this.setDateBefore(analysis.startDate),
-                () => this.setDateAfter(analysis.endDate),
-                () => this.setResolution(analysis.resolution),
-                () => this.setHeader(analysis.title),
-                () => this.setComment(analysis.comment)
+                console.log(analysis.comment);
+                source1 = {database: analysis.database1, dataset: analysis.datasource1};
+                source2 = {database: analysis.database2, dataset: analysis.datasource2};
+                this.setSourceOne(source1);
+                this.setSourceTwo(source2);
+                this.setDateBefore(analysis.startDate);
+                this.setDateAfter(analysis.endDate);
+                this.setResolution(analysis.resolution);
+                this.setHeader(analysis.title);
+                this.setComment(analysis.comment);
         }, err => console.error(err));
         
         console.log(source1.database);
-        
-       
     }
     
     deleteAnalysis() {
         //console.log(title);
-        
          var deleteAnalysis = this.databaseService.deleteAnalysis(this.getTitle())
             .subscribe(response => this.savedDataMessage = response,
             err => console.error(err),
             () => this.savedChild.updateList(),
             () => this.graphChildren.clear(),
             () => this.graphCorrChild.clear());
-            
     }
         
-        
-       clear(){
-           
-          this.setComment("");
-          this.setDateAfter("");
-          this.setDateBefore("");
-          this.setResolution("");
-          this.setResolution("");
-          this.setSourceOne(null);
-          this.setSourceTwo(null);
-          this.setHeader("");
-           
-       } 
-       /* var deleteAnalysis = this.databaseService.deleteAnalysis(title)
-            .subscribe(deleteAnalysis => {
-                console.log(deleteAnalysis);
-            }, err => console.log(err));*/
-    }
+    clear() {
+        this.setComment("");
+        this.setDateAfter("");
+        this.setDateBefore("");
+        this.setResolution("");
+        this.setResolution("");
+        this.setSourceOne(null);
+        this.setSourceTwo(null);
+        this.setHeader("");
+    } 
+}
