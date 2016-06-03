@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChange} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChange, OnInit} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
 
 import {CHART_DIRECTIVES, Highcharts} from 'angular2-highcharts';
@@ -12,7 +12,7 @@ import {DataSourceJson} from '../shared/datasource-json';
     templateUrl: 'src/app/graph-container/graph-correlation/graph-correlation.html',
     providers: [DatasourceService, HTTP_PROVIDERS]
 })
-export class GraphCorrelationComponent implements OnChanges {
+export class GraphCorrelationComponent implements OnChanges, OnInit {
 
     chart: HighchartsChartObject;
     options: HighchartsOptions;
@@ -25,7 +25,13 @@ export class GraphCorrelationComponent implements OnChanges {
     @Input() dateAfter: string;
 
     constructor(private dataSourceService: DatasourceService) {
-                this.options = {            
+              
+        
+    }
+    
+    ngOnInit(){
+        
+          this.options = {            
             title: {text: 'No data in range'},
             series: [{
                 data: [],
@@ -33,7 +39,7 @@ export class GraphCorrelationComponent implements OnChanges {
             }]
         };
         
-        this.clear();
+       this.clear(); 
     }
 
     saveInstance(chart: HighchartsChartObject) {
