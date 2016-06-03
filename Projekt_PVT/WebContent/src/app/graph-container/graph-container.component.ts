@@ -11,6 +11,7 @@ import {MyDatePicker} from './mydatepicker';
 import {DatabaseService} from './shared/database.service';
 import {LoadDataService} from './shared/loadData.service';
 import {ChooseSaved} from './choose-saved-analysis/choose-saved.component';
+import {LoadDataID} from './shared/load';
 
 @Component({
     selector: 'graph-container',
@@ -33,7 +34,7 @@ export class GraphContainerComponent {
     
     savedDataMessage: string = "";
     
-    analysis: any;
+    analysis: LoadDataID;
     
     
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
@@ -118,6 +119,7 @@ export class GraphContainerComponent {
         console.log(title);
         this.analysis = this.loadService.loadAnalysis(title)
             .subscribe(analysis => {
+                this.analysis = analysis;
                 console.log(analysis.comment);
                 var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
                 var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
@@ -131,8 +133,7 @@ export class GraphContainerComponent {
         }, err => console.error(err));
         
         
-        
-        console.log(this.analysis.database1);
+       
     }
     
     deleteAnalysis() {
