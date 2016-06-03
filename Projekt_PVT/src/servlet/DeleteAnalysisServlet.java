@@ -18,12 +18,18 @@ import analysis.database.SqlDatabase;
 public class DeleteAnalysisServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	private final SqlDatabase db;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public DeleteAnalysisServlet() {
+		this(new SqlDatabase(AnalysisTable.getInstance()));
+	}
+	
+	public DeleteAnalysisServlet(SqlDatabase db) {
 		super();
+		this.db = db;
 	}
 
 	/**
@@ -36,7 +42,6 @@ public class DeleteAnalysisServlet extends HttpServlet {
 		
 		try {
 			title = new Title(request.getParameter("title"));			
-			SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 
 			if (!db.getSavedTitles().contains(title)) {
 				response.getWriter().append("Analysis with that title does not exists");
