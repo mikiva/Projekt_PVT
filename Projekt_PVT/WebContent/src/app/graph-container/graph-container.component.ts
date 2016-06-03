@@ -122,16 +122,16 @@ export class GraphContainerComponent {
         this.analysis = this.loadService.loadAnalysis(title)
             .subscribe(analysis => {
                 this.analysis = analysis,
-                () => console.log(analysis.comment),
-                () => source1 = {database: analysis.database1, dataset: analysis.datasource1},
-                () => source2 = {database: analysis.database2, dataset: analysis.datasource2},
-                () => this.setSourceOne(source1),
-                () => this.setSourceTwo(source2),
-                () => this.setDateBefore(analysis.startDate),
-                () => this.setDateAfter(analysis.endDate),
-                () => this.setResolution(analysis.resolution),
-                () => this.setHeader(analysis.title),
-                () => this.setComment(analysis.comment)
+                console.log(analysis.comment);
+                source1 = {database: analysis.database1, dataset: analysis.datasource1};
+                source2 = {database: analysis.database2, dataset: analysis.datasource2};
+                this.setSourceOne(source1);
+                this.setSourceTwo(source2);
+                this.setDateBefore(analysis.startDate);
+                this.setDateAfter(analysis.endDate);
+                this.setResolution(analysis.resolution);
+                this.setHeader(analysis.title);
+                this.setComment(analysis.comment);
         }, err => console.error(err));
         
         console.log(source1.database);

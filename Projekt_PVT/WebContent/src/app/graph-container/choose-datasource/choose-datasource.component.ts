@@ -71,7 +71,7 @@ export class ChooseSource implements OnInit, OnChanges {
                 this.uM.options[i].selected = true;
         }
 
-this.clicked = false;
+        this.clicked = false;
 
     }
     
