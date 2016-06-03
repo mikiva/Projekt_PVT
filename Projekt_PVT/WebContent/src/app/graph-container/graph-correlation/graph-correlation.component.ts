@@ -18,8 +18,8 @@ export class GraphCorrelationComponent implements OnChanges {
     options: HighchartsOptions;
     errorMessage: string;
     datasource: DataSourceJson;
-    @Input() sourceOne: Object;
-    @Input() sourceTwo: Object;
+    @Input() sourceOne: Object = null;
+    @Input() sourceTwo: Object = null;
     @Input() resolution: string;
     @Input() dateBefore: string;
     @Input() dateAfter: string;
@@ -95,7 +95,7 @@ export class GraphCorrelationComponent implements OnChanges {
         
     }
     
-    ngOnChanges(changes: { [source: string]: SimpleChange }) {
+    ngOnChanges() {
         if (this.sourceOne != null && this.sourceTwo != null)
             this.plot();
             
