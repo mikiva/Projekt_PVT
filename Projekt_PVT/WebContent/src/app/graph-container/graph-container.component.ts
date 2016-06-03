@@ -117,12 +117,14 @@ export class GraphContainerComponent {
     
     getSavedAnalysis(title: string) {
         console.log(title);
+         var source1 : Object = {database: null, datasource: null};
+         var source2 : Object = {database: null, datasource: null};
         this.analysis = this.loadService.loadAnalysis(title)
             .subscribe(analysis => {
                 this.analysis = analysis;
                 console.log(analysis.comment);
-                var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
-                var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
+                source1 = {database: analysis.database1.text, dataset: analysis.datasource1};
+                source2 = {database: analysis.database2, dataset: analysis.datasource2};
                 this.setSourceOne(source1);
                 this.setSourceTwo(source2);
                 this.setDateBefore(analysis.startDate);
@@ -132,7 +134,7 @@ export class GraphContainerComponent {
                 this.setComment(analysis.comment);
         }, err => console.error(err));
         
-        console.log(this.analysis.database1);
+        console.log(source1.database);
         
        
     }
