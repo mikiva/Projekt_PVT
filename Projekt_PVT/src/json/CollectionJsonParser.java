@@ -2,7 +2,6 @@ package json;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 public class CollectionJsonParser<T> implements JsonString {
 
@@ -21,5 +20,4 @@ public class CollectionJsonParser<T> implements JsonString {
 		builder.append(valuesWithWhiteSpaceRemoved + "}");
 		return builder.toString();
 	}
-
 }
