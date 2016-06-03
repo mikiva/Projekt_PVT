@@ -1,4 +1,4 @@
-export interface LoadDataID{
+export interface LoadDataI{
     
     title: string;
     database1: string;

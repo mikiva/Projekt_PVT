@@ -11,13 +11,13 @@ import {MyDatePicker} from './mydatepicker';
 import {DatabaseService} from './shared/database.service';
 import {LoadDataService} from './shared/loadData.service';
 import {ChooseSaved} from './choose-saved-analysis/choose-saved.component';
-import {LoadDataID} from './shared/load';
+import {LoadDataI} from './shared/load';
 
 @Component({
     selector: 'graph-container',
     directives: [Graph, GraphCorrelationComponent, ChooseSource, ChooseResolution, MainDatePicker, ChooseSaved],
     templateUrl: 'src/app/graph-container/graph-container.html',
-    providers: [DatabaseService, HTTP_PROVIDERS, LoadDataService]
+    providers: [DatabaseService, HTTP_PROVIDERS, LoadDataService ]
 })
 export class GraphContainerComponent {
 
@@ -34,7 +34,7 @@ export class GraphContainerComponent {
     
     savedDataMessage: string = "";
     
-    analysis: LoadDataID;
+    analysis: LoadDataI;
     
     
     @ViewChild (ChooseSaved) savedChild:ChooseSaved;
@@ -117,21 +117,24 @@ export class GraphContainerComponent {
     
     getSavedAnalysis(title: string) {
         console.log(title);
+         var source1 : Object = {database: null, datasource: null};
+         var source2 : Object = {database: null, datasource: null};
         this.analysis = this.loadService.loadAnalysis(title)
             .subscribe(analysis => {
-                this.analysis = analysis;
-                console.log(analysis.comment);
-                var source1 : Object = {database: analysis.database1, dataset: analysis.datasource1};
-                var source2 : Object = {database: analysis.database2, dataset: analysis.datasource2};
-                this.setSourceOne(source1);
-                this.setSourceTwo(source2);
-                this.setDateBefore(analysis.startDate);
-                this.setDateAfter(analysis.endDate);
-                this.setResolution(analysis.resolution);
-                this.setHeader(analysis.title);
-                this.setComment(analysis.comment);
+                this.analysis = analysis,
+                () => console.log(analysis.comment),
+                () => source1 = {database: analysis.database1, dataset: analysis.datasource1},
+                () => source2 = {database: analysis.database2, dataset: analysis.datasource2},
+                () => this.setSourceOne(source1),
+                () => this.setSourceTwo(source2),
+                () => this.setDateBefore(analysis.startDate),
+                () => this.setDateAfter(analysis.endDate),
+                () => this.setResolution(analysis.resolution),
+                () => this.setHeader(analysis.title),
+                () => this.setComment(analysis.comment)
         }, err => console.error(err));
         
+        console.log(source1.database);
         
        
     }
