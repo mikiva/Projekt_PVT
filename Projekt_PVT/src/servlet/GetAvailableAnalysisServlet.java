@@ -27,12 +27,17 @@ public class GetAvailableAnalysisServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public GetAvailableAnalysisServlet() {
-        //this(new SqlDatabase(AnalysisTable.getInstance()));
     }
     
     GetAvailableAnalysisServlet(SqlDatabase db) {
     	super();
     	this.db = db;
+    }
+    
+    @Override
+    public void init() throws ServletException {
+    	super.init();
+    	this.db = new SqlDatabase(AnalysisTable.getInstance());
     }
 
 	/**
@@ -40,7 +45,6 @@ public class GetAvailableAnalysisServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=UTF-8");
-		SqlDatabase db = new SqlDatabase(AnalysisTable.getInstance());
 		Set<Title> titles = db.getSavedTitles();
 		response.getWriter().append(new CollectionJsonParser<>(titles).toJsonString());
 	}

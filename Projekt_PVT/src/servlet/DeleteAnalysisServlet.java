@@ -18,18 +18,23 @@ import analysis.database.SqlDatabase;
 public class DeleteAnalysisServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	private final SqlDatabase db;
+	private SqlDatabase db;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public DeleteAnalysisServlet() {
-		this(new SqlDatabase(AnalysisTable.getInstance()));
 	}
 	
 	public DeleteAnalysisServlet(SqlDatabase db) {
 		super();
 		this.db = db;
+	}
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		this.db = new SqlDatabase(AnalysisTable.getInstance());
 	}
 
 	/**
@@ -38,15 +43,13 @@ public class DeleteAnalysisServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
-		Title title = null;
-		
 		try {
-			title = new Title(request.getParameter("title"));			
+			Title title = new Title(request.getParameter("title"));			
 
 			if (!db.getSavedTitles().contains(title)) {
 				response.getWriter().append("Analysis with that title does not exists");
 			} else {
-				db.deleteData(title);
+				db = db.deleteData(title);
 				response.getWriter().append("Analysis " + title.toString() + " deleted");
 			}
 		} catch(NullPointerException e) {

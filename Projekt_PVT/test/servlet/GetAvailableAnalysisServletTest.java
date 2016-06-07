@@ -23,7 +23,6 @@ public class GetAvailableAnalysisServletTest {
 	private static final String EXPECTED = "{\"values\":[\"test\"]}";
 
 	@Test
-	@Ignore
 	public void getJsonStringOfSavedTitles() throws Exception {
 		SqlDatabase mockDB = mock(SqlDatabase.class);
 		GetAvailableAnalysisServlet servlet = new GetAvailableAnalysisServlet(mockDB);
