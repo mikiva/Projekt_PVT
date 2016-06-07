@@ -39,7 +39,7 @@ public class SqlDatabaseTest {
 		conn = mock(Connection.class);
 		when(table.connectToDatabase()).thenReturn(conn);
 		PreparedStatement ps = mock(PreparedStatement.class);
-		when(conn.prepareStatement("SELECT * FROM ?")).thenReturn(ps);
+		when(conn.prepareStatement("SELECT * FROM (?)")).thenReturn(ps);
 		when(ps.executeQuery()).thenReturn(rs);
 		
 		insertMockAnalysesByTitle("hej", "hallå");

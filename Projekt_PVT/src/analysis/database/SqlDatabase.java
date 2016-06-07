@@ -34,7 +34,7 @@ public class SqlDatabase {
 		Map<Title, Analysis> analyses = new TreeMap<>();
 
 		try (Connection conn = table.connectToDatabase()) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM (?)");
 			ps.setString(1, table.name());
 			ResultSet rs = ps.executeQuery();
 
