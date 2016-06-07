@@ -92,9 +92,8 @@ public class SqlDatabase {
 					+  " \nWHERE \"TITLE\" = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
 			
-			statement.setString(1, table.name());
-			statement.setString(2,  analysis.getComment().toString());
-			statement.setString(3,  analysis.getTitle().toString());
+			statement.setString(1,  analysis.getComment().toString());
+			statement.setString(2,  analysis.getTitle().toString());
 			statement.executeUpdate();
 		}
 		catch(SQLException e){
