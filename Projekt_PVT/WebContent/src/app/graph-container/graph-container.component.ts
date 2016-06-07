@@ -99,9 +99,7 @@ export class GraphContainerComponent {
         var sM2 = this.analysis.database2;
         var sUm2 = this.analysis.datasource2;
         
-        
-        console.log(sM1);
-        console.log(sUm1);
+
         
 
         s1.click();
