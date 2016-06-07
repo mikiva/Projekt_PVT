@@ -34,10 +34,8 @@ public class SqlDatabase {
 		Map<Title, Analysis> analyses = new TreeMap<>();
 
 		try (Connection conn = table.connectToDatabase()) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM (?)");
-			ps.setString(1, table.name());
-			ResultSet rs = ps.executeQuery();
-
+			ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM \"" + table.name() + "\"");
+			
 			while (rs.next()) {
 				Analysis analysis = createAnalysis(rs);
 				analyses.put(analysis.getTitle(), analysis);
@@ -69,19 +67,18 @@ public class SqlDatabase {
 			throw new RuntimeException("Title with that name already exsits!");
 		}
 		try (Connection conn = table.connectToDatabase()) {
-			String query = "INSERT INTO ? \nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO \"" + table.name() + "\" \nVALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = conn.prepareStatement(query);
 
-			statement.setString(1, table.name());
-			statement.setString(2, analysis.getTitle().toString());
-			statement.setString(3, analysis.getFirstDatabaseWithSource().getDatabase().link());
-			statement.setString(4, analysis.getFirstDatabaseWithSource().getSourceId());
-			statement.setString(5, analysis.getSecondDatabaseAndSource().getDatabase().link());
-			statement.setString(6, analysis.getSecondDatabaseAndSource().getSourceId());
-			statement.setString(7, analysis.getResolution().toString());
-			statement.setString(8, analysis.getDateRange().getStartDate().toString());
-			statement.setString(9, analysis.getDateRange().getEndDate().toString());
-			statement.setString(10, analysis.getComment().toString());
+			statement.setString(1, analysis.getTitle().toString());
+			statement.setString(2, analysis.getFirstDatabaseWithSource().getDatabase().link());
+			statement.setString(3, analysis.getFirstDatabaseWithSource().getSourceId());
+			statement.setString(4, analysis.getSecondDatabaseAndSource().getDatabase().link());
+			statement.setString(5, analysis.getSecondDatabaseAndSource().getSourceId());
+			statement.setString(6, analysis.getResolution().toString());
+			statement.setString(7, analysis.getDateRange().getStartDate().toString());
+			statement.setString(8, analysis.getDateRange().getEndDate().toString());
+			statement.setString(9, analysis.getComment().toString());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new TableException(e);
@@ -91,7 +88,7 @@ public class SqlDatabase {
 
 	public SqlDatabase updateData(Analysis analysis) {
 		try(Connection conn = table.connectToDatabase()){
-			String query = "UPDATE ? \nSET \"COMMENT\" = ? "
+			String query = "UPDATE \"" + table.name() + "\" \nSET \"COMMENT\" = ? "
 					+  " \nWHERE \"TITLE\" = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
 			
@@ -108,10 +105,9 @@ public class SqlDatabase {
 
 	public SqlDatabase deleteData(Title title) {
 		try (Connection conn = table.connectToDatabase()) {
-			String query = "DELETE FROM ? \nWHERE \"TITLE\" = ?";
+			String query = "DELETE FROM \"" + table.name() + "\"\nWHERE \"TITLE\" = ?";
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, table.name());
-			statement.setString(2, title.toString());
+			statement.setString(1, title.toString());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new TableException(e);
