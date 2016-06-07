@@ -23,17 +23,17 @@ public class GetAnalysisServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private CheckIfAnalyzeDataIsValid checker;
-	private final SqlDatabase db;
+	private SqlDatabase db;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public GetAnalysisServlet() {
-		this(new SqlDatabase(AnalysisTable.getInstance()));
+		super();
 	}
 	
 	GetAnalysisServlet(SqlDatabase db) {
-		super();
+		this();
 		this.db = db;
 	}
 
@@ -41,6 +41,7 @@ public class GetAnalysisServlet extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		checker = new CheckIfAnalyzeDataIsValid();
+		this.db = new SqlDatabase(AnalysisTable.getInstance());
 	}
 
 	/**
