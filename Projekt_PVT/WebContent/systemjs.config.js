@@ -11,8 +11,8 @@
   //map tells the System loader where to look for things
   var  map = {
    // 'app':                        'app', // 'dist',
-    'rxjs':                       'https://npmcdn.com/rxjs@5.0.0-beta.6',
-    'angular2-in-memory-web-api': 'https://npmcdn.com/angular2-in-memory-web-api', // get latest,
+    'rxjs':                       'https://unpkg.com/rxjs@5.0.0-beta.6',
+    'angular2-in-memory-web-api': 'https://unpkg.com/angular2-in-memory-web-api', // get latest,
     'angular2-highcharts':        'https://cdn.rawgit.com/gevgeny/angular2-highcharts/0.1.0/dist', 
     'highcharts/highstock.src':   'https://cdn.rawgit.com/highcharts/highcharts-dist/v4.2.1/highstock.js'
   };
@@ -38,9 +38,9 @@
       '@angular/upgrade',
   ];
 
-  // add map entries for angular packages in the form '@angular/common': 'https://npmcdn.com/@angular/common@0.0.0-3?main=browser'
+  // add map entries for angular packages in the form '@angular/common': 'https://unpkg.com/@angular/common@0.0.0-3?main=browser'
   packageNames.forEach(function(pkgName) {
-    map[pkgName] = 'https://npmcdn.com/' + pkgName + ngVer;
+    map[pkgName] = 'https://unpkg.com/' + pkgName + ngVer;
   });
 
   // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
